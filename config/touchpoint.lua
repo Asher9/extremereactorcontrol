@@ -161,7 +161,7 @@ function new(monSide)
 		buttonList = {},
 		clickMap = {},
 	}
-	local x, y = buttonInstance.controlMonitor.getSize()
+	local x, y = buttonInstance.mon.getSize()
 	for i = 1, x do
 		buttonInstance.clickMap[i] = {}
 	end
