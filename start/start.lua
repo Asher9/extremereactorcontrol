@@ -59,7 +59,7 @@ function _G.loadOptionFile()
 	file.close()
 
     --Insert Elements and assign values
-    optionList = textutils.unserialise(list)
+    _G.optionList = textutils.unserialise(list)
 
 	--Assign values to variables
 	_G.version = optionList["version"]
@@ -74,6 +74,7 @@ function _G.loadOptionFile()
 	_G.turbineTargetSpeed = optionList["turbineTargetSpeed"]
 	_G.targetSteam  = optionList["targetSteam"]
 	_G.turbineOnOff = optionList["turbineOnOff"]
+	_G.debug = optionList["debug"]
 end
 
 --Refreshes the options list
@@ -83,9 +84,9 @@ function _G.refreshOptionList()
 	optionList["version"] = version
 	debugOutput("Variable: rodLevel")
 	optionList["rodLevel"] = rodLevel
-	debugOutput("Variable: backgroundColor")
+	debugOutput("Variable: backgroundColor"..backgroundColor)
 	optionList["backgroundColor"] = backgroundColor
-	debugOutput("Variable: textColor")
+	debugOutput("Variable: textColor = "..textColor)
 	optionList["textColor"] = textColor
 	debugOutput("Variable: reactorOffAt")
 	optionList["reactorOffAt"] = reactorOffAt

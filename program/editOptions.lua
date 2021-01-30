@@ -397,5 +397,6 @@ end
 
 --Run
 controlMonitor.clear()
+
 createAllButtons()
 backToMainMenu()
