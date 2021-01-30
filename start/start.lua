@@ -303,6 +303,7 @@ function _G.initPeripherals()
 	end
 
 	_G.amountTurbines = amountTurbines - 1
+	_G.amountCapacitors = amountCapacitors - 1
 end
 
 
