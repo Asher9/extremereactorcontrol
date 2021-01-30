@@ -175,8 +175,8 @@ function getEnergy()
     local energyStore = 0
 
     for i =1, #capacitors do
-        local stored = capacitors[i].getEnergyStored()
-        print(capacitors[i].." storing "..stored)
+        local stored = math.floor(capacitors[i].getEnergyStored())
+        print(capacitors[i].." storing "..tostring(stored))
         energyStore = energyStore + stored
     end
 
@@ -187,8 +187,8 @@ function getEnergyMax()
     local energyStore = 0
 
     for i =1, #capacitors do
-        local maxStorage = capacitors[i].getMaxEnergyStored()
-        print(capacitors[i].." max storage "..maxStorage)
+        local maxStorage = math.floor(capacitors[i].getMaxEnergyStored())
+        print(capacitors[i].." max storage "..tostring(maxStorage))
         energyStore = energyStore + maxStorage
     end
 
