@@ -266,6 +266,7 @@ function _G.initPeripherals()
 				_G.amountMonitors = amountMonitors + 1
 			else
 				_G.controlMonitor = peripheral.wrap(peripheralList[i])
+				_G.touchpointLocation = peripheralList[i]	
 			end
 
 			--Capacitorbank / Energycell / Energy Core
