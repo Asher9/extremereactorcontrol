@@ -101,7 +101,7 @@ function startAutoMode()
     end
 
     --Enable reactor and turbines
-    r.setActive(true)
+    reactor.setActive(true)
     allTurbinesOn()
 
     --Reset terminal
@@ -347,11 +347,11 @@ function findOptimalFuelRodLevel()
         while true do
             reactor.setAllControlRodLevels(controlRodLevel)
             sleep(2)
-            local steamOutput1 = r.getHotFluidProducedLastTick()
+            local steamOutput1 = reactor.getHotFluidProducedLastTick()
             print("SO1: " .. steamOutput1)
             reactor.setAllControlRodLevels(controlRodLevel - 1)
             sleep(5)
-            local steamOutput2 = r.getHotFluidProducedLastTick()
+            local steamOutput2 = reactor.getHotFluidProducedLastTick()
             print("SO2: " .. steamOutput2)
             diff = steamOutput2 - steamOutput1
             print("Diff: " .. diff)
@@ -419,10 +419,9 @@ function findOptimalFuelRodLevel()
             --Level too big
             if steamOutput < targetSteamOutput then
                 controlRodLevel = controlRodLevel - 1
-                r.setAllControlRodLevels(controlRodLevel)
-
+                reactor.setAllControlRodLevels(controlRodLevel)
             else
-                r.setAllControlRodLevels(controlRodLevel)
+                reactor.setAllControlRodLevels(controlRodLevel)
                 rodLevel = controlRodLevel
                 saveOptionFile()
                 print("Target RodLevel: " .. controlRodLevel)
@@ -486,7 +485,7 @@ function checkEnergyLevel()
         elseif turbineOnOff == "off" then
             allTurbinesOff()
         end
-        r.setActive(false)
+        reactor.setActive(false)
         --Level < user setting (default: 50%)
     elseif getEnergyPer() <= reactorOnAt then
         reactor.setActive(true)
@@ -643,7 +642,7 @@ function createManualButtons()
     page:rename("aTurbinesOn", aTN, true)
 
     --Switch reactor button?
-    if r.getActive() then
+    if reactor.getActive() then
         page:rename("reactorOn", rOn, true)
         page:toggleButton("reactorOn")
     else
@@ -768,7 +767,7 @@ function printStatsAuto(turbine)
     controlMonitor.setCursorPos(2, 9)
     local fuelCons = tostring(r.getFuelConsumedLastTick())
     local fuelCons2 = string.sub(fuelCons, 0, 4)
-    local eff = math.floor(rfGen / r.getFuelConsumedLastTick())
+    local eff = math.floor(rfGen / reactor.getFuelConsumedLastTick())
     if not reactor.getActive() then eff = 0 end
     
     controlMonitor.write("Fuel Consumption: " .. fuelCons2 .. "mb/t     ")
