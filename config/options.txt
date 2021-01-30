@@ -13,4 +13,5 @@
   program = "turbine",
   turbineOnOff = "off",
   controlMonitor = "",
+  debug = 1,
 }

@@ -20,6 +20,7 @@ _G.program = ""
 _G.turbineTargetSpeed = 0
 _G.targetSteam = 0
 _G.turbineOnOff = ""
+_G.debug = 0
 
 
 --Peripherals
@@ -43,9 +44,15 @@ _G.touchpointLocation = {}
 
 local repoUrl = "https://gitlab.com/seekerscomputercraft/extremereactorcontrol/-/raw/"
 
+function _G.debugOutput(message) 
+	if debug == 1 then
+		print(message)
+	end
+end
+
 --Loads the options.txt file and adds values to the global variables
 function _G.loadOptionFile()
-	print("Loading Option File")
+	debugOutput("Loading Option File")
 	--Loads the file
 	local file = fs.open("/extreme-reactors-control/config/options.txt","r")
 	local list = file.readAll()
@@ -67,30 +74,40 @@ function _G.loadOptionFile()
 	_G.turbineTargetSpeed = optionList["turbineTargetSpeed"]
 	_G.targetSteam  = optionList["targetSteam"]
 	_G.turbineOnOff = optionList["turbineOnOff"]
-	_G.controlMonitor = optionList["controlMonitor"]
 end
 
 --Refreshes the options list
 function _G.refreshOptionList()
-	print("Refreshing Option List")
+	debugOutput("Refreshing Option List")
+	debugOutput("Variable: version")
 	optionList["version"] = version
+	debugOutput("Variable: rodLevel")
 	optionList["rodLevel"] = rodLevel
+	debugOutput("Variable: backgroundColor")
 	optionList["backgroundColor"] = backgroundColor
+	debugOutput("Variable: textColor")
 	optionList["textColor"] = textColor
+	debugOutput("Variable: reactorOffAt")
 	optionList["reactorOffAt"] = reactorOffAt
+	debugOutput("Variable: reactorOnAt")
 	optionList["reactorOnAt"] = reactorOnAt
+	debugOutput("Variable: mainMenu")
 	optionList["mainMenu"] = mainMenu
+	debugOutput("Variable: overallMode")
 	optionList["overallMode"] = overallMode
+	debugOutput("Variable: program")
 	optionList["program"] = program
+	debugOutput("Variable: turbineTargetSpeed")
 	optionList["turbineTargetSpeed"] = turbineTargetSpeed
+	debugOutput("Variable: targetSteam")
 	optionList["targetSteam"] = targetSteam
+	debugOutput("Variable: turbineOnOff")
 	optionList["turbineOnOff"] = turbineOnOff
-	optionList["controlMonitor"] = controlMonitor
 end
 
 --Saves all data basck to the options.txt file
 function _G.saveOptionFile()
-	print("Saving Option File")
+	debugOutput("Saving Option File")
 	--Refresh option list
 	refreshOptionList()
     --Serialise the table
@@ -282,7 +299,7 @@ function _G.initPeripherals()
 			end
 		end
 	end
-    read()
+	
 	--Check for errors
 	term.clear()
 	term.setCursorPos(1,1)
@@ -322,14 +339,14 @@ end
 
 --Load the option file and initialize the peripherals
 
-print("Loading Options File")
+debugOutput("Loading Options File")
 loadOptionFile()
 
 
-print("Initializing Network Devices")
+debugOutput("Initializing Network Devices")
 initPeripherals()
 
-print("Checking for Updates")
+debugOutput("Checking for Updates")
 checkUpdates()
 
 --Run program or main menu, based on the settings
