@@ -316,8 +316,15 @@ end
 --=========== Run the program ==========
 
 --Load the option file and initialize the peripherals
+
+print("Loading Options File")
 loadOptionFile()
+
+
+print("Initializing Network Devices")
 initPeripherals()
+
+print("Checking for Updates")
 checkUpdates()
 
 --Run program or main menu, based on the settings
