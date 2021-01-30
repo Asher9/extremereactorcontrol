@@ -765,7 +765,7 @@ function printStatsAuto(turbine)
     --Prints all other informations (fuel consumption,steam,turbine amount,mode)
     controlMonitor.setTextColor(tonumber(textColor))
     controlMonitor.setCursorPos(2, 9)
-    local fuelCons = tostring(r.getFuelConsumedLastTick())
+    local fuelCons = tostring(reactor.getFuelConsumedLastTick())
     local fuelCons2 = string.sub(fuelCons, 0, 4)
     local eff = math.floor(rfGen / reactor.getFuelConsumedLastTick())
     if not reactor.getActive() then eff = 0 end
