@@ -10,16 +10,17 @@ _G.optionList = {}
 _G.version = 0
 _G.reactorodLevel = 0
 _G.backgroundColor = 0
-_G.turbinesextColor = 0
+_G.textColor = 0
 _G.reactoreactorOffAt = 0
 _G.reactoreactorOnAt = 0
 _G.mainMenu = ""
 _G.lang = ""
 _G.overallMode = ""
 _G.program = ""
-_G.turbinesurbineTargetSpeed = 0
-_G.turbinesargetSteam = 0
-_G.turbinesurbineOnOff = ""
+_G.turbineTargetSpeed = 0
+_G.targetSteam = 0
+_G.turbineOnOff = ""
+
 
 --Peripherals
 _G.monitors = {} --Monitor
@@ -34,7 +35,7 @@ _G.amountMonitors = 0
 _G.amountCapacitors = 0
 
 --TouchpointLocation (same as the monitor)
-_G.turbinesouchpointLocation = {}
+_G.touchpointLocation = {}
 
 --========== Global functions for all program parts ==========
 
@@ -56,16 +57,16 @@ function _G.loadOptionFile()
 	_G.version = optionList["version"]
 	_G.reactorodLevel = optionList["rodLevel"]
 	_G.backgroundColor = tonumber(optionList["backgroundColor"])
-	_G.turbinesextColor = tonumber(optionList["textColor"])
+	_G.textColor = tonumber(optionList["textColor"])
 	_G.reactoreactorOffAt = optionList["reactorOffAt"]
 	_G.reactoreactorOnAt = optionList["reactorOnAt"]
 	_G.mainMenu = optionList["mainMenu"]
 	_G.lang = optionList["lang"]
 	_G.overallMode = optionList["overallMode"]
 	_G.program = optionList["program"]
-	_G.turbinesurbineTargetSpeed = optionList["turbineTargetSpeed"]
-	_G.turbinesargetSteam  = optionList["targetSteam"]
-	_G.turbinesurbineOnOff = optionList["turbineOnOff"]
+	_G.turbineTargetSpeed = optionList["turbineTargetSpeed"]
+	_G.targetSteam  = optionList["targetSteam"]
+	_G.turbineOnOff = optionList["turbineOnOff"]
 	_G.controlMonitor = optionList["controlMonitor"]
 end
 
