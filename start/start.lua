@@ -45,6 +45,7 @@ local repoUrl = "https://gitlab.com/seekerscomputercraft/extremereactorcontrol/-
 
 --Loads the options.txt file and adds values to the global variables
 function _G.loadOptionFile()
+	print("Loading Option File")
 	--Loads the file
 	local file = fs.open("/extreme-reactors-control/config/options.txt","r")
 	local list = file.readAll()
@@ -72,6 +73,7 @@ end
 
 --Refreshes the options list
 function _G.refreshOptionList()
+	print("Refreshing Option List")
 	optionList["version"] = version
 	optionList["rodLevel"] = rodLevel
 	optionList["backgroundColor"] = backgroundColor
@@ -90,6 +92,7 @@ end
 
 --Saves all data basck to the options.txt file
 function _G.saveOptionFile()
+	print("Saving Option File")
 	--Refresh option list
 	refreshOptionList()
     --Serialise the table
