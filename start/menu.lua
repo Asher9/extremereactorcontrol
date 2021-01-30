@@ -3,7 +3,7 @@
 -- Version 1.0 --
 
 -- Loads the Touchpoint API (by Lyqyd)
-shell.run("cp /reactor-turbine-program/config/touchpoint.lua /touchpoint")
+shell.run("cp /extreme-reactors-control/config/touchpoint.lua /touchpoint")
 os.loadAPI("touchpoint")
 shell.run("rm touchpoint")
 
@@ -57,7 +57,7 @@ function _G.exit()
   mon.write("Program terminated!")    
   term.clear()
   term.setCursorPos(1,1)
-  shell.completeProgram("/reactor-turbine-program/start/menu.lua")
+  shell.completeProgram("/extreme-reactors-control/start/menu.lua")
 end
 
 function _G.switchProgram(currBut)
@@ -90,14 +90,14 @@ end
 
 function _G.startTC()
   if program == "turbine" then
-    shell.run("/reactor-turbine-program/program/turbineControl.lua")
+    shell.run("/extreme-reactors-control/program/turbineControl.lua")
   elseif program == "reactor" then
-    shell.run("/reactor-turbine-program/program/reactorControl.lua")
+    shell.run("/extreme-reactors-control/program/reactorControl.lua")
   end
 end
 
 function displayOptions()
-  shell.run("/reactor-turbine-program/program/editOptions.lua")
+  shell.run("/extreme-reactors-control/program/editOptions.lua")
 end
 
 function reboot()
