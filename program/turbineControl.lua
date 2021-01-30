@@ -314,7 +314,6 @@ function findOptimalFuelRodLevel()
     --Load config?
     if not (math.floor(rodLevel) == 0) then
         reactor.setAllControlRodLevels(rodLevel)
-
     else
         --Get reactor below 99c
         getTo99c()
@@ -450,8 +449,8 @@ function getTo99c()
     allTurbinesOn()
 
     --Temperature variables
-    local fTemp = r.getFuelTemperature()
-    local cTemp = r.getCasingTemperature()
+    local fTemp = reactor.getFuelTemperature()
+    local cTemp = reactor.getCasingTemperature()
     local isNotBelow = true
 
     --Wait until both values are below 99
