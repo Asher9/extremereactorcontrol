@@ -62,7 +62,6 @@ function _G.loadOptionFile()
 	_G.reactorOffAt = optionList["reactorOffAt"]
 	_G.reactorOnAt = optionList["reactorOnAt"]
 	_G.mainMenu = optionList["mainMenu"]
-	_G.lang = optionList["lang"]
 	_G.overallMode = optionList["overallMode"]
 	_G.program = optionList["program"]
 	_G.turbineTargetSpeed = optionList["turbineTargetSpeed"]
@@ -81,7 +80,6 @@ function _G.refreshOptionList()
 	optionList["reactorOffAt"] = reactorOffAt
 	optionList["reactorOnAt"] = reactorOnAt
 	optionList["mainMenu"] = mainMenu
-	optionList["lang"] = lang
 	optionList["overallMode"] = overallMode
 	optionList["program"] = program
 	optionList["turbineTargetSpeed"] = turbineTargetSpeed
