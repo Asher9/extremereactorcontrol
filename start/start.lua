@@ -71,7 +71,7 @@ function _G.loadOptionFile()
 end
 
 --Refreshes the options list
-function _G.reactorefreshOptionList()
+function _G.refreshOptionList()
 	optionList["version"] = version
 	optionList["rodLevel"] = rodLevel
 	optionList["backgroundColor"] = backgroundColor
