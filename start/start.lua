@@ -6,40 +6,44 @@
 --========== Global variables for all program parts ==========
 
 --All options
-optionList = {}
-version = 0
-rodLevel = 0
-backgroundColor = 0
-textColor = 0
-reactorOffAt = 0
-reactorOnAt = 0
-mainMenu = ""
-lang = ""
-overallMode = ""
-program = ""
-turbineTargetSpeed = 0
-targetSteam = 0
-turbineOnOff = ""
---Peripherals
-mon = "" --Monitor
-r = "" --Reactor
-v = "" --Energy Storage
-t = {} --Turbines
---Total count of all turbines
-amountTurbines = 0
---TouchpointLocation (same as the monitor)
-touchpointLocation = {}
+_G.optionList = {}
+_G.version = 0
+_G.reactorodLevel = 0
+_G.backgroundColor = 0
+_G.turbinesextColor = 0
+_G.reactoreactorOffAt = 0
+_G.reactoreactorOnAt = 0
+_G.mainMenu = ""
+_G.lang = ""
+_G.overallMode = ""
+_G.program = ""
+_G.turbinesurbineTargetSpeed = 0
+_G.turbinesargetSteam = 0
+_G.turbinesurbineOnOff = ""
 
+--Peripherals
+_G.monitors = {} --Monitor
+_G.controlMonitor = "" --Monitor
+_G.reactor = "" --Reactor
+_G.capacitors = {} --Energy Storage
+_G.turbines = {} --Turbines
+
+--Total count of all turbines
+_G.amountTurbines = 0
+_G.amountMonitors = 0
+_G.amountCapacitors = 0
+
+--TouchpointLocation (same as the monitor)
+_G.turbinesouchpointLocation = {}
 
 --========== Global functions for all program parts ==========
-
 
 --===== Functions for loading and saving the options =====
 
 local repoUrl = "https://gitlab.com/seekerscomputercraft/extremereactorcontrol/-/raw/"
 
 --Loads the options.txt file and adds values to the global variables
-function loadOptionFile()
+function _G.loadOptionFile()
 	--Loads the file
 	local file = fs.open("/extreme-reactors-control/config/options.txt","r")
 	local list = file.readAll()
@@ -49,24 +53,24 @@ function loadOptionFile()
     optionList = textutils.unserialise(list)
 
 	--Assign values to variables
-	version = optionList["version"]
-	rodLevel = optionList["rodLevel"]
-	backgroundColor = tonumber(optionList["backgroundColor"])
-	textColor = tonumber(optionList["textColor"])
-	reactorOffAt = optionList["reactorOffAt"]
-	reactorOnAt = optionList["reactorOnAt"]
-	mainMenu = optionList["mainMenu"]
-	lang = optionList["lang"]
-	overallMode = optionList["overallMode"]
-	program = optionList["program"]
-	turbineTargetSpeed = optionList["turbineTargetSpeed"]
-	targetSteam  = optionList["targetSteam"]
-	turbineOnOff = optionList["turbineOnOff"]
-
+	_G.version = optionList["version"]
+	_G.reactorodLevel = optionList["rodLevel"]
+	_G.backgroundColor = tonumber(optionList["backgroundColor"])
+	_G.turbinesextColor = tonumber(optionList["textColor"])
+	_G.reactoreactorOffAt = optionList["reactorOffAt"]
+	_G.reactoreactorOnAt = optionList["reactorOnAt"]
+	_G.mainMenu = optionList["mainMenu"]
+	_G.lang = optionList["lang"]
+	_G.overallMode = optionList["overallMode"]
+	_G.program = optionList["program"]
+	_G.turbinesurbineTargetSpeed = optionList["turbineTargetSpeed"]
+	_G.turbinesargetSteam  = optionList["targetSteam"]
+	_G.turbinesurbineOnOff = optionList["turbineOnOff"]
+	_G.controlMonitor = optionList["controlMonitor"]
 end
 
 --Refreshes the options list
-function refreshOptionList()
+function _G.reactorefreshOptionList()
 	optionList["version"] = version
 	optionList["rodLevel"] = rodLevel
 	optionList["backgroundColor"] = backgroundColor
@@ -80,10 +84,11 @@ function refreshOptionList()
 	optionList["turbineTargetSpeed"] = turbineTargetSpeed
 	optionList["targetSteam"] = targetSteam
 	optionList["turbineOnOff"] = turbineOnOff
+	optionList["controlMonitor"] = controlMonitor
 end
 
 --Saves all data basck to the options.txt file
-function saveOptionFile()
+function _G.saveOptionFile()
 	--Refresh option list
 	refreshOptionList()
     --Serialise the table
@@ -99,7 +104,7 @@ end
 --===== Automatic update detection =====
 
 --Check for updates
-function checkUpdates()
+function _G.checkUpdates()
 
 	--Check current branch (release or beta)
 	local currBranch = ""
@@ -134,12 +139,12 @@ function checkUpdates()
 end
 
 
-function doUpdate(toVer,branch)
+function _G.doUpdate(toVer,branch)
 
 	--Set the monitor up
-	local x,y = mon.getSize()
-	mon.setBackgroundColor(colors.black)
-	mon.clear()
+	local x,y = controlMonitor.getSize()
+	controlMonitor.setBackgroundColor(colors.black)
+	controlMonitor.clear()
 
 	local x1 = x/2-15
 	local y1 = y/2-4
@@ -147,28 +152,28 @@ function doUpdate(toVer,branch)
 	local y2 = y/2
 
 	--Draw Box
-	mon.setBackgroundColor(colors.gray)
-	mon.setTextColor(colors.gray)
-	mon.setCursorPos(x1,y1)
+	controlMonitor.setBackgroundColor(colors.gray)
+	controlMonitor.setTextColor(colors.gray)
+	controlMonitor.setCursorPos(x1,y1)
 	for i=1,8 do
-		mon.setCursorPos(x1,y1+i-1)
-		mon.write("                              ") --30 chars
+		controlMonitor.setCursorPos(x1,y1+i-1)
+		controlMonitor.write("                              ") --30 chars
 	end
 
 	--Print update message
-	mon.setTextColor(colors.white)
+	controlMonitor.setTextColor(colors.white)
 
-		mon.setCursorPos(x2-9,y1+1)
-		mon.write("Update available!") --17 chars
+		controlMonitor.setCursorPos(x2-9,y1+1)
+		controlMonitor.write("Update available!") --17 chars
 
-		mon.setCursorPos(x2-(math.ceil(string.len(toVer)/2)),y1+3)
-		mon.write(toVer)
+		controlMonitor.setCursorPos(x2-(math.ceil(string.len(toVer)/2)),y1+3)
+		controlMonitor.write(toVer)
 
-		mon.setCursorPos(x2-8,y1+5)
-		mon.write("To install look") --15 chars
+		controlMonitor.setCursorPos(x2-8,y1+5)
+		controlMonitor.write("To install look") --15 chars
 
-		mon.setCursorPos(x2-12,y1+6)
-		mon.write("at the computer terminal") --24 chars
+		controlMonitor.setCursorPos(x2-12,y1+6)
+		controlMonitor.write("at the computer terminal") --24 chars
 
 	--Print install instructions to the terminal
 	term.clear()
@@ -221,13 +226,13 @@ function doUpdate(toVer,branch)
 end
 
 --Download Files (For Remote version file)
-function downloadFile(relUrl,path)
+function _G.downloadFile(relUrl,path)
 	local gotUrl = http.get(relUrl..path)
 	if gotUrl == nil then
 		term.clear()
 		error("File not found! Please check!\nFailed at "..relUrl..path)
 	else
-		url = gotUrl.readAll()
+		_G.url = gotUrl.readAll()
 	end
 
 	local file = fs.open(path,"w")
@@ -238,27 +243,38 @@ end
 
 --===== Initialization of all peripherals =====
 
-function initPeripherals()
+function _G.initPeripherals()
 	--Get all peripherals
 	local peripheralList = peripheral.getNames()
 	for i = 1, #peripheralList do
 		--Turbines
 		if peripheral.getType(peripheralList[i]) == "BigReactors-Turbine" then
-			t[amountTurbines] = peripheral.wrap(peripheralList[i])
-			amountTurbines = amountTurbines + 1
+			print("Turbine - "..peripheralList[i])
+			_G.turbines[amountTurbines] = peripheral.wrap(peripheralList[i])
+			_G.amountTurbines = amountTurbines + 1
 			--Reactor
 		elseif peripheral.getType(peripheralList[i]) == "BigReactors-Reactor" then
-			r = peripheral.wrap(peripheralList[i])
+			print("Reactor - "..peripheralList[i])
+			_G.reactor = peripheral.wrap(peripheralList[i])
 			--Monitor & Touchpoint
 		elseif peripheral.getType(peripheralList[i]) == "monitor" then
-			mon = peripheral.wrap(peripheralList[i])
-			touchpointLocation = peripheralList[i]
+			print("Monitor - "..peripheralList[i])
+			if(peripheralList[i] == controlMonitor) then
+				--add to output monitors
+				_G.monitors[amountMonitors] = peripheral.wrap(peripheralList[i])
+				_G.amountMonitors = amountMonitors + 1
+			else
+				_G.controlMonitor = peripheral.wrap(peripheralList[i])
+			end
+
 			--Capacitorbank / Energycell / Energy Core
 		else
 			local tmp = peripheral.wrap(peripheralList[i])
 			local stat,err = pcall(function() tmp.getEnergyStored() end)
 			if stat then
-				v = tmp
+				print("EnergyCell - "..peripheralList[i])
+				_G.capacitors[amountCapacitors] = peripheral.wrap(peripheralList[i])
+				_G.amountCapacitors = amountCapacitors + 1
 			end
 		end
 	end
@@ -267,32 +283,32 @@ function initPeripherals()
 	term.clear()
 	term.setCursorPos(1,1)
 	--No Monitor
-	if mon == "" then
+	if controlMonitor == "" then
 			error("Monitor not found!\nPlease check and reboot the computer (Press and hold Ctrl+R)")
 	end
 	--Monitor clear
-	mon.setBackgroundColor(colors.black)
-	mon.setTextColor(colors.red)
-	mon.clear()
-	mon.setCursorPos(1,1)
+	controlMonitor.setBackgroundColor(colors.black)
+	controlMonitor.setTextColor(colors.red)
+	controlMonitor.clear()
+	controlMonitor.setCursorPos(1,1)
 	--Monitor too small
-	local monX,monY = mon.getSize()
+	local monX,monY = controlMonitor.getSize()
 	if monX < 71 or monY < 26 then
-		mon.write("Monitor too small\n Must be at least 7 in length and 4 in height.\nPlease check and reboot the computer (Press and hold Ctrl+R)")
+		controlMonitor.write("Monitor too small\n Must be at least 7 in length and 4 in height.\nPlease check and reboot the computer (Press and hold Ctrl+R)")
 		error("Monitor too small.\nMust be at least 7 in length and 4 in height.\nPlease check and reboot the computer (Press and hold Ctrl+R)")
 	end
 
-	amountTurbines = amountTurbines - 1
+	_G.amountTurbines = amountTurbines - 1
 end
 
 
 --===== Shutdown and restart the computer =====
 
-function restart()
+function _G.reactorestart()
 	saveOptionFile()
-	mon.clear()
-	mon.setCursorPos(38,8)
-	mon.write("Rebooting...")
+	controlMonitor.clear()
+	controlMonitor.setCursorPos(38,8)
+	controlMonitor.write("Rebooting...")
 	os.reboot()
 end
 

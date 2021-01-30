@@ -60,12 +60,12 @@ function startAutoMode()
 
     --Display prints
     print("Getting all Turbines to " .. turbineTargetSpeed .. " RPM...")
-    mon.setBackgroundColor(backgroundColor)
-    mon.setTextColor(textColor)
-    mon.clear()
-    mon.setCursorPos(1, 1)
+    controlMonitor.setBackgroundColor(backgroundColor)
+    controlMonitor.setTextColor(textColor)
+    controlMonitor.clear()
+    controlMonitor.setCursorPos(1, 1)
 
-    mon.write("Getting Turbines to " .. (input.formatNumberComma(turbineTargetSpeed)) .. " RPM. Please wait...")
+    controlMonitor.write("Getting Turbines to " .. (input.formatNumberComma(turbineTargetSpeed)) .. " RPM. Please wait...")
 
     --Gets turbine to target speed
     --Init SpeedTables
@@ -80,22 +80,22 @@ function startAutoMode()
             print("Speed: " .. tSpeed .. "     ")
 
             --formatting and printing status
-            mon.setTextColor(textColor)
-            mon.setCursorPos(1, (i + 3))
-            if i >= 16 then mon.setCursorPos(28, (i - 16 + 3)) end
+            controlMonitor.setTextColor(textColor)
+            controlMonitor.setCursorPos(1, (i + 3))
+            if i >= 16 then controlMonitor.setCursorPos(28, (i - 16 + 3)) end
             
             if (i + 1) < 10 then
-                mon.write("Turbine 0" .. (i + 1) .. ": " .. (input.formatNumberComma(math.floor(tSpeed))) .. " RPM")
+                controlMonitor.write("Turbine 0" .. (i + 1) .. ": " .. (input.formatNumberComma(math.floor(tSpeed))) .. " RPM")
             else
-                mon.write("Turbine " .. (i + 1) .. ": " .. (input.formatNumberComma(math.floor(tSpeed))) .. " RPM")
+                controlMonitor.write("Turbine " .. (i + 1) .. ": " .. (input.formatNumberComma(math.floor(tSpeed))) .. " RPM")
             end
 
             if tSpeed > turbineTargetSpeed then
-                mon.setTextColor(colors.green)
-                mon.write(" OK  ")
+                controlMonitor.setTextColor(colors.green)
+                controlMonitor.write(" OK  ")
             else
-                mon.setTextColor(colors.red)
-                mon.write(" ...  ")
+                controlMonitor.setTextColor(colors.red)
+                controlMonitor.write(" ...  ")
             end
         end
     end
@@ -109,10 +109,10 @@ function startAutoMode()
     term.setCursorPos(1, 1)
 
     --Reset Monitor
-    mon.setBackgroundColor(backgroundColor)
-    mon.clear()
-    mon.setTextColor(textColor)
-    mon.setCursorPos(1, 1)
+    controlMonitor.setBackgroundColor(backgroundColor)
+    controlMonitor.clear()
+    controlMonitor.setTextColor(textColor)
+    controlMonitor.setCursorPos(1, 1)
 
     --Creates all buttons
     createAllButtons()
@@ -147,26 +147,26 @@ end
 
 --Checks if all required peripherals are attached
 function checkPeripherals()
-    mon.setBackgroundColor(colors.black)
-    mon.clear()
-    mon.setCursorPos(1, 1)
-    mon.setTextColor(colors.red)
+    controlMonitor.setBackgroundColor(colors.black)
+    controlMonitor.clear()
+    controlMonitor.setCursorPos(1, 1)
+    controlMonitor.setTextColor(colors.red)
     term.clear()
     term.setCursorPos(1, 1)
     term.setTextColor(colors.red)
     --No turbine found
     if t[0] == nil then
-        mon.write("Turbines not found! Please check and reboot the computer (Press and hold Ctrl+R)")
+        controlMonitor.write("Turbines not found! Please check and reboot the computer (Press and hold Ctrl+R)")
         error("Turbines not found! Please check and reboot the computer (Press and hold Ctrl+R)")
     end
     --No reactor found
     if r == "" then
-        mon.write("Reactor not found! Please check and reboot the computer (Press and hold Ctrl+R)")
+        controlMonitor.write("Reactor not found! Please check and reboot the computer (Press and hold Ctrl+R)")
         error("Reactor not found! Please check and reboot the computer (Press and hold Ctrl+R)")
     end
     --No energy storage found
     if v == "" then
-        mon.write("Energy Storage not found! Please check and reboot the computer (Press and hold Ctrl+R)")
+        controlMonitor.write("Energy Storage not found! Please check and reboot the computer (Press and hold Ctrl+R)")
         error("Energy Storage not found! Please check and reboot the computer (Press and hold Ctrl+R)")
     end
 end
@@ -318,18 +318,18 @@ function findOptimalFuelRodLevel()
         local targetLevel = 99
 
         --Display
-        mon.setBackgroundColor(backgroundColor)
-        mon.setTextColor(textColor)
-        mon.clear()
+        controlMonitor.setBackgroundColor(backgroundColor)
+        controlMonitor.setTextColor(textColor)
+        controlMonitor.clear()
 
         print("TargetSteam: " .. targetSteamOutput)
 
-        mon.setCursorPos(1, 1)
-        mon.write("Finding optimal FuelRod Level...")
-        mon.setCursorPos(1, 3)
-        mon.write("Calculating Level...")
-        mon.setCursorPos(1, 5)
-        mon.write("Target Steam-Output: " .. (input.formatNumberComma(math.floor(targetSteamOutput))) .. "mb/t")
+        controlMonitor.setCursorPos(1, 1)
+        controlMonitor.write("Finding optimal FuelRod Level...")
+        controlMonitor.setCursorPos(1, 3)
+        controlMonitor.write("Calculating Level...")
+        controlMonitor.setCursorPos(1, 5)
+        controlMonitor.write("Target Steam-Output: " .. (input.formatNumberComma(math.floor(targetSteamOutput))) .. "mb/t")
 
         --Calculate Level based on 2 values
         local failCounter = 0
@@ -353,16 +353,16 @@ function findOptimalFuelRodLevel()
 
                 --Calculation failed 3 times?
                 if failCounter > 2 then
-                    mon.setBackgroundColor(colors.black)
-                    mon.clear()
-                    mon.setTextColor(colors.red)
-                    mon.setCursorPos(1, 1)
+                    controlMonitor.setBackgroundColor(colors.black)
+                    controlMonitor.clear()
+                    controlMonitor.setTextColor(colors.red)
+                    controlMonitor.setCursorPos(1, 1)
                     
-                    mon.write("RodLevel calculation failed!")
-                    mon.setCursorPos(1, 2)
-                    mon.write("Calculation would be < 0!")
-                    mon.setCursorPos(1, 3)
-                    mon.write("Please check Steam/Water input!")
+                    controlMonitor.write("RodLevel calculation failed!")
+                    controlMonitor.setCursorPos(1, 2)
+                    controlMonitor.write("Calculation would be < 0!")
+                    controlMonitor.setCursorPos(1, 3)
+                    controlMonitor.write("Please check Steam/Water input!")
 
                     --Disable reactor and turbines
                     r.setActive(false)
@@ -399,11 +399,11 @@ function findOptimalFuelRodLevel()
             sleep(5)
             local steamOutput = r.getHotFluidProducedLastTick()
 
-            mon.setCursorPos(1, 3)
-            mon.write("FuelRod Level: " .. controlRodLevel .. "  ")
+            controlMonitor.setCursorPos(1, 3)
+            controlMonitor.write("FuelRod Level: " .. controlRodLevel .. "  ")
 
-            mon.setCursorPos(1, 6)
-            mon.write("Current Steam-Output: " .. (input.formatNumberComma(steamOutput)) .. "mb/t    ")
+            controlMonitor.setCursorPos(1, 6)
+            controlMonitor.write("Current Steam-Output: " .. (input.formatNumberComma(steamOutput)) .. "mb/t    ")
 
             --Level too big
             if steamOutput < targetSteamOutput then
@@ -426,12 +426,12 @@ end
 
 --Gets the reactor below 99c
 function getTo99c()
-    mon.setBackgroundColor(backgroundColor)
-    mon.setTextColor(textColor)
-    mon.clear()
-    mon.setCursorPos(1, 1)
+    controlMonitor.setBackgroundColor(backgroundColor)
+    controlMonitor.setTextColor(textColor)
+    controlMonitor.clear()
+    controlMonitor.setCursorPos(1, 1)
 
-    mon.write("Getting Reactor below 99c ...")
+    controlMonitor.write("Getting Reactor below 99c ...")
 
     --Disables reactor and turbines
     r.setActive(false)
@@ -542,13 +542,13 @@ function getToTargetSpeed()
         --
         --            --Return error message
         --            if speedFailCounter[i] >= 3 then
-        --                mon.setBackgroundColor(colors.black)
-        --                mon.clear()
-        --                mon.setTextColor(colors.red)
-        --                mon.setCursorPos(1, 1)
-        --                    mon.write("Turbines can't get to speed!")
-        --                    mon.setCursorPos(1,2)
-        --                    mon.write("Please check your Steam-Input!")
+        --                controlMonitor.setBackgroundColor(colors.black)
+        --                controlMonitor.clear()
+        --                controlMonitor.setTextColor(colors.red)
+        --                controlMonitor.setCursorPos(1, 1)
+        --                    controlMonitor.write("Turbines can't get to speed!")
+        --                    controlMonitor.setCursorPos(1,2)
+        --                    controlMonitor.write("Please check your Steam-Input!")
         --                    error("Turbines can't get to speed!")
         --            --increase speedFailCounter
         --            else
@@ -712,101 +712,101 @@ function printStatsAuto(turbine)
     end
 
     --prints the energy level (in %)
-    mon.setBackgroundColor(tonumber(backgroundColor))
-    mon.setTextColor(tonumber(textColor))
+    controlMonitor.setBackgroundColor(tonumber(backgroundColor))
+    controlMonitor.setTextColor(tonumber(textColor))
 
-    mon.setCursorPos(2, 2)
+    controlMonitor.setCursorPos(2, 2)
     
-        mon.write("Energy: " .. getEnergyPer() .. "%  ")
+        controlMonitor.write("Energy: " .. getEnergyPer() .. "%  ")
 
 
     --prints the energy bar
     local part1 = getEnergyPer() / 5
-    mon.setCursorPos(2, 3)
-    mon.setBackgroundColor(colors.lightGray)
-    mon.write("                    ")
-    mon.setBackgroundColor(colors.green)
-    mon.setCursorPos(2, 3)
+    controlMonitor.setCursorPos(2, 3)
+    controlMonitor.setBackgroundColor(colors.lightGray)
+    controlMonitor.write("                    ")
+    controlMonitor.setBackgroundColor(colors.green)
+    controlMonitor.setCursorPos(2, 3)
     for i = 1, part1 do
-        mon.write(" ")
+        controlMonitor.write(" ")
     end
-    mon.setTextColor(textColor)
+    controlMonitor.setTextColor(textColor)
 
     --prints the overall energy production
-    mon.setBackgroundColor(tonumber(backgroundColor))
+    controlMonitor.setBackgroundColor(tonumber(backgroundColor))
 
-    mon.setCursorPos(2, 5)
+    controlMonitor.setCursorPos(2, 5)
     
-        mon.write("RF-Production: " .. (input.formatNumberComma(math.floor(rfGen))) .. " RF/t      ")
+        controlMonitor.write("RF-Production: " .. (input.formatNumberComma(math.floor(rfGen))) .. " RF/t      ")
 
     --Reactor status (on/off)
-    mon.setCursorPos(2, 7)
+    controlMonitor.setCursorPos(2, 7)
     
-    mon.write("Reactor: ")
+    controlMonitor.write("Reactor: ")
     if r.getActive() then
-        mon.setTextColor(colors.green)
-        mon.write("on ")
+        controlMonitor.setTextColor(colors.green)
+        controlMonitor.write("on ")
     end
     if not r.getActive() then
-        mon.setTextColor(colors.red)
-        mon.write("off")
+        controlMonitor.setTextColor(colors.red)
+        controlMonitor.write("off")
     end
         
     --Prints all other informations (fuel consumption,steam,turbine amount,mode)
-    mon.setTextColor(tonumber(textColor))
-    mon.setCursorPos(2, 9)
+    controlMonitor.setTextColor(tonumber(textColor))
+    controlMonitor.setCursorPos(2, 9)
     local fuelCons = tostring(r.getFuelConsumedLastTick())
     local fuelCons2 = string.sub(fuelCons, 0, 4)
     local eff = math.floor(rfGen / r.getFuelConsumedLastTick())
     if not r.getActive() then eff = 0 end
     
-    mon.write("Fuel Consumption: " .. fuelCons2 .. "mb/t     ")
-    mon.setCursorPos(2, 10)
-    mon.write("Steam: " .. (input.formatNumberComma(math.floor(r.getHotFluidProducedLastTick()))) .. "mb/t    ")
-    mon.setCursorPos(2, 11)
-    mon.write("Efficiency: " .. (input.formatNumberComma(eff)) .. " RF/mb       ")
-    mon.setCursorPos(40, 2)
-    mon.write("Turbines: " .. (amountTurbines + 1) .. "  ")
-    mon.setCursorPos(2, 13)
-    mon.write("-- Turbine " .. (turbine + 1) .. " --")
+    controlMonitor.write("Fuel Consumption: " .. fuelCons2 .. "mb/t     ")
+    controlMonitor.setCursorPos(2, 10)
+    controlMonitor.write("Steam: " .. (input.formatNumberComma(math.floor(r.getHotFluidProducedLastTick()))) .. "mb/t    ")
+    controlMonitor.setCursorPos(2, 11)
+    controlMonitor.write("Efficiency: " .. (input.formatNumberComma(eff)) .. " RF/mb       ")
+    controlMonitor.setCursorPos(40, 2)
+    controlMonitor.write("Turbines: " .. (amountTurbines + 1) .. "  ")
+    controlMonitor.setCursorPos(2, 13)
+    controlMonitor.write("-- Turbine " .. (turbine + 1) .. " --")
 
     --Currently selected turbine details
 
     --coils
-    mon.setCursorPos(2, 14)
-    mon.write("Coils: ")
+    controlMonitor.setCursorPos(2, 14)
+    controlMonitor.write("Coils: ")
 
     if t[turbine].getInductorEngaged() then
-        mon.setTextColor(colors.green)
+        controlMonitor.setTextColor(colors.green)
         if lang == "de" then
-            mon.write("eingehaengt   ")
+            controlMonitor.write("eingehaengt   ")
         elseif lang == "en" then
-            mon.write("engaged     ")
+            controlMonitor.write("engaged     ")
         end
     end
     if t[turbine].getInductorEngaged() == false then
-        mon.setTextColor(colors.red)
-            mon.write("disengaged")
+        controlMonitor.setTextColor(colors.red)
+            controlMonitor.write("disengaged")
     end
-    mon.setTextColor(tonumber(textColor))
+    controlMonitor.setTextColor(tonumber(textColor))
 
     --rotor speed/RF-production
-    mon.setCursorPos(2, 15)
+    controlMonitor.setCursorPos(2, 15)
 
-        mon.write("Rotor Speed: ")
-        mon.write((input.formatNumberComma(math.floor(t[turbine].getRotorSpeed()))) .. " RPM    ")
-        mon.setCursorPos(2, 15)
-        mon.write("RF-Production: " .. (input.formatNumberComma(math.floor(t[turbine].getEnergyProducedLastTick()))) .. " RF/t           ")
+        controlMonitor.write("Rotor Speed: ")
+        controlMonitor.write((input.formatNumberComma(math.floor(t[turbine].getRotorSpeed()))) .. " RPM    ")
+        controlMonitor.setCursorPos(2, 15)
+        controlMonitor.write("RF-Production: " .. (input.formatNumberComma(math.floor(t[turbine].getEnergyProducedLastTick()))) .. " RF/t           ")
 
     --Internal buffer of the turbine
-    mon.setCursorPos(2, 16)
+    controlMonitor.setCursorPos(2, 16)
     
-        mon.write("Internal Energy: ")
-        mon.write(input.formatNumberComma(math.floor(getTurbineEnergy(turbine))) .. " RF          ")
+        controlMonitor.write("Internal Energy: ")
+        controlMonitor.write(input.formatNumberComma(math.floor(getTurbineEnergy(turbine))) .. " RF          ")
 
     --prints the current program version
-    mon.setCursorPos(2, 25)
-    mon.write("Version " .. version)
+    controlMonitor.setCursorPos(2, 25)
+    controlMonitor.write("Version " .. version)
 
     --refreshes the last turbine id
     lastStat = turbine
@@ -846,24 +846,24 @@ function printStatsMan(turbine)
     end
 
     --prints the energy level (in %)
-    mon.setBackgroundColor(tonumber(backgroundColor))
-    mon.setTextColor(tonumber(textColor))
+    controlMonitor.setBackgroundColor(tonumber(backgroundColor))
+    controlMonitor.setTextColor(tonumber(textColor))
 
-    mon.setCursorPos(2, 2)
+    controlMonitor.setCursorPos(2, 2)
     
-    mon.write("Energy: " .. getEnergyPer() .. "%  ")
+    controlMonitor.write("Energy: " .. getEnergyPer() .. "%  ")
 
     --prints the energy bar
     local part1 = getEnergyPer() / 5
-    mon.setCursorPos(2, 3)
-    mon.setBackgroundColor(colors.lightGray)
-    mon.write("                    ")
-    mon.setBackgroundColor(colors.green)
-    mon.setCursorPos(2, 3)
+    controlMonitor.setCursorPos(2, 3)
+    controlMonitor.setBackgroundColor(colors.lightGray)
+    controlMonitor.write("                    ")
+    controlMonitor.setBackgroundColor(colors.green)
+    controlMonitor.setCursorPos(2, 3)
     for i = 1, part1 do
-        mon.write(" ")
+        controlMonitor.write(" ")
     end
-    mon.setTextColor(textColor)
+    controlMonitor.setTextColor(textColor)
 
     --prints the overall energy production
     local rfGen = 0
@@ -871,34 +871,34 @@ function printStatsMan(turbine)
         rfGen = rfGen + t[i].getEnergyProducedLastTick()
     end
 
-    mon.setBackgroundColor(tonumber(backgroundColor))
+    controlMonitor.setBackgroundColor(tonumber(backgroundColor))
 
     --Other status informations
-    mon.setCursorPos(2, 5)
-    mon.write("RF-Production: " .. (input.formatNumberComma(math.floor(rfGen))) .. " RF/t      ")
-    mon.setCursorPos(2, 7)
+    controlMonitor.setCursorPos(2, 5)
+    controlMonitor.write("RF-Production: " .. (input.formatNumberComma(math.floor(rfGen))) .. " RF/t      ")
+    controlMonitor.setCursorPos(2, 7)
     local fuelCons = tostring(r.getFuelConsumedLastTick())
     local fuelCons2 = string.sub(fuelCons, 0, 4)
-    mon.write("Fuel Consumption: " .. fuelCons2 .. "mb/t     ")
-    mon.setCursorPos(2, 9)
-    mon.write("Rotor Speed: ")
-    mon.write((input.formatNumberComma(math.floor(t[turbine].getRotorSpeed()))) .. " RPM     ")
-    mon.setCursorPos(2, 11)
-    mon.write("Reactor: ")
-    mon.setCursorPos(2, 13)
-    mon.write("Current Turbine: ")
-    mon.setCursorPos(2, 17)
-    mon.write("All Turbines: ")
+    controlMonitor.write("Fuel Consumption: " .. fuelCons2 .. "mb/t     ")
+    controlMonitor.setCursorPos(2, 9)
+    controlMonitor.write("Rotor Speed: ")
+    controlMonitor.write((input.formatNumberComma(math.floor(t[turbine].getRotorSpeed()))) .. " RPM     ")
+    controlMonitor.setCursorPos(2, 11)
+    controlMonitor.write("Reactor: ")
+    controlMonitor.setCursorPos(2, 13)
+    controlMonitor.write("Current Turbine: ")
+    controlMonitor.setCursorPos(2, 17)
+    controlMonitor.write("All Turbines: ")
         
-    mon.setCursorPos(2, 15)
-    mon.write("Coils: ")
+    controlMonitor.setCursorPos(2, 15)
+    controlMonitor.write("Coils: ")
 
-    mon.setCursorPos(40, 2)
-    mon.write("Turbines: " .. (amountTurbines + 1) .. "  ")
+    controlMonitor.setCursorPos(40, 2)
+    controlMonitor.write("Turbines: " .. (amountTurbines + 1) .. "  ")
 
     --prints the current program version
-    mon.setCursorPos(2, 25)
-    mon.write("Version " .. version)
+    controlMonitor.setCursorPos(2, 25)
+    controlMonitor.write("Version " .. version)
 
     --refreshes the last turbine id
     lastStat = turbine

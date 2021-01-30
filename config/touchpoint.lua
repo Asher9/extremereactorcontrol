@@ -65,7 +65,7 @@ local Button = {
 	add = function(self, name, func, xMin, yMin, xMax, yMax, inactiveColor, activeColor, inactiveText, activeText)
 		local label, name = setupLabel(xMax - xMin + 1, yMin, yMax, name)
 		if self.buttonList[name] then error("button already exists", 2) end
-		local x, y = self.mon.getSize()
+		local x, y = self.controlMonitor.getSize()
 		if xMin < 1 or yMin < 1 or xMax > x or yMax > y then error("button out of bounds", 2) end
 		self.buttonList[name] = {
 			func = func,
@@ -161,7 +161,7 @@ function new(monSide)
 		buttonList = {},
 		clickMap = {},
 	}
-	local x, y = buttonInstance.mon.getSize()
+	local x, y = buttonInstance.controlMonitor.getSize()
 	for i = 1, x do
 		buttonInstance.clickMap[i] = {}
 	end

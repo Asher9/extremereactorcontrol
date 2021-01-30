@@ -12,5 +12,5 @@
   textColor = 1,
   program = "turbine",
   turbineOnOff = "off",
-  lang = "en",
+  controlMonitor = "",
 }
