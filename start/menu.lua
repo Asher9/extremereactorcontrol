@@ -24,8 +24,8 @@ function _G.createButtons()
   page:add("Automatic",nil,23,9,35,9)
   page:add("Manual",nil,23,11,35,11)
   page:add("Options",displayOptions,3,16,20,16)
-  page:add("Quit program",exit,3,18,20,18)
-  page:add("Reboot",restart,3,20,20,20)
+  page:add("Quit program",exit,3,17,20,17)
+  page:add("Reboot",restart,3,18,20,18)
   page:add("menuOn",nil,39,7,49,7)
   startOn = {"   On    ",label = "menuOn"}
   startOff = {"   Off   ",label = "menuOn"}
