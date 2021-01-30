@@ -175,6 +175,7 @@ function getEnergy()
     local energyStore = 0
 
     for i =1, #capacitors do
+        print(capacitors[i].." storing "..capacitors[i].getEnergyStored())
         energyStore = energyStore + capacitors[i].getEnergyStored()
     end
 
@@ -185,6 +186,7 @@ function getEnergyMax()
     local energyStore = 0
 
     for i =1, #capacitors do
+        print(capacitors[i].." max storage "..capacitors[i].getMaxEnergyStored())
         energyStore = energyStore + capacitors[i].getMaxEnergyStored()
     end
 
@@ -194,6 +196,7 @@ end
 function getEnergyPer()
     local en = getEnergy()
     local enMax = getEnergyMax()
+    print(en.." of "..enMax)
     local enPer = math.floor(en / enMax * 100)
     return enPer
 end
@@ -686,7 +689,7 @@ function clickEvent()
         while true do
             --gets the event
             local event, p1 = page:handleEvents(os.pullEvent())
-            print(event .. ", " .. p1)
+            --print(event .. ", " .. p1)
 
             --execute a buttons function if clicked
             if event == "button_click" then
