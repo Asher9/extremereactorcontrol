@@ -8,11 +8,11 @@
 --All options
 _G.optionList = {}
 _G.version = 0
-_G.reactorodLevel = 0
+_G.rodLevel = 0
 _G.backgroundColor = 0
 _G.textColor = 0
-_G.reactoreactorOffAt = 0
-_G.reactoreactorOnAt = 0
+_G.reactorOffAt = 0
+_G.reactorOnAt = 0
 _G.mainMenu = ""
 _G.lang = ""
 _G.overallMode = ""
@@ -55,11 +55,11 @@ function _G.loadOptionFile()
 
 	--Assign values to variables
 	_G.version = optionList["version"]
-	_G.reactorodLevel = optionList["rodLevel"]
+	_G.rodLevel = optionList["rodLevel"]
 	_G.backgroundColor = tonumber(optionList["backgroundColor"])
 	_G.textColor = tonumber(optionList["textColor"])
-	_G.reactoreactorOffAt = optionList["reactorOffAt"]
-	_G.reactoreactorOnAt = optionList["reactorOnAt"]
+	_G.reactorOffAt = optionList["reactorOffAt"]
+	_G.reactorOnAt = optionList["reactorOnAt"]
 	_G.mainMenu = optionList["mainMenu"]
 	_G.lang = optionList["lang"]
 	_G.overallMode = optionList["overallMode"]
