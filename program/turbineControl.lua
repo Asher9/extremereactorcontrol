@@ -75,7 +75,7 @@ function startAutoMode()
         sleep(1)
         term.setCursorPos(1, 2)
         for i = 0, amountTurbines, 1 do
-            local tSpeed = t[i].getRotorSpeed()
+            local tSpeed = turbines[i].getRotorSpeed()
 
             print("Speed: " .. tSpeed .. "     ")
 
@@ -135,7 +135,7 @@ function startManualMode()
 
     --Sets all turbine flow rates to maximum (if set different in auto mode)
     for i = 0, #t do
-        t[i].setFluidFlowRateMax(targetSteam)
+        turbines[i].setFluidFlowRateMax(targetSteam)
     end
 
     --Displays the first turbine (default)
