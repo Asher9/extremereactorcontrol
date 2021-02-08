@@ -16,7 +16,7 @@ if #arg == 0 then
 
   --No update
   update = false
-  branch = "master"
+  branch = "main"
 
 elseif #arg == 2 then
 
