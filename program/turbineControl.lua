@@ -813,9 +813,9 @@ function createAllButtons()
                         printStatsAuto(i)
                     end
                 end,
-                x6,
+                x7,
                 y,
-                x6 + 5,
+                x7 + 5,
                 y
             )
         elseif (i > 126 and i <= 144) then
@@ -828,9 +828,9 @@ function createAllButtons()
                         printStatsAuto(i)
                     end
                 end,
-                x6,
+                x8,
                 y,
-                x6 + 5,
+                x8 + 5,
                 y
             )
         end
