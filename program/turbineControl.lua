@@ -97,7 +97,7 @@ function startAutoMode()
                 --formatting and printing status
                 controlMonitor.setTextColor(textColor)
                 controlMonitor.setCursorPos(1, (badReactor + 3))
-                if badReactor <= 144 then
+                if badReactor < 144 then
                     if badReactor >= 108 then
                         controlMonitor.setCursorPos(54, (badReactor - 108 + 3))
                     elseif badReactor >= 72 then
@@ -710,15 +710,15 @@ function createAllButtons()
     local x1 = 30
     local x2 = 37
     local x3 = 44
-    local x4 = 50
-    local x5 = 57
-    local x6 = 64
-    local x7 = 71
+    local x4 = 51
+    local x5 = 58
+    local x6 = 65
+    local x7 = 72
     local y = 4
 
     --Turbine buttons
     for i = 0, amountTurbines, 1 do
-        if i <= 17 then
+        if i <= 18 then
             page:add(
                 "#" .. (i + 1),
                 function()
@@ -733,7 +733,7 @@ function createAllButtons()
                 x1 + 5,
                 y
             )
-        elseif (i > 17 and i <= 35) then
+        elseif (i > 18 and i <= 37) then
             page:add(
                 "#" .. (i + 1),
                 function()
@@ -748,7 +748,7 @@ function createAllButtons()
                 x2 + 5,
                 y
             )
-        elseif (i > 35 and i <= 54) then
+        elseif (i > 37 and i <= 56) then
             page:add(
                 "#" .. (i + 1),
                 function()
@@ -763,7 +763,7 @@ function createAllButtons()
                 x3 + 5,
                 y
             )
-        elseif (i > 54 and i <= 72) then
+        elseif (i > 56 and i <= 75) then
             page:add(
                 "#" .. (i + 1),
                 function()
@@ -778,7 +778,7 @@ function createAllButtons()
                 x4 + 5,
                 y
             )
-        elseif (i > 72 and i <= 90) then
+        elseif (i > 75 and i <= 94) then
             page:add(
                 "#" .. (i + 1),
                 function()
@@ -793,7 +793,7 @@ function createAllButtons()
                 x5 + 5,
                 y
             )
-        elseif (i > 90 and i <= 108) then
+        elseif (i > 94 and i <= 113) then
             page:add(
                 "#" .. (i + 1),
                 function()
@@ -806,6 +806,21 @@ function createAllButtons()
                 x6,
                 y,
                 x6 + 5,
+                y
+            )
+        elseif (i > 113 and i <= 132) then
+            page:add(
+                "#" .. (i + 1),
+                function()
+                    if overallMode == "manual" then
+                        printStatsMan(i)
+                    else
+                        printStatsAuto(i)
+                    end
+                end,
+                x7,
+                y,
+                x7 + 5,
                 y
             )
         end
@@ -959,7 +974,7 @@ function printStatsAuto(turbine)
 
     controlMonitor.setCursorPos(2, 5)
 
-    controlMonitor.write("RF-Production: " .. (input.formatNumberComma(math.floor(rfGen))) .. " RF/t      ")
+    controlMonitor.write("RF-Production: " .. (input.formatNumberComma(math.floor(rfGen/1000))) .. " KRF/t      ")
 
     --Reactor status (on/off)
     controlMonitor.setCursorPos(2, 7)
