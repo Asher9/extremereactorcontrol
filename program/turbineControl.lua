@@ -824,7 +824,7 @@ function createAllButtons()
                 y
             )
         end
-        if (i == 17 or i == 35 or i == 54 or i == 72 or i == 90) then
+        if (i == 18 or i == 37 or i == 56 or i == 75 or i == 94 or i == 113) then
             y = 4
         else
             y = y + 2
