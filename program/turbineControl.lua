@@ -170,7 +170,7 @@ function checkPeripherals()
         error("Turbines not found! Please check and reboot the computer (Press and hold Ctrl+R)")
     end
     --No reactor found
-    if reactor[0] == "" then
+    if reactors[0] == "" then
         controlMonitor.write("Reactor not found! Please check and reboot the computer (Press and hold Ctrl+R)")
         error("Reactor not found! Please check and reboot the computer (Press and hold Ctrl+R)")
     end
