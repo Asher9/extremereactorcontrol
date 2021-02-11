@@ -701,117 +701,112 @@ end
 
 --Creates all required buttons
 function createAllButtons()
-    local x1 = 40
-    local x2 = 47
-    local x3 = 54
-    local x4 = 61
+    local x1 = 34
+    local x2 = 41
+    local x3 = 50
+    local x4 = 57
+    local x5 = 66
+    local x6 = 73
     local y = 4
 
     --Turbine buttons
     for i = 0, amountTurbines, 1 do
-        if overallMode == "auto" then
-            if i <= 7 then
-                page:add(
-                    "#" .. (i + 1),
-                    function()
-                        printStatsAuto(i)
-                    end,
-                    x1,
-                    y,
-                    x1 + 5,
-                    y
-                )
-            elseif (i > 7 and i <= 15) then
-                page:add(
-                    "#" .. (i + 1),
-                    function()
-                        printStatsAuto(i)
-                    end,
-                    x2,
-                    y,
-                    x2 + 5,
-                    y
-                )
-            elseif (i > 15 and i <= 23) then
-                page:add(
-                    "#" .. (i + 1),
-                    function()
-                        printStatsAuto(i)
-                    end,
-                    x3,
-                    y,
-                    x3 + 5,
-                    y
-                )
-            elseif (i > 23 and i <= 31) then
-                page:add(
-                    "#" .. (i + 1),
-                    function()
-                        printStatsAuto(i)
-                    end,
-                    x4,
-                    y,
-                    x4 + 5,
-                    y
-                )
-            end
-            if (i == 7 or i == 15 or i == 23) then
-                y = 4
-            else
-                y = y + 2
-            end
-        elseif overallMode == "manual" then
-            if i <= 7 then
-                page:add(
-                    "#" .. (i + 1),
-                    function()
+        if i <= 17 then
+            page:add(
+                "#" .. (i + 1),
+                function()
+                    if overallMode == "manual" then
                         printStatsMan(i)
-                    end,
-                    x1,
-                    y,
-                    x1 + 5,
-                    y
-                )
-            elseif (i > 7 and i <= 15) then
-                page:add(
-                    "#" .. (i + 1),
-                    function()
+                    else
+                    printStatsAuto(i)
+                    end
+                end,
+                x1,
+                y,
+                x1 + 5,
+                y
+            )
+        elseif (i > 17 and i <= 35) then
+            page:add(
+                "#" .. (i + 1),
+                function()
+                    if overallMode == "manual" then
                         printStatsMan(i)
-                    end,
-                    x2,
-                    y,
-                    x2 + 5,
-                    y
-                )
-            elseif (i > 15 and i <= 23) then
-                page:add(
-                    "#" .. (i + 1),
-                    function()
+                    else
+                    printStatsAuto(i)
+                    end
+                end,
+                x2,
+                y,
+                x2 + 5,
+                y
+            )
+        elseif (i > 35 and i <= 54) then
+            page:add(
+                "#" .. (i + 1),
+                function()
+                    if overallMode == "manual" then
                         printStatsMan(i)
-                    end,
-                    x3,
-                    y,
-                    x3 + 5,
-                    y
-                )
-            elseif (i > 23 and i <= 31) then
-                page:add(
-                    "#" .. (i + 1),
-                    function()
+                    else
+                    printStatsAuto(i)
+                    end
+                end,
+                x3,
+                y,
+                x3 + 5,
+                y
+            )
+        elseif (i > 54 and i <= 72) then
+            page:add(
+                "#" .. (i + 1),
+                function()
+                    if overallMode == "manual" then
                         printStatsMan(i)
-                    end,
-                    x4,
-                    y,
-                    x4 + 5,
-                    y
-                )
-            end
-            if (i == 7 or i == 15 or i == 23) then
-                y = 4
-            else
-                y = y + 2
-            end
-        end --mode
+                    else
+                    printStatsAuto(i)
+                    end
+                end,
+                x4,
+                y,
+                x4 + 5,
+                y
+            )
+        elseif (i > 72 and i <= 90) then
+            page:add(
+                "#" .. (i + 1),
+                function()
+                    if overallMode == "manual" then
+                        printStatsMan(i)
+                    else
+                    printStatsAuto(i)
+                    end
+                end,
+                x5,
+                y,
+                x5 + 5,
+                y
+            )
+        elseif (i > 90 and i <= 108) then
+            page:add(
+                "#" .. (i + 1),
+                function()
+                    if overallMode == "manual" then
+                        printStatsMan(i)
+                    else
+                    printStatsAuto(i)
+                    end
+                end,
+                x6,
+                y,
+                x6 + 5,
+                y
+            )
+        end
+        if (i == 7 or i == 15 or i == 23) then
+            y = 4
+        else
+            y = y + 2
+        end
     end --for
 
     --Other buttons
@@ -821,9 +816,9 @@ function createAllButtons()
             run("/extreme-reactors-control/start/menu.lua")
         end,
         2,
-        23,
+        37,
         17,
-        23
+        37
     )
 
     page:draw()
@@ -962,7 +957,7 @@ function printStatsAuto(turbine)
     --Reactor status (on/off)
     controlMonitor.setCursorPos(2, 7)
 
-    controlMonitor.write("Reactor: ")
+    controlMonitor.write(amountReactors .. " Reactors: " )
     if getReactorsActive() then
         controlMonitor.setTextColor(colors.green)
         controlMonitor.write("on ")
@@ -1015,14 +1010,14 @@ function printStatsAuto(turbine)
 
     controlMonitor.write("Rotor Speed: ")
     controlMonitor.write((input.formatNumberComma(math.floor(turbines[turbine].getRotorSpeed()))) .. " RPM    ")
-    controlMonitor.setCursorPos(2, 15)
+    controlMonitor.setCursorPos(2, 16)
     controlMonitor.write(
         "RF-Production: " ..
             (input.formatNumberComma(math.floor(turbines[turbine].getEnergyProducedLastTick()))) .. " RF/t           "
     )
 
     --Internal buffer of the turbine
-    controlMonitor.setCursorPos(2, 16)
+    controlMonitor.setCursorPos(2, 17)
 
     controlMonitor.write("Internal Energy: ")
     controlMonitor.write(input.formatNumberComma(math.floor(getTurbineEnergy(turbine))) .. " RF          ")
@@ -1120,7 +1115,7 @@ function printStatsMan(turbine)
     controlMonitor.write("Turbines: " .. (amountTurbines + 1) .. "  ")
 
     --prints the current program version
-    controlMonitor.setCursorPos(2, 25)
+    controlMonitor.setCursorPos(2, 39)
     controlMonitor.write("Version " .. version)
 
     --refreshes the last turbine id
