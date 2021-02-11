@@ -108,8 +108,12 @@ function startAutoMode()
 
                     if (i + 1) < 10 then
                         controlMonitor.write(
-                            "0" .. (i + 1) .. ": " .. (input.formatNumberComma(math.floor(tSpeed))) .. "RPM"
+                            "00" .. (i + 1) .. ": " .. (input.formatNumberComma(math.floor(tSpeed))) .. "RPM"
                         )
+                    elseif (i + 1) < 100 then
+                            controlMonitor.write(
+                                "0" .. (i + 1) .. ": " .. (input.formatNumberComma(math.floor(tSpeed))) .. "RPM"
+                            )
                     else
                         controlMonitor.write((i + 1) .. ": " .. (input.formatNumberComma(math.floor(tSpeed))) .. "RPM")
                     end
@@ -1001,9 +1005,9 @@ function printStatsAuto(turbine)
 
     controlMonitor.write("Fuel Consumption: " .. fuelCons2 .. "mb/t     ")
     controlMonitor.setCursorPos(2, 10)
-    controlMonitor.write("Steam: " .. (input.formatNumberComma(math.floor(getSteamProduced()))) .. "mb/t    ")
+    controlMonitor.write("Steam: " .. (input.formatNumberComma(math.floor(getSteamProduced()/1000))) .. "B/t    ")
     controlMonitor.setCursorPos(2, 11)
-    controlMonitor.write("Efficiency: " .. (input.formatNumberComma(eff)) .. " RF/mb       ")
+    controlMonitor.write("Efficiency: " .. (input.formatNumberComma(eff/1000)) .. " KRF/mb       ")
     controlMonitor.setCursorPos(40, 2)
     controlMonitor.write("Turbines: " .. (amountTurbines + 1) .. "  ")
     controlMonitor.setCursorPos(2, 13)
@@ -1033,7 +1037,7 @@ function printStatsAuto(turbine)
     controlMonitor.setCursorPos(2, 16)
     controlMonitor.write(
         "RF-Production: " ..
-            (input.formatNumberComma(math.floor(turbines[turbine].getEnergyProducedLastTick()))) .. " RF/t           "
+            (input.formatNumberComma(math.floor(turbines[turbine].getEnergyProducedLastTick()/1000))) .. " KRF/t           "
     )
 
     --Internal buffer of the turbine
@@ -1131,7 +1135,7 @@ function printStatsMan(turbine)
     controlMonitor.setCursorPos(2, 15)
     controlMonitor.write("Coils: ")
 
-    controlMonitor.setCursorPos(40, 2)
+    controlMonitor.setCursorPos(30, 2)
     controlMonitor.write("Turbines: " .. (amountTurbines + 1) .. "  ")
 
     --prints the current program version
