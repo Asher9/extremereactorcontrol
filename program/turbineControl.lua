@@ -86,8 +86,10 @@ function startAutoMode()
             --formatting and printing status
             controlMonitor.setTextColor(textColor)
             controlMonitor.setCursorPos(1, (i + 3))
-            if i >= 16 then
-                controlMonitor.setCursorPos(28, (i - 16 + 3))
+            if i >= 72 then
+                controlMonitor.setCursorPos(28, (i - 36 + 3))
+            elseif i >= 36 then
+                controlMonitor.setCursorPos(56, (i - 36 + 3))
             end
 
             if (i + 1) < 10 then
@@ -741,7 +743,7 @@ function createAllButtons()
                     x3 + 5,
                     y
                 )
-            elseif i > 23 then
+            elseif (i > 23 and i <= 31) then
                 page:add(
                     "#" .. (i + 1),
                     function()
@@ -792,7 +794,7 @@ function createAllButtons()
                     x3 + 5,
                     y
                 )
-            elseif i > 23 then
+            elseif (i > 23 and i <= 31) then
                 page:add(
                     "#" .. (i + 1),
                     function()
