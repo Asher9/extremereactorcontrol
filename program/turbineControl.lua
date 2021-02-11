@@ -62,14 +62,6 @@ function startAutoMode()
 
     --Display prints
     print("Getting all Turbines to " .. turbineTargetSpeed .. " RPM...")
-    controlMonitor.setBackgroundColor(backgroundColor)
-    controlMonitor.setTextColor(textColor)
-    controlMonitor.clear()
-    controlMonitor.setCursorPos(1, 1)
-
-    controlMonitor.write(
-        "Getting Turbines to " .. (input.formatNumberComma(turbineTargetSpeed)) .. " RPM. Please wait..."
-    )
 
     --Gets turbine to target speed
     --Init SpeedTables
@@ -83,6 +75,14 @@ function startAutoMode()
             if i == 0 then
                 --restarted loop
                 badReactor = 0
+                controlMonitor.setBackgroundColor(backgroundColor)
+                controlMonitor.setTextColor(textColor)
+                controlMonitor.clear()
+                controlMonitor.setCursorPos(1, 1)
+
+                controlMonitor.write(
+                    "Getting Turbines to " .. (input.formatNumberComma(turbineTargetSpeed)) .. " RPM. Please wait..."
+                )
             end
 
             local tSpeed = turbines[i].getRotorSpeed()
