@@ -1007,8 +1007,8 @@ function printStatsAuto(turbine)
     controlMonitor.setCursorPos(2, 10)
     controlMonitor.write("Steam: " .. (input.formatNumberComma(math.floor(getSteamProduced()/1000))) .. "B/t    ")
     controlMonitor.setCursorPos(2, 11)
-    controlMonitor.write("Efficiency: " .. (input.formatNumberComma(eff/1000)) .. " KRF/mb       ")
-    controlMonitor.setCursorPos(40, 2)
+    controlMonitor.write("Efficiency: " .. (input.formatNumberComma(math.floor(eff/1000))) .. " KRF/mb       ")
+    controlMonitor.setCursorPos(30, 2)
     controlMonitor.write("Turbines: " .. (amountTurbines + 1) .. "  ")
     controlMonitor.setCursorPos(2, 13)
     controlMonitor.write("-- Turbine " .. (turbine + 1) .. " --")
@@ -1047,7 +1047,7 @@ function printStatsAuto(turbine)
     controlMonitor.write(input.formatNumberComma(math.floor(getTurbineEnergy(turbine))) .. " RF          ")
 
     --prints the current program version
-    controlMonitor.setCursorPos(2, 25)
+    controlMonitor.setCursorPos(2, 39)
     controlMonitor.write("Version " .. version)
 
     --refreshes the last turbine id
@@ -1117,7 +1117,7 @@ function printStatsMan(turbine)
 
     --Other status informations
     controlMonitor.setCursorPos(2, 5)
-    controlMonitor.write("RF-Production: " .. (input.formatNumberComma(math.floor(rfGen))) .. " RF/t      ")
+    controlMonitor.write("RF-Production: " .. (input.formatNumberComma(math.floor(rfGen/1000))) .. " KRF/t      ")
     controlMonitor.setCursorPos(2, 7)
     local fuelCons = tostring(getFuelUsed())
     local fuelCons2 = string.sub(fuelCons, 0, 4)
