@@ -701,12 +701,12 @@ end
 
 --Creates all required buttons
 function createAllButtons()
-    local x1 = 34
-    local x2 = 41
-    local x3 = 50
-    local x4 = 57
-    local x5 = 66
-    local x6 = 73
+    local x1 = 36
+    local x2 = 43
+    local x3 = 52
+    local x4 = 59
+    local x5 = 68
+    local x6 = 75
     local y = 4
 
     --Turbine buttons
@@ -718,7 +718,7 @@ function createAllButtons()
                     if overallMode == "manual" then
                         printStatsMan(i)
                     else
-                    printStatsAuto(i)
+                        printStatsAuto(i)
                     end
                 end,
                 x1,
@@ -733,7 +733,7 @@ function createAllButtons()
                     if overallMode == "manual" then
                         printStatsMan(i)
                     else
-                    printStatsAuto(i)
+                        printStatsAuto(i)
                     end
                 end,
                 x2,
@@ -748,7 +748,7 @@ function createAllButtons()
                     if overallMode == "manual" then
                         printStatsMan(i)
                     else
-                    printStatsAuto(i)
+                        printStatsAuto(i)
                     end
                 end,
                 x3,
@@ -763,7 +763,7 @@ function createAllButtons()
                     if overallMode == "manual" then
                         printStatsMan(i)
                     else
-                    printStatsAuto(i)
+                        printStatsAuto(i)
                     end
                 end,
                 x4,
@@ -778,7 +778,7 @@ function createAllButtons()
                     if overallMode == "manual" then
                         printStatsMan(i)
                     else
-                    printStatsAuto(i)
+                        printStatsAuto(i)
                     end
                 end,
                 x5,
@@ -793,7 +793,7 @@ function createAllButtons()
                     if overallMode == "manual" then
                         printStatsMan(i)
                     else
-                    printStatsAuto(i)
+                        printStatsAuto(i)
                     end
                 end,
                 x6,
@@ -957,7 +957,7 @@ function printStatsAuto(turbine)
     --Reactor status (on/off)
     controlMonitor.setCursorPos(2, 7)
 
-    controlMonitor.write(amountReactors .. " Reactors: " )
+    controlMonitor.write(amountReactors .. " Reactors: ")
     if getReactorsActive() then
         controlMonitor.setTextColor(colors.green)
         controlMonitor.write("on ")
@@ -979,9 +979,7 @@ function printStatsAuto(turbine)
 
     controlMonitor.write("Fuel Consumption: " .. fuelCons2 .. "mb/t     ")
     controlMonitor.setCursorPos(2, 10)
-    controlMonitor.write(
-        "Steam: " .. (input.formatNumberComma(math.floor(getSteamProduced()))) .. "mb/t    "
-    )
+    controlMonitor.write("Steam: " .. (input.formatNumberComma(math.floor(getSteamProduced()))) .. "mb/t    ")
     controlMonitor.setCursorPos(2, 11)
     controlMonitor.write("Efficiency: " .. (input.formatNumberComma(eff)) .. " RF/mb       ")
     controlMonitor.setCursorPos(40, 2)
