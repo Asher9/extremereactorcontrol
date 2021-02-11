@@ -78,36 +78,42 @@ function startAutoMode()
         getToTargetSpeed()
         sleep(1)
         term.setCursorPos(1, 2)
+        local badReactor = 0
         for i = 0, amountTurbines, 1 do
+            if i == 0 then
+                --restarted loop
+                badReactor = 0
+            end
+
             local tSpeed = turbines[i].getRotorSpeed()
 
             print("Speed: " .. tSpeed .. "     ")
 
-            --formatting and printing status
-            controlMonitor.setTextColor(textColor)
-            controlMonitor.setCursorPos(1, (i + 3))
-            if i >= 72 then
-                controlMonitor.setCursorPos(56, (i - 72 + 3))
-            elseif i >= 36 then
-                controlMonitor.setCursorPos(28, (i - 36 + 3))
-            end
-
-            if (i + 1) < 10 then
-                controlMonitor.write(
-                    "Turbine 0" .. (i + 1) .. ": " .. (input.formatNumberComma(math.floor(tSpeed))) .. " RPM"
-                )
-            else
-                controlMonitor.write(
-                    "Turbine " .. (i + 1) .. ": " .. (input.formatNumberComma(math.floor(tSpeed))) .. " RPM"
-                )
-            end
-
             if tSpeed > turbineTargetSpeed then
-                controlMonitor.setTextColor(colors.green)
-                controlMonitor.write(" OK  ")
+                --dont diplay
             else
-                controlMonitor.setTextColor(colors.red)
-                controlMonitor.write(" ...  ")
+                badReactor = badReactor + 1
+
+                --formatting and printing status
+                controlMonitor.setTextColor(textColor)
+                controlMonitor.setCursorPos(1, (badReactor + 3))
+                if badReactor <= 144 then
+                    if badReactor >= 108 then
+                        controlMonitor.setCursorPos(54, (badReactor - 108 + 3))
+                    elseif badReactor >= 72 then
+                        controlMonitor.setCursorPos(36, (badReactor - 72 + 3))
+                    elseif badReactor >= 36 then
+                        controlMonitor.setCursorPos(18, (badReactor - 36 + 3))
+                    end
+
+                    if (i + 1) < 10 then
+                        controlMonitor.write(
+                            "0" .. (i + 1) .. ": " .. (input.formatNumberComma(math.floor(tSpeed))) .. "RPM"
+                        )
+                    else
+                        controlMonitor.write((i + 1) .. ": " .. (input.formatNumberComma(math.floor(tSpeed))) .. "RPM")
+                    end
+                end
             end
         end
     end
@@ -800,21 +806,6 @@ function createAllButtons()
                 x6,
                 y,
                 x6 + 5,
-                y
-            )
-        elseif (i > 108 and i <= 126) then
-            page:add(
-                "#" .. (i + 1),
-                function()
-                    if overallMode == "manual" then
-                        printStatsMan(i)
-                    else
-                        printStatsAuto(i)
-                    end
-                end,
-                x7,
-                y,
-                x7 + 5,
                 y
             )
         end
