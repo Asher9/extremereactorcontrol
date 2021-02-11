@@ -235,7 +235,7 @@ end
 function getReactorsActive()
     local reactorStatus = false
 
-    for i = 0, ammountReactors, 1 do
+    for i = 0, amountReactors, 1 do
         if reactors[i].getActive() then
             reactorStatus = true
         else
@@ -248,21 +248,21 @@ end
 
 --Enable all reactors
 function allReactorsOn()
-    for i = 0, ammountReactors, 1 do
+    for i = 0, amountReactors, 1 do
         reactors[i].setActive(true)
     end
 end
 
 --Disable all reactor
 function allReactorsOff()
-    for i = 0, ammountReactors, 1 do
+    for i = 0, amountReactors, 1 do
         reactors[i].setActive(false)
     end
 end
 
 --Set Reactor FuelRod Level
 function setReactorFuelRodLevel(controlRodLevel)
-    for i = 0, ammountReactors, 1 do
+    for i = 0, amountReactors, 1 do
         reactors[i].setAllControlRodLevels(controlRodLevel)
     end
 end
@@ -270,11 +270,11 @@ end
 function avgCasingTemp()
     local tempData = 0
 
-    for i = 0, ammountReactors, 1 do
+    for i = 0, amountReactors, 1 do
         tempData = tempData + reactors[i].getCasingTemperature()
     end
 
-    tempData = tempData / (ammountReactors + 1)
+    tempData = tempData / (amountReactors + 1)
 
     return tempData
 end
@@ -282,11 +282,11 @@ end
 function avgCoreTemp()
     local tempData = 0
 
-    for i = 0, ammountReactors, 1 do
+    for i = 0, amountReactors, 1 do
         tempData = tempData + reactors[i].getFuelTemperature()
     end
 
-    tempData = tempData / (ammountReactors + 1)
+    tempData = tempData / (amountReactors + 1)
 
     return tempData
 end
@@ -294,7 +294,7 @@ end
 function getSteamProduced()
     local tempData = 0
 
-    for i = 0, ammountReactors, 1 do
+    for i = 0, amountReactors, 1 do
         tempData = tempData + reactors[i].getHotFluidProducedLastTick()
     end
 
@@ -304,7 +304,7 @@ end
 function getFuelUsed()
     local tempData = 0
 
-    for i = 0, ammountReactors, 1 do
+    for i = 0, amountReactors, 1 do
         tempData = tempData + reactors[i].getFuelConsumedLastTick()
     end
 
