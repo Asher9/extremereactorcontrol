@@ -701,12 +701,14 @@ end
 
 --Creates all required buttons
 function createAllButtons()
-    local x1 = 36
-    local x2 = 43
-    local x3 = 52
-    local x4 = 59
-    local x5 = 68
-    local x6 = 75
+    local x1 = 32
+    local x2 = 39
+    local x3 = 46
+    local x4 = 52
+    local x5 = 59
+    local x6 = 66
+    local x7 = 73
+    local x8 = 80
     local y = 4
 
     --Turbine buttons
@@ -787,6 +789,36 @@ function createAllButtons()
                 y
             )
         elseif (i > 90 and i <= 108) then
+            page:add(
+                "#" .. (i + 1),
+                function()
+                    if overallMode == "manual" then
+                        printStatsMan(i)
+                    else
+                        printStatsAuto(i)
+                    end
+                end,
+                x6,
+                y,
+                x6 + 5,
+                y
+            )
+        elseif (i > 108 and i <= 126) then
+            page:add(
+                "#" .. (i + 1),
+                function()
+                    if overallMode == "manual" then
+                        printStatsMan(i)
+                    else
+                        printStatsAuto(i)
+                    end
+                end,
+                x6,
+                y,
+                x6 + 5,
+                y
+            )
+        elseif (i > 126 and i <= 144) then
             page:add(
                 "#" .. (i + 1),
                 function()
