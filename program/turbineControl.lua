@@ -983,7 +983,7 @@ function printStatsAuto(turbine)
     --Reactor status (on/off)
     controlMonitor.setCursorPos(2, 7)
 
-    controlMonitor.write(amountReactors .. " Reactors: ")
+    controlMonitor.write((amountReactors + 1) .. " Reactors: ")
     if getReactorsActive() then
         controlMonitor.setTextColor(colors.green)
         controlMonitor.write("on ")
