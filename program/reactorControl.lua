@@ -129,7 +129,7 @@ end
 
 --Adjusts the control rods
 function setControlRods(operation, value)
-    local targetValue = reactor[0].getControlRodLevel(0)
+    local targetValue = reactors[0].getControlRodLevel(0)
     if operation == "-" then
         targetValue = targetValue - value
         if targetValue < 1 then targetValue = 0 end
@@ -226,7 +226,7 @@ function getFuelConsumedLastTick()
 end
 --Reads all the reactors data
 function getReactorData()
-    rodLevel = reactor[0].getControlRodLevel(0)
+    rodLevel = reactors[0].getControlRodLevel(0)
     enPer = getEnergyPer()
     enPerR = getEnergyR()
     fuel = getFuelAmount()
@@ -234,7 +234,7 @@ function getReactorData()
     fuelPer = math.floor(fuel / fuelMax * 100)
     rfGen = getEnergyProducedLastTick()
     fuelCons = getFuelConsumedLastTick()
-    isOn = reactor[0].getActive()
+    isOn = reactors[0].getActive()
 end
 
 --Checks for button clicks
@@ -376,9 +376,9 @@ function displayDataAuto()
     controlMonitor.write("Efficiency: " .. input.formatNumberComma(fuelEfficiency2) .. " RF/mb    ")
 
     --Display the current Casing/Core Temperature
-    local caT = tostring(reactor[0].getCasingTemperature())
+    local caT = tostring(reactors[0].getCasingTemperature())
     local caseTemp = string.sub(caT, 0, 6)
-    local coT = tostring(reactor[0].getFuelTemperature())
+    local coT = tostring(reactors[0].getFuelTemperature())
     local coreTemp = string.sub(coT, 0, 6)
 
     controlMonitor.setCursorPos(2, 16)
@@ -496,9 +496,9 @@ function displayDataMan()
     controlMonitor.write("Efficiency: " .. input.formatNumberComma(fuelEfficiency2) .. " RF/mb    ")
 
     --Display the current Casing/Core temperature of the reactor
-    local caT = tostring(reactor[0].getCasingTemperature())
+    local caT = tostring(reactors[0].getCasingTemperature())
     local caseTemp = string.sub(caT, 0, 6)
-    local coT = tostring(reactor[0].getFuelTemperature())
+    local coT = tostring(reactors[0].getFuelTemperature())
     local coreTemp = string.sub(coT, 0, 6)
 
     controlMonitor.setCursorPos(2, 16)
