@@ -25,16 +25,20 @@ local function searchPeripherals()
         
         if periType == "BigReactors-Reactor" then
             print("Reactor - "..periItem)
-            _G.reactors[#_G.reactors + 1] = newReactor("r" .. tostring(#_G.reactors + 1), peri, periItem, periType)
+            _G.reactors[amountReactors] = newReactor("r" .. tostring(amountReactors), peri, periItem, periType)
+            _G.amountReactors = amountReactors + 1
         elseif periType == "BigReactors-Turbine" then
             print("Turbine - "..periItem)
-            _G.turbines[#_G.turbines + 1] = newTurbine("t" .. tostring(#_G.turbines + 1), peri, periItem, periType)
+            _G.turbines[amountTurbines] = newTurbine("t" .. tostring(amountTurbines), peri, periItem, periType)
+            _G.amountTurbines = amountTurbines + 1
         elseif periType == "BiggerReactors_Reactor" then
             print("BiggerReactor Reactor - "..periItem)
-            _G.reactors[#_G.reactors + 1] = newBiggerReactor("r" .. tostring(#_G.reactors + 1), peri, periItem, periType)
+            _G.reactors[amountReactors] = newBiggerReactor("r" .. tostring(amountReactors), peri, periItem, periType)
+            _G.amountReactors = amountReactors + 1
         elseif periType == "BiggerReactors_Turbine" then
             print("BiggerReactor Turbine - "..periItem)
-            _G.turbines[#_G.turbines + 1] = newBiggerTurbine("t" .. tostring(#_G.turbines + 1), peri, periItem, periType)
+            _G.turbines[amountTurbines] = newBiggerTurbine("t" .. tostring(amountTurbines), peri, periItem, periType)
+            _G.amountTurbines = amountTurbines + 1
         elseif periType == "monitor" then
             print("Monitor - "..periItem)
 			if(peripheralList[i] == controlMonitor) then
@@ -52,17 +56,23 @@ local function searchPeripherals()
             if successGetEnergyStored then
 			    --Capacitorbank / Energycell / Energy Core
                 print("getEnergyStored() device - "..peripheralList[i])
-                _G.capacitors[#_G.capacitors + 1] = newEnergyStorage("e" .. tostring(#_G.capacitors + 1), peri, periItem, periType)
+                _G.capacitors[amountCapacitors] = newEnergyStorage("e" .. tostring(amountCapacitors), peri, periItem, periType)
+                _G.amountCapacitors = amountCapacitors + 1
             end
 
             if successGetEnergy then
 			    --Mekanism / others
                 print("getEnergy() device - "..peripheralList[i])
-                _G.capacitors[#_G.capacitors + 1] = newMekanismEnergyStorage("e" .. tostring(#_G.capacitors + 1), peri, periItem, periType)
+                _G.capacitors[amountCapacitors] = newMekanismEnergyStorage("e" .. tostring(amountCapacitors), peri, periItem, periType)
+                _G.amountCapacitors = amountCapacitors + 1
             end
 
         end
     end
+    
+	_G.amountReactors = amountReactors - 1
+	_G.amountTurbines = amountTurbines - 1
+	_G.amountCapacitors = amountCapacitors - 1
 end
 
 local function checkPeripherals()
@@ -89,10 +99,6 @@ local function checkPeripherals()
 		controlMonitor.write("Monitor too small\n Must be at least 8 in length and 6 in height.\nPlease check and reboot the computer (Press and hold Ctrl+R)")
 		error("Monitor too small.\nMust be at least 8 in length and 6 in height.\nPlease check and reboot the computer (Press and hold Ctrl+R)")
 	end
-    
-	_G.amountReactors = amountReactors - 1
-	_G.amountTurbines = amountTurbines - 1
-	_G.amountCapacitors = amountCapacitors - 1
 end
 
 

@@ -197,7 +197,7 @@ function getEnergy()
     local energyStore = 0
 
     for i = 0, amountCapacitors, 1 do
-        local stored = math.floor(capacitors[i].getEnergyStored())
+        local stored = math.floor(capacitors[i].energy())
         energyStore = energyStore + stored
     end
 
@@ -208,7 +208,7 @@ function getEnergyMax()
     local energyStore = 0
 
     for i = 0, amountCapacitors, 1 do
-        local maxStorage = math.floor(capacitors[i].getMaxEnergyStored())
+        local maxStorage = math.floor(capacitors[i].capacity())
         energyStore = energyStore + maxStorage
     end
 
@@ -225,7 +225,7 @@ end
 
 --Returns the current energy fill status of a turbine
 function getTurbineEnergy(turbine)
-    return turbines[turbine].getEnergyStored()
+    return turbines[turbine].energy()
 end
 
 --Toggles the reactor status and the button
