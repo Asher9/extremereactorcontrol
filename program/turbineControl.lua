@@ -714,7 +714,13 @@ end
 --Returns true if all turbines are at targetSpeed
 function allAtTargetSpeed()
     for i = 0, amountTurbines do
-        if turbines[i].rotorSpeed() < turbineTargetSpeed then
+        
+        if turbines[i] == nil then
+            debugOutput("Turbine " ..i.. " -> is NIL stuff is broken")
+            debugOutput("Total Turbines = " ..amountTurbines)
+        end
+
+        if (turbines[i] ~= nil and turbines[i].rotorSpeed() < turbineTargetSpeed) then
             return false
         end
     end
