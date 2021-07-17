@@ -15,16 +15,16 @@ local BiggerTurbine = {
         return self.id.coilEngaged()
     end,
     rotorSpeed = function(self)
-        return self.id.rotor.RPM()
+        return self.id.rotor().RPM()
     end,
     energy = function(self)
-        return self.id.battery.stored()
+        return self.id.battery().stored()
     end,
     energyProduction = function(self)
-        return self.id.battery.producedLastTick()
+        return self.id.battery().producedLastTick()
     end,
     steamIn = function(self)
-        return self.id.fluidTank.flowLastTick()
+        return self.id.fluidTank().flowLastTick()
     end,
 
     setOn = function(self, status)
