@@ -85,6 +85,13 @@ function startAutoMode()
                 )
             end
 
+            if turbines[i] == nil then
+                print("Turbine " ..i.. " -> is NIL stuff is broken")
+                print("Total Turbines = " ..amountTurbines)
+            else
+                printTurbineData(turbines[i])
+            end
+
             local tSpeed = turbines[i].rotorSpeed()
 
             print("Speed: " .. tSpeed .. "     ")

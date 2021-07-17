@@ -59,6 +59,11 @@ function _G.newTurbine(name,id, side, type)
     return turbine
 end
 
+function _G.printTurbineData(turbine)
+    print("Name: "..turbine.name)
+    print("ID: "..tostring(turbine.id))
+    print("Type: "..turbine.type)
+end
 
 
 
