@@ -35,7 +35,8 @@ local Turbine = {
     end,
     setSteamIn = function(self, amount)
         self.id.setFluidFlowRateMax(amount)
-    end
+    end,
+    maxInputSteam = 2000
 }
 
 function _G.newTurbine(name,id, side, type)

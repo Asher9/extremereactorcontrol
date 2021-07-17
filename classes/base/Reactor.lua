@@ -56,7 +56,8 @@ local Reactor = {
     end,
     setRodLevel = function(self,level)
         self.id.setAllControlRodLevels(level)
-    end
+    end,
+    maxOutputSteam = 50000
 }
 
 

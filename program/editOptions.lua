@@ -379,7 +379,7 @@ end
 --Reset the config file
 function resetConfig()
   rodLevel = 0
-  targetSteam = 2000
+  targetSteam = turbines[0].maxInputSteam
   backToMainMenu()
 end
 

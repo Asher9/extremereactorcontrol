@@ -35,7 +35,8 @@ local BiggerTurbine = {
     end,
     setSteamIn = function(self, amount)
         self.id.fluidTank().setNominalFlowRate(amount)
-    end
+    end,
+    maxInputSteam = 100000
 
 }
 
