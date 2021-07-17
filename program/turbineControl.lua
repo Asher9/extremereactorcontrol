@@ -85,7 +85,7 @@ function startAutoMode()
                 )
             end
 
-            local tSpeed = turbines[i].getRotorSpeed()
+            local tSpeed = turbines[i].rotorSpeed()
 
             print("Speed: " .. tSpeed .. "     ")
 
@@ -157,7 +157,7 @@ function startManualMode()
 
     --Sets all turbine flow rates to maximum (if set different in auto mode)
     for i = 0, #t do
-        turbines[i].setFluidFlowRateMax(targetSteam)
+        turbines[i].setSteamIn(targetSteam)
     end
 
     --Displays the first turbine (default)
@@ -177,17 +177,17 @@ function checkPeripherals()
     term.setCursorPos(1, 1)
     term.setTextColor(colors.red)
     --No turbine found
-    if turbines[0] == nil then
+    if turbines[1] == nil then
         controlMonitor.write("Turbines not found! Please check and reboot the computer (Press and hold Ctrl+R)")
         error("Turbines not found! Please check and reboot the computer (Press and hold Ctrl+R)")
     end
     --No reactor found
-    if reactors[0] == "" then
+    if reactors[1] == "" then
         controlMonitor.write("Reactor not found! Please check and reboot the computer (Press and hold Ctrl+R)")
         error("Reactor not found! Please check and reboot the computer (Press and hold Ctrl+R)")
     end
     --No energy storage found
-    if capacitors[0] == nill then
+    if capacitors[1] == nil then   
         controlMonitor.write("Energy Storage not found! Please check and reboot the computer (Press and hold Ctrl+R)")
         error("Energy Storage not found! Please check and reboot the computer (Press and hold Ctrl+R)")
     end
@@ -248,7 +248,7 @@ function getReactorsActive()
     local reactorStatus = false
 
     for i = 0, amountReactors, 1 do
-        if reactors[i].getActive() then
+        if reactors[i].active() then
             reactorStatus = true
         else
             reactorStatus = false
@@ -275,7 +275,7 @@ end
 --Set Reactor FuelRod Level
 function setReactorFuelRodLevel(controlRodLevel)
     for i = 0, amountReactors, 1 do
-        reactors[i].setAllControlRodLevels(controlRodLevel)
+        reactors[i].setRodLevel(controlRodLevel)
     end
 end
 
@@ -283,7 +283,7 @@ function avgCasingTemp()
     local tempData = 0
 
     for i = 0, amountReactors, 1 do
-        tempData = tempData + reactors[i].getCasingTemperature()
+        tempData = tempData + reactors[i].casingTemp()
     end
 
     tempData = tempData / (amountReactors + 1)
@@ -295,7 +295,7 @@ function avgCoreTemp()
     local tempData = 0
 
     for i = 0, amountReactors, 1 do
-        tempData = tempData + reactors[i].getFuelTemperature()
+        tempData = tempData + reactors[i].fuelTemp()
     end
 
     tempData = tempData / (amountReactors + 1)
@@ -307,7 +307,7 @@ function getSteamProduced()
     local tempData = 0
 
     for i = 0, amountReactors, 1 do
-        tempData = tempData + reactors[i].getHotFluidProducedLastTick()
+        tempData = tempData + reactors[i].steamOutput()
     end
 
     return tempData
@@ -317,7 +317,7 @@ function getFuelUsed()
     local tempData = 0
 
     for i = 0, amountReactors, 1 do
-        tempData = tempData + reactors[i].getFuelConsumedLastTick()
+        tempData = tempData + reactors[i].fuelConsumption()
     end
 
     return tempData
@@ -325,9 +325,9 @@ end
 
 --Toggles one turbine status and button
 function toggleTurbine(i)
-    turbines[i].setActive(not turbines[i].getActive())
+    turbines[i].setActive(not turbines[i].active())
     page:toggleButton("turbineOn")
-    if turbines[i].getActive() then
+    if turbines[i].active() then
         page:rename("turbineOn", tOn, true)
     else
         page:rename("turbineOn", tOff, true)
@@ -336,9 +336,9 @@ end
 
 --Toggles one turbine coils and button
 function toggleCoils(i)
-    turbines[i].setInductorEngaged(not turbines[i].getInductorEngaged())
+    turbines[i].setCoils(not turbines[i].coilsEngaged())
     page:toggleButton("coilsOn")
-    if turbines[i].getInductorEngaged() then
+    if turbines[i].coilsEngaged() then
         page:rename("coilsOn", cOn, true)
     else
         page:rename("coilsOn", cOff, true)
@@ -349,36 +349,36 @@ end
 function allTurbinesOn()
     for i = 0, amountTurbines, 1 do
         turbines[i].setActive(true)
-        turbines[i].setInductorEngaged(true)
-        turbines[i].setFluidFlowRateMax(targetSteam)
+        turbines[i].setCoils(true)
+        turbines[i].setSteamIn(targetSteam)
     end
 end
 
 --Disable all turbiens (Coils disengaged, FluidRate 0mb/t)
 function allTurbinesOff()
     for i = 0, amountTurbines, 1 do
-        turbines[i].setInductorEngaged(false)
-        turbines[i].setFluidFlowRateMax(0)
+        turbines[i].setCoils(false)
+        turbines[i].setSteamIn(0)
     end
 end
 
 --Enable one turbine
 function turbineOn(i)
-    turbines[i].setInductorEngaged(true)
-    turbines[i].setFluidFlowRateMax(targetSteam)
+    turbines[i].setCoils(true)
+    turbines[i].setSteamIn(targetSteam)
 end
 
 --Disable one turbine
 function turbineOff(i)
-    turbines[i].setInductorEngaged(false)
-    turbines[i].setFluidFlowRateMax(0)
+    turbines[i].setCoils(false)
+    turbines[i].setSteamIn(0)
 end
 
 --Toggles all turbines (and buttons)
 function toggleAllTurbines()
     page:rename("aTurbinesOn", aTOff, true)
     local onOff
-    if turbines[0].getActive() then
+    if turbines[0].active() then
         onOff = "off"
     else
         onOff = "on"
@@ -405,19 +405,19 @@ end
 --Toggles all turbine coils (and buttons)
 function toggleAllCoils()
     local coilsOnOff
-    if turbines[0].getInductorEngaged() then
+    if turbines[0].coilsEngaged() then
         coilsOnOff = "off"
     else
         coilsOnOff = "on"
     end
     for i = 0, amountTurbines do
         if coilsOnOff == "off" then
-            turbines[i].setInductorEngaged(false)
+            turbines[i].setCoils(false)
             if page.buttonList["Coils"].active then
                 page:toggleButton("Coils")
             end
         else
-            turbines[i].setInductorEngaged(true)
+            turbines[i].setCoils(true)
             if not page.buttonList["Coils"].active then
                 page:toggleButton("Coils")
             end
@@ -614,22 +614,22 @@ function checkEnergyLevel()
     elseif getEnergyPer() <= reactorOnAt then
         allReactorsOn()
         for i = 0, amountTurbines do
-            turbines[i].setFluidFlowRateMax(targetSteam)
-            if turbines[i].getRotorSpeed() < turbineTargetSpeed * 0.98 then
-                turbines[i].setInductorEngaged(false)
+            turbines[i].setSteamIn(targetSteam)
+            if turbines[i].rotorSpeed() < turbineTargetSpeed * 0.98 then
+                turbines[i].setCoils(false)
             end
-            if turbines[i].getRotorSpeed() > turbineTargetSpeed * 1.02 then
-                turbines[i].setInductorEngaged(true)
+            if turbines[i].rotorSpeed() > turbineTargetSpeed * 1.02 then
+                turbines[i].setCoils(true)
             end
         end
     else
         if getReactorsActive() then
             for i = 0, amountTurbines do
-                if turbines[i].getRotorSpeed() < turbineTargetSpeed * 0.98 then
-                    turbines[i].setInductorEngaged(false)
+                if turbines[i].rotorSpeed() < turbineTargetSpeed * 0.98 then
+                    turbines[i].setCoils(false)
                 end
-                if turbines[i].getRotorSpeed() > turbineTargetSpeed * 1.02 then
-                    turbines[i].setInductorEngaged(true)
+                if turbines[i].rotorSpeed() > turbineTargetSpeed * 1.02 then
+                    turbines[i].setCoils(true)
                 end
             end --for
         end --if
@@ -649,16 +649,16 @@ end
 function getToTargetSpeed()
     for i = 0, amountTurbines, 1 do
         --Get the current speed of the turbine
-        local tspeed = turbines[i].getRotorSpeed()
+        local tspeed = turbines[i].rotorSpeed()
 
         --Control turbines
         if tspeed <= turbineTargetSpeed then
             allReactorsOn()
             turbines[i].setActive(true)
-            turbines[i].setInductorEngaged(false)
-            turbines[i].setFluidFlowRateMax(targetSteam)
+            turbines[i].setCoils(false)
+            turbines[i].setSteamIn(targetSteam)
         end
-        if turbines[i].getRotorSpeed() > turbineTargetSpeed then
+        if turbines[i].rotorSpeed() > turbineTargetSpeed then
             turbineOff(i)
         end
 
@@ -695,7 +695,7 @@ end
 --Returns true if all turbines are at targetSpeed
 function allAtTargetSpeed()
     for i = 0, amountTurbines do
-        if turbines[i].getRotorSpeed() < turbineTargetSpeed then
+        if turbines[i].rotorSpeed() < turbineTargetSpeed then
             return false
         end
     end
@@ -876,7 +876,7 @@ function createManualButtons()
         24,
         13
     )
-    if turbines[currStat].getActive() then
+    if turbines[currStat].active() then
         page:rename("turbineOn", tOn, true)
         page:toggleButton("turbineOn")
     else
@@ -894,7 +894,7 @@ function createManualButtons()
         13,
         15
     )
-    if turbines[currStat].getInductorEngaged() then
+    if turbines[currStat].coilsEngaged() then
         page:rename("coilsOn", cOn, true)
     else
         page:rename("coilsOn", cOff, true)
@@ -950,7 +950,7 @@ function printStatsAuto(turbine)
     --gets overall energy production
     local rfGen = 0
     for i = 0, amountTurbines, 1 do
-        rfGen = rfGen + turbines[i].getEnergyProducedLastTick()
+        rfGen = rfGen + turbines[i].energyProduction()
     end
 
     --prints the energy level (in %)
@@ -1019,11 +1019,11 @@ function printStatsAuto(turbine)
     controlMonitor.setCursorPos(2, 14)
     controlMonitor.write("Coils: ")
 
-    if turbines[turbine].getInductorEngaged() then
+    if turbines[turbine].coilsEngaged() then
         controlMonitor.setTextColor(colors.green)
         controlMonitor.write("engaged     ")
     end
-    if turbines[turbine].getInductorEngaged() == false then
+    if turbines[turbine].coilsEngaged() == false then
         controlMonitor.setTextColor(colors.red)
         controlMonitor.write("disengaged")
     end
@@ -1033,11 +1033,11 @@ function printStatsAuto(turbine)
     controlMonitor.setCursorPos(2, 15)
 
     controlMonitor.write("Rotor Speed: ")
-    controlMonitor.write((input.formatNumberComma(math.floor(turbines[turbine].getRotorSpeed()))) .. " RPM    ")
+    controlMonitor.write((input.formatNumberComma(math.floor(turbines[turbine].rotorSpeed()))) .. " RPM    ")
     controlMonitor.setCursorPos(2, 16)
     controlMonitor.write(
         "RF-Production: " ..
-            (input.formatNumberComma(math.floor(turbines[turbine].getEnergyProducedLastTick()/1000))) .. " KRF/t           "
+            (input.formatNumberComma(math.floor(turbines[turbine].energyProduction()/1000))) .. " KRF/t           "
     )
 
     --Internal buffer of the turbine
@@ -1070,19 +1070,19 @@ function printStatsMan(turbine)
     end
 
     --On/Off buttons
-    if turbines[currStat].getActive() and not page.buttonList["turbineOn"].active then
+    if turbines[currStat].active() and not page.buttonList["turbineOn"].active then
         page:rename("turbineOn", tOn, true)
         page:toggleButton("turbineOn")
     end
-    if not turbines[currStat].getActive() and page.buttonList["turbineOn"].active then
+    if not turbines[currStat].active() and page.buttonList["turbineOn"].active then
         page:rename("turbineOn", tOff, true)
         page:toggleButton("turbineOn")
     end
-    if turbines[currStat].getInductorEngaged() and not page.buttonList["coilsOn"].active then
+    if turbines[currStat].coilsEngaged() and not page.buttonList["coilsOn"].active then
         page:rename("coilsOn", cOn, true)
         page:toggleButton("coilsOn")
     end
-    if not turbines[currStat].getInductorEngaged() and page.buttonList["coilsOn"].active then
+    if not turbines[currStat].coilsEngaged() and page.buttonList["coilsOn"].active then
         page:rename("coilsOn", cOff, true)
         page:toggleButton("coilsOn")
     end
@@ -1110,7 +1110,7 @@ function printStatsMan(turbine)
     --prints the overall energy production
     local rfGen = 0
     for i = 0, amountTurbines, 1 do
-        rfGen = rfGen + turbines[i].getEnergyProducedLastTick()
+        rfGen = rfGen + turbines[i].energyProduction()
     end
 
     controlMonitor.setBackgroundColor(tonumber(backgroundColor))
@@ -1124,7 +1124,7 @@ function printStatsMan(turbine)
     controlMonitor.write("Fuel Consumption: " .. fuelCons2 .. "mb/t     ")
     controlMonitor.setCursorPos(2, 9)
     controlMonitor.write("Rotor Speed: ")
-    controlMonitor.write((input.formatNumberComma(math.floor(turbines[turbine].getRotorSpeed()))) .. " RPM     ")
+    controlMonitor.write((input.formatNumberComma(math.floor(turbines[turbine].rotorSpeed()))) .. " RPM     ")
     controlMonitor.setCursorPos(2, 11)
     controlMonitor.write("Reactor: ")
     controlMonitor.setCursorPos(2, 13)

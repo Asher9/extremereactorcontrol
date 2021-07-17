@@ -289,21 +289,21 @@ initClasses()
 debugOutput("Initializing Network Devices")
 _G.initPeripherals()
 
---debugOutput("Checking for Updates")
---checkUpdates()
+debugOutput("Checking for Updates")
+checkUpdates()
 
 --Run program or main menu, based on the settings
---if mainMenu then
---	shell.run("/extreme-reactors-control/start/menu.lua")
---	shell.completeProgram("/extreme-reactors-control/start/start.lua")
---else
---	if program == "turbine" then
---		shell.run("/extreme-reactors-control/program/turbineControl.lua")
---	elseif program == "reactor" then
---		shell.run("/extreme-reactors-control/program/reactorControl.lua")
---	end
---	shell.completeProgram("/extreme-reactors-control/start/start.lua")
---end
+if mainMenu then
+	shell.run("/extreme-reactors-control/start/menu.lua")
+	shell.completeProgram("/extreme-reactors-control/start/start.lua")
+else
+	if program == "turbine" then
+		shell.run("/extreme-reactors-control/program/turbineControl.lua")
+	elseif program == "reactor" then
+		shell.run("/extreme-reactors-control/program/reactorControl.lua")
+	end
+	shell.completeProgram("/extreme-reactors-control/start/start.lua")
+end
 
 
 --========== END OF THE START.LUA FILE ==========
