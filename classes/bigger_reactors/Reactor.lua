@@ -39,7 +39,7 @@ local BiggerReactor = {
         return self.id.fuelTank().waste()
     end,
     energyProduction = function(self)
-        return self.id.getEnergyProducedLastTick()
+        return self.id.battery().producedLastTick()
     end,
     steamOutput = function(self)
         return self.id.coolantTank().hotFluidAmount()
