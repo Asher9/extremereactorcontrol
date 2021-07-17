@@ -69,7 +69,7 @@ local function searchPeripherals()
 
         end
     end
-    
+
 	_G.amountReactors = amountReactors - 1
 	_G.amountTurbines = amountTurbines - 1
 	_G.amountCapacitors = amountCapacitors - 1
@@ -80,7 +80,7 @@ local function checkPeripherals()
 	term.clear()
 	term.setCursorPos(1,1)
 
-    if _G.reactors[1] == nil then
+    if _G.reactors[0] == nil then
         error("No reactor found!")
     end
 	if controlMonitor == "" then

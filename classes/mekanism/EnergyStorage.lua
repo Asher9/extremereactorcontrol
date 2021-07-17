@@ -23,6 +23,7 @@ local MekanismEnergyStorage = {
 }
 
 function _G.newMekanismEnergyStorage(name,id, side, type)
+    print("Creating new Mekanism EnergyCube Storage")
     local storage = {}
     setmetatable(storage,{__index=MekanismEnergyStorage})
 

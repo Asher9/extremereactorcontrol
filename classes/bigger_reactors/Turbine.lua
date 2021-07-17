@@ -40,12 +40,17 @@ local BiggerTurbine = {
 }
 
 function _G.newBiggerTurbine(name,id, side, type)
+    print("Creating new Bigger Reactors Turbine")
     local turbine = {}
     setmetatable(turbine,{__index = BiggerTurbine})
 
+    print("Settings Name -> ".. name)
     turbine.name = name
+    print("Settings Id -> ".. id)
     turbine.id = id
+    print("Settings Side -> ".. side)
     turbine.side = side
+    print("Settings Type -> ".. type)
     turbine.type = type
 
     return turbine

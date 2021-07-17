@@ -137,7 +137,7 @@ function _G.checkUpdates()
 	print("remoteVer: "..remoteVer)
 	print("localVer: "..version)
 	print("Update? -> "..tostring(remoteVer > version))
-	print("Cells: "..#capacitors)
+	print("Cells: "..(#capacitors + 1))
 	
 	--Update if available
 	if remoteVer > version then

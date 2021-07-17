@@ -61,12 +61,17 @@ local BiggerReactor = {
 
 
 function _G.newBiggerReactor(name,id, side, type)
+    print("Creating new Bigger Reactors Reactor")
     local reactor = {}
     setmetatable(reactor,{__index=BiggerReactor})
 
+    print("Settings Name -> ".. name)
     reactor.name = name
+    print("Settings Id -> ".. id)
     reactor.id = id
+    print("Settings Side -> ".. side)
     reactor.side = side
+    print("Settings Type -> ".. type)
     reactor.type = type
 
     return reactor
