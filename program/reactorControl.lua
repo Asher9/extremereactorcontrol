@@ -103,7 +103,7 @@ function getReactorsActive()
     local reactorStatus = false
 
     for i = 0, amountReactors, 1 do
-        if reactors[i]:getActive() then
+        if reactors[i]:active() then
             reactorStatus = true
         else
             reactorStatus = false
