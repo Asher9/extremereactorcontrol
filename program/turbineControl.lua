@@ -236,7 +236,7 @@ end
 
 --Returns the current energy fill status of a turbine
 function getTurbineEnergy(turbine)
-    return turbines[turbine].energy()
+    return turbines[turbine]:energy()
 end
 
 --Toggles the reactor status and the button
@@ -272,14 +272,14 @@ end
 --Enable all reactors
 function allReactorsOn()
     for i = 0, amountReactors, 1 do
-        reactors[i]:setActive(true)
+        reactors[i]:setOn(true)
     end
 end
 
 --Disable all reactor
 function allReactorsOff()
     for i = 0, amountReactors, 1 do
-        reactors[i]:setActive(false)
+        reactors[i]:setOn(false)
     end
 end
 
@@ -1044,11 +1044,11 @@ function printStatsAuto(turbine)
     controlMonitor.setCursorPos(2, 14)
     controlMonitor.write("Coils: ")
 
-    if turbines[turbine].coilsEngaged() then
+    if turbines[turbine]:coilsEngaged() then
         controlMonitor.setTextColor(colors.green)
         controlMonitor.write("engaged     ")
     end
-    if turbines[turbine].coilsEngaged() == false then
+    if turbines[turbine]:coilsEngaged() == false then
         controlMonitor.setTextColor(colors.red)
         controlMonitor.write("disengaged")
     end
@@ -1058,11 +1058,11 @@ function printStatsAuto(turbine)
     controlMonitor.setCursorPos(2, 15)
 
     controlMonitor.write("Rotor Speed: ")
-    controlMonitor.write((input.formatNumberComma(math.floor(turbines[turbine].rotorSpeed()))) .. " RPM    ")
+    controlMonitor.write((input.formatNumberComma(math.floor(turbines[turbine]:rotorSpeed()))) .. " RPM    ")
     controlMonitor.setCursorPos(2, 16)
     controlMonitor.write(
         "RF-Production: " ..
-            (input.formatNumberComma(math.floor(turbines[turbine].energyProduction()/1000))) .. " KRF/t           "
+            (input.formatNumberComma(math.floor(turbines[turbine]:energyProduction()/1000))) .. " KRF/t           "
     )
 
     --Internal buffer of the turbine
@@ -1149,7 +1149,7 @@ function printStatsMan(turbine)
     controlMonitor.write("Fuel Consumption: " .. fuelCons2 .. "mb/t     ")
     controlMonitor.setCursorPos(2, 9)
     controlMonitor.write("Rotor Speed: ")
-    controlMonitor.write((input.formatNumberComma(math.floor(turbines[turbine].rotorSpeed()))) .. " RPM     ")
+    controlMonitor.write((input.formatNumberComma(math.floor(turbines[turbine]:rotorSpeed()))) .. " RPM     ")
     controlMonitor.setCursorPos(2, 11)
     controlMonitor.write("Reactor: ")
     controlMonitor.setCursorPos(2, 13)
