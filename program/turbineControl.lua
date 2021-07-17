@@ -336,7 +336,7 @@ end
 
 --Toggles one turbine status and button
 function toggleTurbine(i)
-    turbines[i]:setActive(not turbines[i]:active())
+    turbines[i]:setOn(not turbines[i]:active())
     page:toggleButton("turbineOn")
     if turbines[i]:active() then
         page:rename("turbineOn", tOn, true)
@@ -359,7 +359,7 @@ end
 --Enable all turbines (Coils engaged, FluidRate 2000mb/t)
 function allTurbinesOn()
     for i = 0, amountTurbines, 1 do
-        turbines[i]:setActive(true)
+        turbines[i]:setOn(true)
         turbines[i]:setCoils(true)
         turbines[i]:setSteamIn(targetSteam)
     end
@@ -396,13 +396,13 @@ function toggleAllTurbines()
     end
     for i = 0, amountTurbines do
         if onOff == "off" then
-            turbines[i]:setActive(false)
+            turbines[i]:setOn(false)
             if page.buttonList["aTurbinesOn"].active then
                 page:toggleButton("aTurbinesOn")
                 page:rename("aTurbinesOn", aTOff, true)
             end
         else
-            turbines[i]:setActive(true)
+            turbines[i]:setOn(true)
             if not page.buttonList["aTurbinesOn"].active then
                 page:toggleButton("aTurbinesOn")
                 page:rename("aTurbinesOn", aTOn, true)
@@ -507,7 +507,7 @@ function findOptimalFuelRodLevel()
                     allReactorsOff()
                     allTurbinesOff()
                     for i = 1, amountTurbines do
-                        turbines[i]:setActive(false)
+                        turbines[i]:setOn(false)
                     end
 
                     --term.clear()
@@ -672,7 +672,7 @@ function getToTargetSpeed()
             --Control turbines
             if tspeed <= turbineTargetSpeed then
                 allReactorsOn()
-                turbines[i]:setActive(true)
+                turbines[i]:setOn(true)
                 turbines[i]:setCoils(false)
                 turbines[i]:setSteamIn(targetSteam)
             end
