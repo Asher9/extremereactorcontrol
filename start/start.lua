@@ -188,8 +188,8 @@ function _G.doUpdate(toVer,branch)
 	controlMonitor.write("at the computer terminal") --24 chars
 
 	--Print install instructions to the terminal
-	term.clear()
-	term.setCursorPos(1,1)
+	--term.clear()
+	--term.setCursorPos(1,1)
 	local tx,ty = term.getSize()
 
 		print("Do you want to install the update (y/n)?")
@@ -230,8 +230,8 @@ function _G.doUpdate(toVer,branch)
 		if out then break end
 
 		if count == 0 then
-			term.clear()
-			term.setCursorPos(1,1)
+			--term.clear()
+			--term.setCursorPos(1,1)
 			break
 		end
 	end
@@ -241,7 +241,7 @@ end
 function _G.downloadFile(relUrl,path)
 	local gotUrl = http.get(relUrl..path)
 	if gotUrl == nil then
-		term.clear()
+		--term.clear()
 		error("File not found! Please check!\nFailed at "..relUrl..path)
 	else
 		_G.url = gotUrl.readAll()

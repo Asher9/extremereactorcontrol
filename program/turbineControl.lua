@@ -57,8 +57,8 @@ function startAutoMode()
     end
 
     --Clear display
-    term.clear()
-    term.setCursorPos(1, 1)
+    --term.clear()
+    --term.setCursorPos(1, 1)
 
     --Display prints
     print("Getting all Turbines to " .. turbineTargetSpeed .. " RPM...")
@@ -127,8 +127,8 @@ function startAutoMode()
     allTurbinesOn()
 
     --Reset terminal
-    term.clear()
-    term.setCursorPos(1, 1)
+    --term.clear()
+    --term.setCursorPos(1, 1)
 
     --Reset Monitor
     controlMonitor.setBackgroundColor(backgroundColor)
@@ -173,8 +173,8 @@ function checkPeripherals()
     controlMonitor.clear()
     controlMonitor.setCursorPos(1, 1)
     controlMonitor.setTextColor(colors.red)
-    term.clear()
-    term.setCursorPos(1, 1)
+    --term.clear()
+    --term.setCursorPos(1, 1)
     term.setTextColor(colors.red)
     --No turbine found
     if turbines[0] == nil then
@@ -499,8 +499,8 @@ function findOptimalFuelRodLevel()
                         turbines[i].setActive(false)
                     end
 
-                    term.clear()
-                    term.setCursorPos(1, 1)
+                    --term.clear()
+                    --term.setCursorPos(1, 1)
                     print("Target RodLevel: " .. targetLevel)
                     error("Failed to calculate RodLevel!")
                 else
