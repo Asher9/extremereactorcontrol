@@ -26,6 +26,10 @@ function _G.newEnergyStorage(name,id, side, type)
     print("Creating new Base Energy Storage")
     local storage = {}
     setmetatable(storage,{__index=EnergyStorage})
+    
+    if id == nil then
+        print("MISSING wrapped peripheral object. This is going to break!")
+    end
 
     storage.name = name
     storage.id = id

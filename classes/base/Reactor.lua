@@ -64,10 +64,13 @@ function _G.newReactor(name,id, side, type)
     print("Creating new Base Reactor")
     local reactor = {}
     setmetatable(reactor,{__index=Reactor})
+    
+    if id == nil then
+        print("MISSING wrapped peripheral object. This is going to break!")
+    end
 
     print("Settings Name -> ".. name)
     reactor.name = name
-    print("Settings Id -> ".. id)
     reactor.id = id
     print("Settings Side -> ".. side)
     reactor.side = side

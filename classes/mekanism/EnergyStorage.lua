@@ -26,7 +26,11 @@ function _G.newMekanismEnergyStorage(name,id, side, type)
     print("Creating new Mekanism EnergyCube Storage")
     local storage = {}
     setmetatable(storage,{__index=MekanismEnergyStorage})
-
+    
+    if id == nil then
+        print("MISSING wrapped peripheral object. This is going to break!")
+    end
+    
     storage.name = name
     storage.id = id
     storage.side = side

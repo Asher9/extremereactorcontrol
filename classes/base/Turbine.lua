@@ -43,10 +43,13 @@ function _G.newTurbine(name,id, side, type)
     print("Creating new Base Turbine")
     local turbine = {}
     setmetatable(turbine,{__index = Turbine})
+    
+    if id == nil then
+        print("MISSING wrapped peripheral object. This is going to break!")
+    end
 
     print("Settings Name -> ".. name)
     turbine.name = name
-    print("Settings Id -> ".. id)
     turbine.id = id
     print("Settings Side -> ".. side)
     turbine.side = side
