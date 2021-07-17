@@ -655,47 +655,55 @@ end
 --Gets turbines to targetSpeed
 function getToTargetSpeed()
     for i = 0, amountTurbines, 1 do
-        --Get the current speed of the turbine
-        local tspeed = turbines[i].rotorSpeed()
 
-        --Control turbines
-        if tspeed <= turbineTargetSpeed then
-            allReactorsOn()
-            turbines[i].setActive(true)
-            turbines[i].setCoils(false)
-            turbines[i].setSteamIn(targetSteam)
-        end
-        if turbines[i].rotorSpeed() > turbineTargetSpeed then
-            turbineOff(i)
-        end
+        if turbines[i] == nil then
+            print("Turbine " ..i.. " -> is NIL stuff is broken")
+            print("Total Turbines = " ..amountTurbines)
+        else
+            printTurbineData(turbines[i])
 
-        --Not working yet - Needs reworking
-        --        --Write speed to the currSpeed table
-        --        currSpeed[i] = tspeed
-        --
-        --        --Check turbine speed progression
-        --        if currSpeed[i] < lastSpeed[i]-50 then
-        --
-        --            print(speedFailCounter)
-        --
-        --            --Return error message
-        --            if speedFailCounter[i] >= 3 then
-        --                controlMonitor.setBackgroundColor(colors.black)
-        --                controlMonitor.clear()
-        --                controlMonitor.setTextColor(colors.red)
-        --                controlMonitor.setCursorPos(1, 1)
-        --                    controlMonitor.write("Turbines can't get to speed!")
-        --                    controlMonitor.setCursorPos(1,2)
-        --                    controlMonitor.write("Please check your Steam-Input!")
-        --                    error("Turbines can't get to speed!")
-        --            --increase speedFailCounter
-        --            else
-        --                speedFailCounter[i] = speedFailCounter[i] + 1
-        --            end
-        --        end
-        --
-        --        --Write speed to the lastSpeed table
-        --        lastSpeed[i] = tspeed
+            --Get the current speed of the turbine
+            local tspeed = turbines[i].rotorSpeed()
+
+            --Control turbines
+            if tspeed <= turbineTargetSpeed then
+                allReactorsOn()
+                turbines[i].setActive(true)
+                turbines[i].setCoils(false)
+                turbines[i].setSteamIn(targetSteam)
+            end
+            if turbines[i].rotorSpeed() > turbineTargetSpeed then
+                turbineOff(i)
+            end
+
+            --Not working yet - Needs reworking
+            --        --Write speed to the currSpeed table
+            --        currSpeed[i] = tspeed
+            --
+            --        --Check turbine speed progression
+            --        if currSpeed[i] < lastSpeed[i]-50 then
+            --
+            --            print(speedFailCounter)
+            --
+            --            --Return error message
+            --            if speedFailCounter[i] >= 3 then
+            --                controlMonitor.setBackgroundColor(colors.black)
+            --                controlMonitor.clear()
+            --                controlMonitor.setTextColor(colors.red)
+            --                controlMonitor.setCursorPos(1, 1)
+            --                    controlMonitor.write("Turbines can't get to speed!")
+            --                    controlMonitor.setCursorPos(1,2)
+            --                    controlMonitor.write("Please check your Steam-Input!")
+            --                    error("Turbines can't get to speed!")
+            --            --increase speedFailCounter
+            --            else
+            --                speedFailCounter[i] = speedFailCounter[i] + 1
+            --            end
+            --        end
+            --
+            --        --Write speed to the lastSpeed table
+            --        lastSpeed[i] = tspeed
+        end
     end
 end
 
