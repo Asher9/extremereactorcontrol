@@ -289,8 +289,8 @@ initClasses()
 debugOutput("Initializing Network Devices")
 _G.initPeripherals()
 
-debugOutput("Checking for Updates")
-checkUpdates()
+--debugOutput("Checking for Updates")
+--checkUpdates()
 
 --Run program or main menu, based on the settings
 --if mainMenu then
