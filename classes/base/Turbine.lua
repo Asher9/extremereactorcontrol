@@ -36,33 +36,32 @@ local Turbine = {
     setSteamIn = function(self, amount)
         self.id.setFluidFlowRateMax(amount)
     end
-
 }
 
 function _G.newTurbine(name,id, side, type)
-    print("Creating new Base Turbine")
+    debugOutput("Creating new Base Turbine")
     local turbine = {}
     setmetatable(turbine,{__index = Turbine})
     
     if id == nil then
-        print("MISSING wrapped peripheral object. This is going to break!")
+        debugOutput("MISSING wrapped peripheral object. This is going to break!")
     end
 
-    print("Settings Name -> ".. name)
+    debugOutput("Settings Name -> ".. name)
     turbine.name = name
     turbine.id = id
-    print("Settings Side -> ".. side)
+    debugOutput("Settings Side -> ".. side)
     turbine.side = side
-    print("Settings Type -> ".. type)
+    debugOutput("Settings Type -> ".. type)
     turbine.type = type
 
     return turbine
 end
 
 function _G.printTurbineData(turbine)
-    print("Name: "..turbine.name)
-    print("ID: "..tostring(turbine.id))
-    print("Type: "..turbine.type)
+    debugOutput("Name: "..turbine.name)
+    debugOutput("ID: "..tostring(turbine.id))
+    debugOutput("Type: "..turbine.type)
 end
 
 

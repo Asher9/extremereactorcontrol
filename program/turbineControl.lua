@@ -48,11 +48,13 @@ cOff = {" Off ", label = "coilsOn"}
 --Init auto mode
 function startAutoMode()
     --Everything setup correctly?
+    debugOutput("Check Peripherals")
     checkPeripherals()
 
     --Loads/Calculates the reactor's rod level
 
     if not skipControlRodCheck then
+        debugOutput("Find Optimal Fuel Rod Level")
         findOptimalFuelRodLevel()
     end
 
@@ -64,13 +66,15 @@ function startAutoMode()
     print("Getting all Turbines to " .. turbineTargetSpeed .. " RPM...")
 
     --Gets turbine to target speed
-    --Init SpeedTables
+    debugOutput("Init SpeedTables")
     initSpeedTable()
     while not allAtTargetSpeed() do
+        debugOutput("GetToTargetSpeed")
         getToTargetSpeed()
         sleep(1)
         term.setCursorPos(1, 2)
         local badReactor = 0
+        debugOutput("Looping Turbines")
         for i = 0, amountTurbines, 1 do
             if i == 0 then
                 --restarted loop
@@ -86,8 +90,8 @@ function startAutoMode()
             end
 
             if turbines[i] == nil then
-                print("Turbine " ..i.. " -> is NIL stuff is broken")
-                print("Total Turbines = " ..amountTurbines)
+                debugOutput("Turbine " ..i.. " -> is NIL stuff is broken")
+                debugOutput("Total Turbines = " ..amountTurbines)
             else
                 printTurbineData(turbines[i])
             end
@@ -657,8 +661,8 @@ function getToTargetSpeed()
     for i = 0, amountTurbines, 1 do
 
         if turbines[i] == nil then
-            print("Turbine " ..i.. " -> is NIL stuff is broken")
-            print("Total Turbines = " ..amountTurbines)
+            debugOutput("Turbine " ..i.. " -> is NIL stuff is broken")
+            debugOutput("Total Turbines = " ..amountTurbines)
         else
             printTurbineData(turbines[i])
 
