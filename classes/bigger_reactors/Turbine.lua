@@ -34,7 +34,7 @@ local BiggerTurbine = {
         self.id.setCoilEngaged(status)
     end,
     setSteamIn = function(self, amount)
-        self.id.fluidTank.setNominalFlowRate(amount)
+        self.id.fluidTank().setNominalFlowRate(amount)
     end
 
 }
