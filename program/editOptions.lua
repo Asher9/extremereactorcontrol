@@ -36,7 +36,7 @@ end
 function displayMenu()
   loadOptionFile()
   controlMonitor.clear()
-  shell.run("/extreme-reactors-control/start/menu.lua")
+  shell.run("reboot")
   shell.completeProgram("/extreme-reactors-control/program/editOptions.lua")
 end
 
