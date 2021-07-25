@@ -137,7 +137,7 @@ function startAutoMode()
     allReactorsOn()
     allTurbinesOn()
     maintainSpeedMaxInAuto()
-    
+
     --Reset terminal
     term.clear()
     term.setCursorPos(1, 1)
@@ -969,7 +969,7 @@ function maintainSpeedMaxInAuto()
             -- speed is good
         else
             while currentRPM > _G.turbineTargetSpeed do
-                local newSteamAmount = lTurbine:steamIn() - lTurbine:decrementAmount()
+                local newSteamAmount = lTurbine:steamIn() - lTurbine.decrementAmount
                 if(newSteamAmount > 0) then
                     lTurbine:setSteamIn(newSteamAmount)
                 else
