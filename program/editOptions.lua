@@ -182,15 +182,11 @@ function backToMainMenu()
   end
 
   controlMonitor.setCursorPos(24,18)
-    controlMonitor.write("Config available: ")
-  if math.floor(tonumber(_G.optionList["rodLevel"])) ~= math.floor(rodLevel) then
-      controlMonitor.write("yes -> no")
+  controlMonitor.write("Config available: ")
+  if _G.optionList["version"] == "" then
+    controlMonitor.write("no     ")
   else
-    if math.floor(rodLevel) == 0 then
-        controlMonitor.write("no     ")
-    else
-        controlMonitor.write("yes   ")
-    end
+    controlMonitor.write("yes     ")
   end
   getClick(backToMainMenu)
 end
