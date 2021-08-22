@@ -18,9 +18,11 @@ local selectedLang = {}
 function getLanguage()
 	languages = downloadAndRead("supportedLanguages.txt")
 	downloadAndExecuteClass("Language.lua")
+
 	for k, v in pairs(languages) do
 		print(k..") "..v)
 	end
+
 	term.write("Language? (example: en): ")
 
 	installLang = read()
@@ -157,7 +159,7 @@ end
 function betaVersion()
 	removeAll()
 	getFiles()
-	print(selectedLang:getLanguageText().done)
+	print(selectedLang:getText("done"))
 	sleep(2)
 end
 getLanguage()
