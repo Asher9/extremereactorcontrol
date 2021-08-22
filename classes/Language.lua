@@ -5,7 +5,7 @@
 local Language = {
     text = {},
     getText = function(self, entry)
-        return self.text[entry]
+        return text[entry]
     end,
     dumpText = function(self) 
         for k, v in pairs(text) do

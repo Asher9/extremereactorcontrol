@@ -55,5 +55,4 @@
   installerOutroLineTwo = "The program is now ready to run!",
   installerOutroLineThree = "Thanks for using my program! ;)",
   installerOutroLineFour = "Installation successful!"
-
 }
