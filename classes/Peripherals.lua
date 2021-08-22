@@ -15,6 +15,7 @@ _G.amountTurbines = 0
 _G.amountMonitors = 0
 _G.amountCapacitors = 0
 _G.amountReactors = 0
+_G.smallMonitor = 1
 
 local function searchPeripherals()
     local peripheralList = peripheral.getNames()
@@ -95,10 +96,22 @@ function _G.checkPeripherals()
     
 	--Monitor too small
 	local monX,monY = controlMonitor.getSize()
-	if monX < 82 or monY < 40 then
-		controlMonitor.write("Monitor too small\n Must be at least 8 in length and 6 in height.\nPlease check and reboot the computer (Press and hold Ctrl+R)")
-		error("Monitor too small.\nMust be at least 8 in length and 6 in height.\nPlease check and reboot the computer (Press and hold Ctrl+R)")
-	end
+
+    if amountTurbines < 33 then
+        _G.smallMonitor = 1
+        if monX < 71 or monY < 26 then
+            local messageOut = string.gsub(string.gsub(_G.language:getText("monitorSize"), "8","7"),"6","4")
+            controlMonitor.write(messageOut)
+            error(messageOut)
+        end
+    else
+        _G.smallMonitor = 0
+        if monX < 82 or monY < 40 then
+            local messageOut = _G.language:getText("monitorSize");
+            controlMonitor.write(messageOut)
+            error(messageOut)
+        end
+    end
 end
 
 
