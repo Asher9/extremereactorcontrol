@@ -16,8 +16,7 @@ local Language = {
         local file = fs.open(languageFile,"r")
         local list = file.readAll()
         file.close()
-        unsortedList = textutils.unserialise(list)
-        text = unsortedList.sort()
+        text = textutils.unserialise(list)
     end,
 
     loadLanguageById = function(self, languageId)
