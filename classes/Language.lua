@@ -17,7 +17,7 @@ local Language = {
         local list = file.readAll()
         file.close()
         unsortedList = textutils.unserialise(list)
-        text = table.sort(unsortedList)
+        text = unsortedList.sort()
     end,
 
     loadLanguageById = function(self, languageId)
