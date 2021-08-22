@@ -5,7 +5,11 @@
 local Language = {
     text = {},
     getText = function(self, entry)
-        return text[entry]
+        local value = text[entry];
+        if value == nil then
+            return entry
+        end
+        return value
     end,
     dumpText = function(self) 
         for k, v in pairs(text) do
