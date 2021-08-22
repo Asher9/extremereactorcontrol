@@ -26,7 +26,7 @@ The following list shows the features of the program:
 - Type in the following into the computer:
 
     ```
-    pastebin get YnAf9jpr git
+    pastebin get iV1cfHwB git
     git
     ```
         

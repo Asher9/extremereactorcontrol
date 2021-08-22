@@ -123,7 +123,7 @@ function getAllFiles()
 		writeFile(fileName)
 	  end
 
-	  print("    Done.")
+	  print(selectedLang:getText("done"))
 	end
 end
 
