@@ -22,7 +22,7 @@
   reactorOnBelow = "Reactor on below: ",
   turbineMaxSpeed = "Turbines Max. Speed: ",
   turbineSteamInput = "Turbines Steam Input: ",
-  turbineDisableAt = "Disable turbine at ",
+  turbineDisableAt = "Disable turbine at {reactorOffAt}%: ",
   configAvailable = "Config available: ",
   changeBackgroundColor = "Change BackgroundColor",
   changeTextColor = "Change TextColor",
@@ -41,7 +41,9 @@
   wordReboot = "Reboot",
   wordTurbines = "Turbines",
 
+  wordBackgroundColor = "BackgroundColor",
   wordBackground = "Background",
+  wordTextColor = "TextColor",
   wordText = "Text",
   wordSave = "Save",
   wordMainMenu = "Main Menu",

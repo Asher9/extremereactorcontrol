@@ -104,7 +104,7 @@ function backToMainMenu()
   controlMonitor.setBackgroundColor(backgroundColor)
   controlMonitor.setCursorPos(4,2)
 
-  controlMonitor.write("-- Options --")
+  controlMonitor.write("-- ".._G.language:getText("wordOptions").." --")
 
   --Set text of all the options
   controlMonitor.setCursorPos(24,4)
@@ -112,52 +112,52 @@ function backToMainMenu()
   local col2 = printColor(backgroundColor)
   if tonumber(_G.optionList["backgroundColor"]) ~= backgroundColor then
 
-      controlMonitor.write("BackgroundColor: "..col.." -> "..col2.."   ")
+      controlMonitor.write(_G.language:getText("wordBackgroundColor")..": "..col.." -> "..col2.."   ")
 
   else
-      controlMonitor.write("BackgroundColor: "..col2.."    ")
+      controlMonitor.write(_G.language:getText("wordBackgroundColor")..": "..col2.."    ")
   end
 
   controlMonitor.setCursorPos(24,6)
   local col3 = printColor(tonumber(_G.optionList["textColor"]))
   local col4 = printColor(textColor)
   if tonumber(_G.optionList["textColor"]) ~= textColor then
-      controlMonitor.write("TextColor: "..col3.." -> "..col4.."   ")
+      controlMonitor.write(_G.language:getText("wordTextColor")..": "..col3.." -> "..col4.."   ")
   else
-      controlMonitor.write("TextColor: "..col4.."   ")
+      controlMonitor.write(_G.language:getText("wordTextColor")..": "..col4.."   ")
   end
 
   controlMonitor.setCursorPos(24,8)
   if math.floor(tonumber(_G.optionList["reactorOffAt"])) ~= math.floor(reactorOffAt) then
-      controlMonitor.write("Reactor off above "..math.floor(tonumber(_G.optionList["reactorOffAt"])).."% -> "..math.floor(reactorOffAt).."%   ")
+      controlMonitor.write(_G.language:getText("reactorOffAbove")..math.floor(tonumber(_G.optionList["reactorOffAt"])).."% -> "..math.floor(reactorOffAt).."%   ")
   else
-      controlMonitor.write("Reactor off above "..math.floor(reactorOffAt).."%   ")
+      controlMonitor.write(_G.language:getText("reactorOffAbove")..math.floor(reactorOffAt).."%   ")
   end
 
   controlMonitor.setCursorPos(24,10)
   if math.floor(tonumber(_G.optionList["reactorOnAt"])) ~= math.floor(reactorOnAt) then
-      controlMonitor.write("Reactor on below "..math.floor(tonumber(_G.optionList["reactorOnAt"])).."% -> "..math.floor(reactorOnAt).."%   ")
+      controlMonitor.write(_G.language:getText("reactorOnBelow")..math.floor(tonumber(_G.optionList["reactorOnAt"])).."% -> "..math.floor(reactorOnAt).."%   ")
 
   else
-      controlMonitor.write("Reactor on below "..math.floor(reactorOnAt).."%   ")
+      controlMonitor.write(_G.language:getText("reactorOnBelow")..math.floor(reactorOnAt).."%   ")
   end
   
   controlMonitor.setCursorPos(24,12)
   if tonumber(_G.optionList["turbineTargetSpeed"]) ~= turbineTargetSpeed then
-      controlMonitor.write("Turbines Max. Speed: "..(input.formatNumberComma(math.floor(tonumber(_G.optionList["turbineTargetSpeed"])))).." -> "..(input.formatNumberComma(turbineTargetSpeed)).."RPM      ")
+      controlMonitor.write(_G.language:getText("turbineMaxSpeed")..(input.formatNumberComma(math.floor(tonumber(_G.optionList["turbineTargetSpeed"])))).." -> "..(input.formatNumberComma(turbineTargetSpeed)).."RPM      ")
 
   else
-      controlMonitor.write("Turbines Max. Speed: "..(input.formatNumberComma(turbineTargetSpeed)).."RPM     ")
+      controlMonitor.write(_G.language:getText("turbineMaxSpeed")..(input.formatNumberComma(turbineTargetSpeed)).."RPM     ")
 
   end
 
   controlMonitor.setCursorPos(24,14)
   if tonumber(_G.optionList["targetSteam"]) ~= targetSteam then
-      controlMonitor.write("Turbines Steam Input: "..(input.formatNumberComma(math.floor(tonumber(_G.optionList["targetSteam"])))).." -> "..(input.formatNumberComma(targetSteam)).."mb/t      ")
+      controlMonitor.write(_G.language:getText("turbineSteamInput")..(input.formatNumberComma(math.floor(tonumber(_G.optionList["targetSteam"])))).." -> "..(input.formatNumberComma(targetSteam)).."mb/t      ")
 
 
   else
-      controlMonitor.write("Turbines Steam Input: "..(input.formatNumberComma(targetSteam)).."mb/t     ")
+      controlMonitor.write(_G.language:getText("turbineSteamInput")..(input.formatNumberComma(targetSteam)).."mb/t     ")
 
   end
 
@@ -172,12 +172,12 @@ function backToMainMenu()
         turbineOnOffString1 = "yes   "
         turbineOnOffString2 = "no"
       end
-      controlMonitor.write("Disable turbine at "..reactorOffAt.."%: "..turbineOnOffString2.." -> "..turbineOnOffString1)
+      controlMonitor.write(_G.language:getText("turbineDisableAt").gsub("{reactorOffAt}",reactorOffAt)..turbineOnOffString2.." -> "..turbineOnOffString1)
 
   else
       if _G.optionList["turbineOnOff"] == "off" then _G.turbineOnOffString2 = "yes"
       elseif _G.optionList["turbineOnOff"] == "on" then _G.turbineOnOffString2 = "no" end
-      controlMonitor.write("Disable turbine at "..reactorOffAt.."%: "..turbineOnOffString2.."   ")
+      controlMonitor.write(_G.language:getText("turbineDisableAt").gsub("{reactorOffAt}",reactorOffAt)..turbineOnOffString2.."   ")
 
   end
 
