@@ -84,7 +84,6 @@ function getAllFiles(skipStartUp)
 
 	  for fileCount = 1, #v.files do
 		local fileName = v.files[fileCount]
-		print("Downloading: "..fileName)
 		writeFile(fileName)
 	  end
 
@@ -97,7 +96,7 @@ function getFiles()
 	clearTerm()
 	print("Getting new files...")
 	getAllFiles()
-	
+
 	--Startup
 	print("Startup file...")
 	local file = fs.open("startup","w")

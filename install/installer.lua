@@ -80,9 +80,8 @@ function getAllFiles(skipStartUp)
 	  print(v.name.." files...")
 
 	  for fileCount = 1, #v.files do
-		local fileName = v.files[fileCount]
-		print("Downloading: "..fileName)
-		writeFile(fileName)
+      local fileName = v.files[fileCount]
+      writeFile(fileName)
 	  end
 
 	  print("    Done.")
