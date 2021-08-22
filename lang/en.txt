@@ -1,4 +1,4 @@
 {
-  language = "Selected English",
+  language = "Selected English"
 
 }
