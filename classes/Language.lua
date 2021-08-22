@@ -5,7 +5,9 @@
 local Language = {
     text = {},
     getText = function(self, entry)
-        print("Requesting: "..entry)
+        if entry == nil then
+            return ""
+        end
         if text[entry] == nil then
             return entry
         else
