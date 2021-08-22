@@ -29,7 +29,8 @@
   lang = {
     name = "Language",
     files = {
-      "lang/en.txt"
+      "lang/en.txt",
+      "lang/de.txt"
     }
   },
   program = {

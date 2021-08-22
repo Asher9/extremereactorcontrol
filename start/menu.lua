@@ -1,6 +1,6 @@
 -- Extreme Reactors Control by SeekerOfHonjo --
 -- Original work by Thor_s_Crafter on https://github.com/ThorsCrafter/Reactor-and-Turbine-control-program -- 
--- Version 1.0 --
+-- Version 2.6 --
 
 -- Loads the Touchpoint API (by Lyqyd)
 shell.run("cp /extreme-reactors-control/config/touchpoint.lua /touchpoint")
@@ -167,15 +167,15 @@ function _G.displayMenu()
   controlMonitor.setTextColor(textColor)
 
   controlMonitor.setCursorPos(3,2)
-  controlMonitor.write("-- Main Menu --")
+  controlMonitor.write("-- ".._G.language.getText("mainMenu").." --")
   controlMonitor.setCursorPos(39,5)
-  controlMonitor.write("Show this screen on startup: ")
+  controlMonitor.write(_G.language.getText("showOnStartup")..": ")
   controlMonitor.setCursorPos(39,9)
-  controlMonitor.write("Language: ")
+  controlMonitor.write(_G.language.getText("wordLanguage")..": ")
   controlMonitor.setCursorPos(3,7)
-  controlMonitor.write("Program: ")
+  controlMonitor.write(_G.language.getText("wordProgram")..": ")
   controlMonitor.setCursorPos(23,7)
-  controlMonitor.write("Mode:")
+  controlMonitor.write(_G.language.getText("wordMode")..": ")
 
   getClick(displayMenu)
 end
