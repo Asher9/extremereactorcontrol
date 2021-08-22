@@ -78,7 +78,7 @@ function getLanguage()
     selectedLang = _G.newLanguageById(_G.lang)
   end
 
-	print(selectedLang.text.language)
+	print(selectedLang:getText("language"))
 end
 
 --Writes the files to the computer
@@ -139,18 +139,18 @@ if not update then
   --Description
   term.clear()
   term.setCursorPos(1,1)
-  print(selectedLang.text.installerIntroLine1)
-  print(selectedLang.text.installerIntroLine2)
+  print(selectedLang:getText("installerIntroLine1"))
+  print(selectedLang:getText("installerIntroLine2"))
   print()
-  print(selectedLang.text.installerIntroLine3)
-  print(selectedLang.text.installerIntroLine4)
-  print(selectedLang.text.installerIntroLine5)
-  print(selectedLang.text.installerIntroLine6)
-  print(selectedLang.text.installerIntroLine7)
-  print(selectedLang.text.installerIntroLine8)
-  print(selectedLang.text.installerIntroLine9)
+  print(selectedLang:getText("installerIntroLine3"))
+  print(selectedLang:getText("installerIntroLine4"))
+  print(selectedLang:getText("installerIntroLine5"))
+  print(selectedLang:getText("installerIntroLine6"))
+  print(selectedLang:getText("installerIntroLine7"))
+  print(selectedLang:getText("installerIntroLine8"))
+  print(selectedLang:getText("installerIntroLine9"))
   print()
-  write(selectedLang.text.pressEnter)
+  write(selectedLang:getText("pressEnter"))
   leer = read()
 
   --Computer label
@@ -158,22 +158,22 @@ if not update then
   while out do
     term.clear()
     term.setCursorPos(1,1)
-    print(selectedLang.text.installerLabelLine1)
-    term.write(selectedLang.text.installerLabelLine2)
+    print(selectedLang:getText("installerLabelLine1"))
+    term.write(selectedLang:getText("installerLabelLine2"))
 
     local input = read()
     if input == "y" then
       print()
       shell.run("label set \"ReactorControlComputer\"")
       print()
-      print(selectedLang.text.installerLabelSet)
+      print(selectedLang:getText("installerLabelSet"))
       print()
       sleep(2)
       out = false
 
     elseif input == "n" then
       print()
-      print(selectedLang.text.installerLabelNotSet)
+      print(selectedLang:getText("installerLabelNotSet"))
       print()
       out = false
     end
@@ -184,9 +184,9 @@ if not update then
   while out2 do
     term.clear()
     term.setCursorPos(1,1)
-    print(selectedLang.text.installerStartupLine1)
-    print(selectedLang.text.installerStartupLine2)
-    term.write(selectedLang.text.installerStartupLine3)
+    print(selectedLang:getText("installerStartupLine1"))
+    print(selectedLang:getText("installerStartupLine2"))
+    term.write(selectedLang:getText("installerStartupLine3"))
 
     local input = read()
     if input == "y" then
@@ -194,13 +194,13 @@ if not update then
       file.writeLine("shell.run(\"/extreme-reactors-control/start/start.lua\")")
       file.close()
       print()
-      print(selectedLang.text.installerStartupInstalled)
+      print(selectedLang:getText("installerStartupInstalled"))
       print()
       out2 = false
     end
     if input == "n" then
       print()
-      print(selectedLang.text.installerStartupUninstalled)
+      print(selectedLang:getText("installerStartupUninstalled"))
       print()
       out2 = false
     end
@@ -212,19 +212,19 @@ end --update
 term.clear()
 term.setCursorPos(1,1)
 
-print(selectedLang.text.installerFileCheck)
+print(selectedLang:getText("installerFileCheck"))
 --Removes old files
 if fs.exists("/extreme-reactors-control/program/") then
   shell.run("rm /extreme-reactors-control/")
 end
 
-print(selectedLang.text.installerGettingNewFiles)
+print(selectedLang:getText("installerGettingNewFiles"))
 getAllFiles()
 
 term.clear()
 term.setCursorPos(1,1)
 
-print(selectedLang.text.updatingStartup)
+print(selectedLang:getText("updatingStartup"))
 --Refresh startup (if installed)
 if fs.exists("startup") then
   shell.run("rm startup")
@@ -238,13 +238,13 @@ term.clear()
 term.setCursorPos(1,1)
 
 if not update then
-  print(selectedLang.text.installerOutroLine1)
-  print(selectedLang.text.installerOutroLine2)
+  print(selectedLang:getText("installerOutroLine1"))
+  print(selectedLang:getText("installerOutroLine2"))
   print()
   term.setTextColor(colors.green)
   print()
-  print(selectedLang.text.installerOutroLine3.." ;)")
-  print(selectedLang.text.installerOutroLine4)
+  print(selectedLang:getText("installerOutroLine3").." ;)")
+  print(selectedLang:getText("installerOutroLine4"))
   print()
   print("SeekerOfHonjo")
   print("(c) 2021")

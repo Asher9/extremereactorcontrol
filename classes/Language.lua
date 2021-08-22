@@ -4,18 +4,22 @@
 
 local Language = {
     text = {},
-    getText = function(self,entry)
+    getText = function(self, entry)
         return self.text[entry]
     end,
-
+    dumpText = function(self)        
+        for k, v in pairs(text) do
+            print(k..") "..v)
+        end
+    end,
     loadLanguageByFile = function(self, languageFile)
         local file = fs.open(languageFile,"r")
         local list = file.readAll()
         file.close()
 
         text = textutils.unserialise(list)
-        print(text.language)
     end,
+
     loadLanguageById = function(self, languageId)
         local fileName = "/extreme-reactors-control/lang/"..languageId..".txt"
         self:loadLanguageByFile(fileName)

@@ -12,6 +12,7 @@
   terminatedProgram = "Program Terminated!",
   updateProgram = "Do you want to install the update (y/n)?",
   updatingStartup = "Startup file...",
+  removingOldFiles = "Removing old files...",
   done = "Done!",
 
   updateAvailableLine1 = "Update available!",
