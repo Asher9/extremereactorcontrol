@@ -21,12 +21,12 @@ function _G.createButtons()
 
   page:add("Start program",startTC,3,5,20,5,_G.language.getText("startProgram"),_G.language.getText("startProgram"))
   page:add("Reactor only",function() switchProgram("Reactor") end,3,9,20,9,_G.language.getText("reactorOnly"),_G.language.getText("reactorOnly"))
-  page:add("Turbines",function() switchProgram("Turbine") end,3,11,20,11,_G.language.getText("turbines"),_G.language.getText("turbines"))
-  page:add("Automatic",nil,23,9,35,9,_G.language.getText("automatic"),_G.language.getText("automatic"))
-  page:add("Manual",nil,23,11,35,11,_G.language.getText("manual"),_G.language.getText("manual"))
-  page:add("Options",displayOptions,3,16,20,16,_G.language.getText("options"),_G.language.getText("options"))
+  page:add("Turbines",function() switchProgram("Turbine") end,3,11,20,11,_G.language.getText("wordTurbines"),_G.language.getText("wordTurbines"))
+  page:add("Automatic",nil,23,9,35,9,_G.language.getText("wordAutomatic"),_G.language.getText("wordAutomatic"))
+  page:add("Manual",nil,23,11,35,11,_G.language.getText("wordManual"),_G.language.getText("wordManual"))
+  page:add("Options",displayOptions,3,16,20,16,_G.language.getText("wordOptions"),_G.language.getText("wordOptions"))
   page:add("Quit program",exit,3,17,20,17,_G.language.getText("quitProgram"),_G.language.getText("quitProgram"))
-  page:add("Reboot",reboot,3,18,20,18,_G.language.getText("reboot"),_G.language.getText("reboot"))
+  page:add("Reboot",reboot,3,18,20,18,_G.language.getText("wordReboot"),_G.language.getText("wordReboot"))
   page:add("menuOn",nil,39,7,49,7)
   startOn = {"   On    ",label = "menuOn"}
   startOff = {"   Off   ",label = "menuOn"}
