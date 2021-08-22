@@ -17,7 +17,10 @@ local Language = {
         text = textutils.unserialise(list)
     end,
     loadLanguageById = function(self, languageId)    
-        self.loadLanguageByFile("/extreme-reactors-control/lang/"..languageId..".txt")
+        print("Language Requested: "..languageId)
+        local fileName = "/extreme-reactors-control/lang/"..languageId..".txt"
+        print("Using File: "..fileName)
+        self.loadLanguageByFile(fileName)
     end
 }
 
