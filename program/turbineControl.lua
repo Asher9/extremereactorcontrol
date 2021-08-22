@@ -961,24 +961,24 @@ function clickEvent()
 end
 
 function maintainSpeedMaxInAuto()
-    for i = 0, amountTurbines, 1 do
-        local lTurbine = turbines[i]
-        local currentRPM = lTurbine:rotorSpeed()
-        if currentRPM < _G.turbineTargetSpeed+20 and currentRPM > _G.turbineTargetSpeed-20 then
-            -- do nothing
-            -- speed is good
-        else
-            while currentRPM > _G.turbineTargetSpeed do
-                local newSteamAmount = lTurbine:steamIn() - lTurbine:decrementAmount()
-                if(newSteamAmount > 0) then
-                    lTurbine:setSteamIn(newSteamAmount)
-                else
-                    --cant go any lower will be lower then 0 and cant have that
-                    break
-                end
-            end
-        end
-    end
+    --for i = 0, amountTurbines, 1 do
+    --    local lTurbine = turbines[i]
+    --    local currentRPM = lTurbine:rotorSpeed()
+    --    if currentRPM < _G.turbineTargetSpeed+20 and currentRPM > _G.turbineTargetSpeed-20 then
+    --       -- do nothing
+    --        -- speed iso good
+    --     else
+    --         while currentRPM > _G.turbineTargetSpeed do
+    --            local newSteamAmount = lTurbine:steamIn() - lTurbine:decrementAmount()
+    --            if(newSteamAmount > 0) then
+    --                lTurbine:setSteamIn(newSteamAmount)
+    --            else
+    --                --cant go any lower will be lower then 0 and cant have that
+    --                break
+    --            end
+    --        end
+    --    end
+    --end
 end
 
 --displays all info on the screen (auto mode)
