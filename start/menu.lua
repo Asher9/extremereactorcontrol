@@ -166,7 +166,7 @@ function _G.displayMenu()
   controlMonitor.setTextColor(textColor)
 
   controlMonitor.setCursorPos(3,2)
-  controlMonitor.write("-- ".._G.language.getText("mainMenu").." --")
+  controlMonitor.write("-- ".._G.language.getText("wordMainMenu").." --")
   controlMonitor.setCursorPos(39,5)
   controlMonitor.write(_G.language.getText("showOnStartup")..": ")
   controlMonitor.setCursorPos(39,9)
