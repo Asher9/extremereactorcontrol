@@ -18,29 +18,29 @@ function _G.createButtons()
   page:add("Deutsch",nil,39,11,49,11)
   page:add("English",nil,39,13,49,13)
 
-  page:add("Start program",startTC,3,5,20,5,nil,nil,_G.language.getText("startProgram"),_G.language.getText("startProgram"))
-  page:add("Reactor only",function() switchProgram("Reactor") end,3,9,20,9,nil,nil,_G.language.getText("reactorOnly"),_G.language.getText("reactorOnly"))
-  page:add("Turbines",function() switchProgram("Turbine") end,3,11,20,11,nil,nil,_G.language.getText("wordTurbines"),_G.language.getText("wordTurbines"))
-  page:add("Automatic",nil,23,9,35,9,nil,nil,_G.language.getText("wordAutomatic"),_G.language.getText("wordAutomatic"))
-  page:add("Manual",nil,23,11,35,11,nil,nil,_G.language.getText("wordManual"),_G.language.getText("wordManual"))
-  page:add("Options",displayOptions,3,16,20,16,nil,nil,_G.language.getText("wordOptions"),_G.language.getText("wordOptions"))
-  page:add("Quit program",exit,3,17,20,17,nil,nil,_G.language.getText("quitProgram"),_G.language.getText("quitProgram"))
-  page:add("Reboot",reboot,3,18,20,18,nil,nil,_G.language.getText("wordReboot"),_G.language.getText("wordReboot"))
+  page:add(_G.language.getText("startProgram"),startTC,3,5,20,5)
+  page:add(_G.language.getText("reactorOnly"),function() switchProgram("Reactor") end,3,9,20,9)
+  page:add(_G.language.getText("wordTurbines"),function() switchProgram("Turbine") end,3,11,20,11)
+  page:add(_G.language.getText("wordAutomatic"),nil,23,9,35,9)
+  page:add(_G.language.getText("wordManual"),nil,23,11,35,11)
+  page:add(_G.language.getText("wordOptions"),displayOptions,3,16,20,16)
+  page:add(_G.language.getText("quitProgram"),exit,3,17,20,17)
+  page:add(_G.language.getText("wordReboot"),reboot,3,18,20,18)
   page:add("menuOn",nil,39,7,49,7)
   startOn = {"   On    ",label = "menuOn"}
   startOff = {"   Off   ",label = "menuOn"}
   page:toggleButton("English")
 
   if program == "turbine" then
-    page:toggleButton("Turbines")
+    page:toggleButton(_G.language.getText("wordTurbines"))
   elseif program == "reactor" then
-    page:toggleButton("Reactor only")
+    page:toggleButton(_G.language.getText("reactorOnly"))
   end
   
   if overallMode == "auto" then
-    page:toggleButton("Automatic")
+    page:toggleButton(_G.language.getText("wordAutomatic"))
   elseif overallMode == "manual" then
-    page:toggleButton("Manual")
+    page:toggleButton(_G.language.getText("wordManual"))
   end
 
   if mainMenu then
@@ -64,21 +64,21 @@ function _G.switchProgram(currBut)
   if program == "turbine" and currBut == "Reactor" then
     program = "reactor"
 
-    if not page.buttonList["Reactor only"].active then
-      page:toggleButton("Reactor only")
+    if not page.buttonList[_G.language.getText("reactorOnly")].active then
+      page:toggleButton(_G.language.getText("reactorOnly"))
     end
-    if page.buttonList["Turbines"].active then
-      page:toggleButton("Turbines")
+    if page.buttonList[_G.language.getText("wordTurbines")].active then
+      page:toggleButton(_G.language.getText("wordTurbines"))
     end
 
   elseif program == "reactor" and currBut == "Turbine" then
     program = "turbine"
         
     if page.buttonList["Reactor only"].active then
-      page:toggleButton("Reactor only")
+      page:toggleButton(_G.language.getText("reactorOnly"))
     end
     if not page.buttonList["Turbines"].active then
-      page:toggleButton("Turbines")
+      page:toggleButton(_G.language.getText("wordTurbines"))
     end
   end   
 
@@ -123,12 +123,10 @@ local function getClick(funct)
 
     elseif but == "Automatic" then
       if page.buttonList[but].active == false then
-        page:toggleButton(but)
+        page:toggleButton(_G.language.getText("wordAutomatic"))
       end
       if overallMode == "manual" then
-        page:toggleButton("Manual")
-      elseif overallMode == "semi-manual" then
-        page:toggleButton("Semi-Manual")
+        page:toggleButton(_G.language.getText("wordManual"))
       end
       overallMode = "auto"
       saveOptionFile()
@@ -140,9 +138,7 @@ local function getClick(funct)
       end
 
       if overallMode == "auto" then
-        page:toggleButton("Automatic")
-      elseif overallMode == "semi-manual" then
-        page:toggleButton("Semi-Manual")
+        page:toggleButton(_G.language.getText("wordAutomatic"))
       end
 
       overallMode = "manual"
