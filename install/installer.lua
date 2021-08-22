@@ -67,6 +67,28 @@ function getURL(path)
 end
 
 
+function getAllFiles(skipStartUp)
+	writeFile("files.txt")
+
+	local file = fs.open("/extreme-reactors-control/files.txt","r")
+	local list = file.readAll()
+	file.close()
+
+	fileEntries = textutils.unserialise(list)
+
+	for k, v in pairs(fileEntries) do
+	  print(v.name.." files...")
+
+	  for fileCount = 1, #v.files do
+		local fileName = v.files[fileCount]
+		print("Downloading: "..fileName)
+		writeFile(fileName)
+	  end
+
+	  print("    Done.")
+	end
+end
+
 --===== Run installation =====
 
 --First time installation
@@ -153,45 +175,8 @@ if fs.exists("/extreme-reactors-control/program/") then
   shell.run("rm /extreme-reactors-control/")
 end
 
---Download all program parts
 print("Getting new files...")
-
---Config
-term.write("Config files...")
-writeFile("config/input.lua")
-writeFile("config/options.txt")
-writeFile("config/touchpoint.lua")
-print("     Done.")
-
---Classes
-term.write("Classes files...")
-writeFile("classes/Language.lua")
-writeFile("classes/Peripherals.lua")
-writeFile("classes/base/EnergyStorage.lua")
-writeFile("classes/base/Reactor.lua")
-writeFile("classes/base/Turbine.lua")
-writeFile("classes/mekanism/EnergyStorage.lua")
-writeFile("classes/bigger_reactors/Reactor.lua")
-writeFile("classes/bigger_reactors/Turbine.lua")
-print("     Done.")
-
---Install
-term.write("Install files...")
-writeFile("install/installer.lua")
-print("     Done.")
-
---Program
-term.write("Program files...")
-writeFile("program/editOptions.lua")
-writeFile("program/reactorControl.lua")
-writeFile("program/turbineControl.lua")
-print("     Done.")
-
---Start
-term.write("Start files...")
-writeFile("start/menu.lua")
-writeFile("start/start.lua")
-print("     Done.")
+getAllFiles()
 
 term.clear()
 term.setCursorPos(1,1)
