@@ -1,5 +1,6 @@
 {
   language = "Selected English",
+  loadedLanguage = "English language loaded!",
   testString = "Selected English",
   startProgram = "Start program",
   reactorOnly = "Reactor only",

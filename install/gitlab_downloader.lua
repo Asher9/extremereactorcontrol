@@ -36,18 +36,19 @@ function getLanguage()
 		selectedLang = _G.newLanguageById(installLang)
 	end
 
-	print(selectedLang.text.language)
+	print(selectedLang:getText("language"))
+	--selectedLang:dumpText()
 end
 
 --Select the github branch to download
 function selectBranch()
 	clearTerm()
 
-	term.write(selectedLang.text.selectBranchLine1)
-	term.write(selectedLang.text.selectBranchLine2)
-	term.write(selectedLang.text.selectBranchLine3)
-	term.write(selectedLang.text.selectBranchLine4)
-	term.write(selectedLang.text.selectBranchLine5)
+	print(selectedLang:getText("selectBranchLineOne"))
+	print(selectedLang:getText("selectBranchLineTwo"))
+	print(selectedLang:getText("selectBranchLineThree"))
+	print(selectedLang:getText("selectBranchLineFour"))
+	print(selectedLang:getText("selectBranchLineFive"))
 
 	local input = read()
 	if input == "1" then
@@ -67,7 +68,7 @@ end
 
 --Removes old installations
 function removeAll()
-	print("Removing old files...")
+	print(selectedLang:getText("removingOldFiles"))
 	if fs.exists(relPath) then
 		shell.run("rm "..relPath)
 	end
@@ -127,11 +128,11 @@ end
 --Gets all the files from github
 function getFiles()
 	clearTerm()
-	print(selectedLang.text.installerGettingNewFiles)
+	print(selectedLang:getText("installerGettingNewFiles"))
 	getAllFiles()
 
 	--Startup
-	print(selectedLang.text.updatingStartup)
+	print(selectedLang:getText("updatingStartup"))
 	local file = fs.open("startup","w")
   	file.writeLine("shell.run(\"/extreme-reactors-control/start/start.lua\")")
 	file.close()
@@ -156,7 +157,7 @@ end
 function betaVersion()
 	removeAll()
 	getFiles()
-	print(selectedLang.text.done)
+	print(selectedLang:getLanguageText().done)
 	sleep(2)
 end
 getLanguage()
