@@ -104,17 +104,20 @@ function startAutoMode()
                 --dont diplay
             else
                 badReactor = badReactor + 1
-
+                local columnMax = 24
+                if _G.smallMonitor == 0 then
+                    columnMax = 36
+                end
                 --formatting and printing status
                 controlMonitor.setTextColor(textColor)
                 controlMonitor.setCursorPos(1, (badReactor + 3))
-                if badReactor < 144 then
-                    if badReactor >= 108 then
-                        controlMonitor.setCursorPos(54, (badReactor - 108 + 3))
-                    elseif badReactor >= 72 then
-                        controlMonitor.setCursorPos(36, (badReactor - 72 + 3))
-                    elseif badReactor >= 36 then
-                        controlMonitor.setCursorPos(18, (badReactor - 36 + 3))
+                if badReactor < (columnMax*4) then
+                    if badReactor >= (columnMax*3) then
+                        controlMonitor.setCursorPos(54, (badReactor - (columnMax*3) + 3))
+                    elseif badReactor >= (columnMax*2) then
+                        controlMonitor.setCursorPos(36, (badReactor - (columnMax*2) + 3))
+                    elseif badReactor >= columnMax then
+                        controlMonitor.setCursorPos(18, (badReactor - columnMax + 3))
                     end
 
                     if (i + 1) < 10 then
