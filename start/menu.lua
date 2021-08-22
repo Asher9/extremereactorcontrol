@@ -15,7 +15,6 @@ local startOn = {}
 local startOff = {}
 
 function _G.createButtons()
-  _G.language.getText("updateAvailableLineThree")
   page:add("Deutsch",nil,39,11,49,11)
   page:add("English",nil,39,13,49,13)
 
