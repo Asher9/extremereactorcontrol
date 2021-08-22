@@ -74,7 +74,7 @@ function getAllFiles(skipStartUp)
 	local list = file.readAll()
 	file.close()
 
-	fileEntries = textutils.unserialise(list)
+	local fileEntries = textutils.unserialise(list)
 
 	for k, v in pairs(fileEntries) do
 	  print(v.name.." files...")
