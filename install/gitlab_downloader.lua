@@ -52,9 +52,10 @@ function removeAll()
 end
 
 --Writes the files to the computer
-function writeFile(url,path)
+function writeFile(path)
 	local file = fs.open("/extreme-reactors-control/"..path,"w")
-	file.write(url)
+	local content = getURL(path);
+	file.write(content)
 	file.close()
 end
 
@@ -69,38 +70,34 @@ function getURL(path)
 	end
 end
 
+function getAllFiles(skipStartUp)
+	writeFile("files.txt")
+
+	local file = fs.open("/extreme-reactors-control/files.txt","r")
+	local list = file.readAll()
+	file.close()
+
+	fileEntries = textutils.unserialise(list)
+
+	for k, v in pairs(fileEntries) do
+	  print(v.name.." files...")
+
+	  for fileCount = 1, #v.files do
+		local fileName = v.files[fileCount]
+		print("Downloading: "..fileName)
+		writeFile(fileName)
+	  end
+
+	  print("    Done.")
+	end
+end
+
 --Gets all the files from github
 function getFiles()
 	clearTerm()
 	print("Getting new files...")
-	--Config
-	print("Config files...")
-	writeFile(getURL("config/input.lua"),"config/input.lua")
-	writeFile(getURL("config/options.txt"),"config/options.txt")
-	writeFile(getURL("config/touchpoint.lua"),"config/touchpoint.lua")
-	--Install
-	print("Install files...")
-	writeFile(getURL("install/installer.lua"),"install/installer.lua")
-
-	--Classes
-	print("Install Classes...")
-	writeFile(getURL("classes/Peripherals.lua"),"classes/Peripherals.lua")
-	writeFile(getURL("classes/base/EnergyStorage.lua"),"classes/base/EnergyStorage.lua")
-	writeFile(getURL("classes/base/Reactor.lua"),"classes/base/Reactor.lua")
-	writeFile(getURL("classes/base/Turbine.lua"),"classes/base/Turbine.lua")
-	writeFile(getURL("classes/mekanism/EnergyStorage.lua"),"classes/mekanism/EnergyStorage.lua")
-	writeFile(getURL("classes/bigger_reactors/Reactor.lua"),"classes/bigger_reactors/Reactor.lua")
-	writeFile(getURL("classes/bigger_reactors/Turbine.lua"),"classes/bigger_reactors/Turbine.lua")
-
-	--Program
-	print("Program files...")
-	writeFile(getURL("program/editOptions.lua"),"program/editOptions.lua")
-	writeFile(getURL("program/reactorControl.lua"),"program/reactorControl.lua")
-	writeFile(getURL("program/turbineControl.lua"),"program/turbineControl.lua")
-	--Start
-	print("Start files...")
-	writeFile(getURL("start/menu.lua"),"start/menu.lua")
-	writeFile(getURL("start/start.lua"),"start/start.lua")
+	getAllFiles()
+	
 	--Startup
 	print("Startup file...")
 	local file = fs.open("startup","w")

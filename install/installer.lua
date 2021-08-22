@@ -48,22 +48,22 @@ local relUrl = repoUrl..branch.."/"
 --===== Functions =====
 
 --Writes the files to the computer
-function writeFile(url,path)
-  local file = fs.open("/extreme-reactors-control/"..path,"w")
-  file.write(url)
-  file.close()
+function writeFile(path)
+	local file = fs.open("/extreme-reactors-control/"..path,"w")
+	local content = getURL(path);
+	file.write(content)
+	file.close()
 end
 
 --Resolve the right url
 function getURL(path)
-  local gotUrl = http.get(relUrl..path)
-  if gotUrl == nil then
-    term.clear()
-    term.setCursorPos(1,1)
-    error("File not found! Please check!\nFailed at "..relUrl..path)
-  else
-    return gotUrl.readAll()
-  end
+	local gotUrl = http.get(relUrl..path)
+	if gotUrl == nil then
+		clearTerm()
+		error("File not found! Please check!\nFailed at "..relUrl..path)
+	else
+		return gotUrl.readAll()
+	end
 end
 
 
@@ -155,37 +155,42 @@ end
 
 --Download all program parts
 print("Getting new files...")
+
 --Config
 term.write("Config files...")
-writeFile(getURL("config/input.lua"),"config/input.lua")
-writeFile(getURL("config/options.txt"),"config/options.txt")
-writeFile(getURL("config/touchpoint.lua"),"config/touchpoint.lua")
+writeFile("config/input.lua")
+writeFile("config/options.txt")
+writeFile("config/touchpoint.lua")
 print("     Done.")
 
 --Classes
-print("Classes files...")
-writeFile(getURL("classes/Peripherals.lua"),"classes/Peripherals.lua")
-writeFile(getURL("classes/base/EnergyStorage.lua"),"classes/base/EnergyStorage.lua")
-writeFile(getURL("classes/base/Reactor.lua"),"classes/base/Reactor.lua")
-writeFile(getURL("classes/base/Turbine.lua"),"classes/base/Turbine.lua")
-writeFile(getURL("classes/mekanism/EnergyStorage.lua"),"classes/mekanism/EnergyStorage.lua")
-writeFile(getURL("classes/bigger_reactors/Reactor.lua"),"classes/bigger_reactors/Reactor.lua")
-writeFile(getURL("classes/bigger_reactors/Turbine.lua"),"classes/bigger_reactors/Turbine.lua")
+term.write("Classes files...")
+writeFile("classes/Language.lua")
+writeFile("classes/Peripherals.lua")
+writeFile("classes/base/EnergyStorage.lua")
+writeFile("classes/base/Reactor.lua")
+writeFile("classes/base/Turbine.lua")
+writeFile("classes/mekanism/EnergyStorage.lua")
+writeFile("classes/bigger_reactors/Reactor.lua")
+writeFile("classes/bigger_reactors/Turbine.lua")
+print("     Done.")
 
 --Install
 term.write("Install files...")
-writeFile(getURL("install/installer.lua"),"install/installer.lua")
+writeFile("install/installer.lua")
 print("     Done.")
+
 --Program
 term.write("Program files...")
-writeFile(getURL("program/editOptions.lua"),"program/editOptions.lua")
-writeFile(getURL("program/reactorControl.lua"),"program/reactorControl.lua")
-writeFile(getURL("program/turbineControl.lua"),"program/turbineControl.lua")
+writeFile("program/editOptions.lua")
+writeFile("program/reactorControl.lua")
+writeFile("program/turbineControl.lua")
 print("     Done.")
+
 --Start
 term.write("Start files...")
-writeFile(getURL("start/menu.lua"),"start/menu.lua")
-writeFile(getURL("start/start.lua"),"start/start.lua")
+writeFile("start/menu.lua")
+writeFile("start/start.lua")
 print("     Done.")
 
 term.clear()

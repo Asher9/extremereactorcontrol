@@ -22,6 +22,7 @@ _G.targetSteam = 0
 _G.turbineOnOff = ""
 _G.debug = 0
 _G.skipControlRodCheck = 0
+_G.language = {}
 
 --TouchpointLocation (same as the monitor)
 _G.touchpointLocation = {}
@@ -64,6 +65,7 @@ function _G.loadOptionFile()
 	_G.turbineOnOff = optionList["turbineOnOff"]
 	_G.debug = optionList["debug"]
 	_G.skipControlRodCheck = optionList["skipControlRodCheck"]
+	_G.lang = optionList["language"]
 end
 
 --Refreshes the options list
@@ -95,6 +97,8 @@ function _G.refreshOptionList()
 	optionList["turbineOnOff"] = turbineOnOff
 	debugOutput("Variable: skipControlRodCheck")
 	optionList["skipControlRodCheck"] = skipControlRodCheck
+	debugOutput("Variable: lang")
+	optionList["language"] = lang
 end
 
 --Saves all data basck to the options.txt file
@@ -274,6 +278,7 @@ function initClasses()
     shell.run(binPath.."bigger_reactors/Turbine.lua")
     shell.run(binPath.."mekanism/EnergyStorage.lua")
     shell.run(binPath.."Peripherals.lua")
+    shell.run(binPath.."Language.lua")
 end
 
 --=========== Run the program ==========
@@ -285,6 +290,9 @@ loadOptionFile()
 
 debugOutput("Initializing Classes")
 initClasses()
+
+debugOutput("Initializing Language")
+_G.language = _G.newLanguage(_G.lang)
 
 debugOutput("Initializing Network Devices")
 _G.initPeripherals()

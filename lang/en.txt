@@ -1,0 +1,13 @@
+{
+  language = "English",
+  startProgram = "Start program",
+  reactorOnly = "Reactor only",
+  turbines = "Turbines",
+  automatic = "Automatic",
+  manual = "Manual",
+  options = "Options",
+  quitProgram = "Quit Program",
+  reboot = "Reboot",
+  terminatedProgram = "Program Terminated!",
+  updateProgram = "Do you want to install the update (y/n)?",
+}
