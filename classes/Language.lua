@@ -7,7 +7,7 @@ local Language = {
     getText = function(self, entry)
         return self.text[entry]
     end,
-    dumpText = function(self)        
+    dumpText = function(self) 
         for k, v in pairs(text) do
             print(k..") "..v)
         end
@@ -27,9 +27,9 @@ local Language = {
 
 function _G.newLanguageById(languageId)
     local language = {}
-    setmetatable(language,{__index=Language})  
-    language:loadLanguageById(languageId)  
-    print(language:getText("loadedLanguage"))
+    setmetatable(language,{__index=Language}) 
+    language:loadLanguageById(languageId) 
+    print(language:getText("language"))
     return language
 end
 
