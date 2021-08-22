@@ -1,5 +1,5 @@
 {
-  language = "English",
+  language = "Selected English",
   startProgram = "Start program",
   reactorOnly = "Reactor only",
   turbines = "Turbines",
@@ -10,4 +10,8 @@
   reboot = "Reboot",
   terminatedProgram = "Program Terminated!",
   updateProgram = "Do you want to install the update (y/n)?",
+  updateAvailableLine1 = "Update available!",
+  updateAvailableLine2 = "To install look",
+  updateAvailableLine3 = "at the computer terminal",
+
 }

@@ -1,6 +1,6 @@
 -- Extreme Reactors Control by SeekerOfHonjo --
 -- Original work by Thor_s_Crafter on https://github.com/ThorsCrafter/Reactor-and-Turbine-control-program -- 
--- Version 1.0 --
+-- Version 2.6 --
 -- Installer (English) --
 
 
@@ -10,6 +10,8 @@ local arg = {... }
 local update
 local branch = ""
 local repoUrl = "https://gitlab.com/seekerscomputercraft/extremereactorcontrol/-/raw/"
+local selectedLang = {}
+local installLang = "en"
 
 --Program arguments for updates
 if #arg == 0 then
@@ -47,6 +49,30 @@ local relUrl = repoUrl..branch.."/"
 
 --===== Functions =====
 
+function getLanguage()
+  if not update and branch == "main" then    
+    languages = downloadAndRead("supportedLanguages.txt")
+    downloadAndExecuteClass("Language.lua")
+    for k, v in pairs(languages) do
+      print(k..") "..v)
+    end
+    term.write("Language? ")
+
+	  installLang = read()if languages[installLang] == nil then
+      error("Language not found!")
+    else
+      writeFile("lang/"..installLang..".txt")
+      selectedLang = _G.newLanguageById(installLang)
+    end
+  else
+    downloadAndExecuteClass("Language.lua")
+    writeFile("lang/"..installLang..".txt")
+    selectedLang = _G.newLanguageById(_G.lang)
+  end
+
+	print(selectedLang.text.language)
+end
+
 --Writes the files to the computer
 function writeFile(path)
 	local file = fs.open("/extreme-reactors-control/"..path,"w")
@@ -66,15 +92,22 @@ function getURL(path)
 	end
 end
 
+function downloadAndRead(fileName)
+	writeFile(fileName)
+	local fileData = fs.open("/extreme-reactors-control/"..fileName,"r")
+	local list = fileData.readAll()
+	fileData.close()
 
-function getAllFiles(skipStartUp)
-	writeFile("files.txt")
+	return textutils.unserialise(list)
+end
 
-	local file = fs.open("/extreme-reactors-control/files.txt","r")
-	local list = file.readAll()
-	file.close()
+function downloadAndExecuteClass(fileName)	
+	writeFile("classes/"..fileName)
+  shell.run("/extreme-reactors-control/classes/"..fileName)
+end
 
-	local fileEntries = textutils.unserialise(list)
+function getAllFiles()
+	local fileEntries = downloadAndRead("files.txt")
 
 	for k, v in pairs(fileEntries) do
 	  print(v.name.." files...")
@@ -89,6 +122,9 @@ function getAllFiles(skipStartUp)
 end
 
 --===== Run installation =====
+
+--load language data
+getLanguage()
 
 --First time installation
 if not update then

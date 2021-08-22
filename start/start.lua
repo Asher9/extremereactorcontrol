@@ -196,8 +196,8 @@ function _G.doUpdate(toVer,branch)
 	term.setCursorPos(1,1)
 	local tx,ty = term.getSize()
 
-		print("Do you want to install the update (y/n)?")
-		term.write("Input: ")
+	print("Do you want to install the update (y/n)?")
+	term.write("Input: ")
 
 	--Run Counter for installation skipping
 	local count = 10
@@ -292,7 +292,7 @@ debugOutput("Initializing Classes")
 initClasses()
 
 debugOutput("Initializing Language")
-_G.language = _G.newLanguage(_G.lang)
+_G.language = _G.newLanguageById(_G.lang)
 
 debugOutput("Initializing Network Devices")
 _G.initPeripherals()

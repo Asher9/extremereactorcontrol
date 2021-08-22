@@ -13,6 +13,27 @@ local branch = ""
 local relUrl = ""
 local relPath = "/extreme-reactors-control/"
 local repoUrl = "https://gitlab.com/seekerscomputercraft/extremereactorcontrol/-/raw/"
+local selectedLang = {}
+
+function getLanguage()
+	languages = downloadAndRead("supportedLanguages.txt")
+	downloadAndExecuteClass("Language.lua")
+	for k, v in pairs(languages) do
+		print(k..") "..v)
+	end
+	term.write("Language? ")
+
+	installLang = read()
+	
+	if languages[installLang] == nil then
+		error("Language not found!")
+	else
+		writeFile("lang/"..installLang..".txt")
+		selectedLang = _G.newLanguageById(installLang)
+	end
+
+	print(selectedLang.text.language)
+end
 
 --Select the github branch to download
 function selectBranch()
@@ -70,14 +91,22 @@ function getURL(path)
 	end
 end
 
-function getAllFiles(skipStartUp)
-	writeFile("files.txt")
+function downloadAndExecuteClass(fileName)	
+	writeFile("classes/"..fileName)
+	shell.run("/extreme-reactors-control/classes/"..fileName)
+end
 
-	local file = fs.open("/extreme-reactors-control/files.txt","r")
-	local list = file.readAll()
-	file.close()
+function downloadAndRead(fileName)
+	writeFile(fileName)
+	local fileData = fs.open("/extreme-reactors-control/"..fileName,"r")
+	local list = fileData.readAll()
+	fileData.close()
 
-	fileEntries = textutils.unserialise(list)
+	return textutils.unserialise(list)
+end
+
+function getAllFiles()
+	local fileEntries = downloadAndRead("files.txt")
 
 	for k, v in pairs(fileEntries) do
 	  print(v.name.." files...")
@@ -114,7 +143,7 @@ function releaseVersion()
 	removeAll()
 
 	--Downloads the installer
-	writeFile(getURL("install/installer.lua"),"install/installer.lua")
+	writeFile("install/installer.lua")
 
 	--execute installer
 	shell.run("/extreme-reactors-control/install/installer.lua")

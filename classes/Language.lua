@@ -3,30 +3,30 @@
 -- Version 2.0
 
 local Language = {
-    languageEntries = {},
-
+    text = {},
     getText = function(self,entry)
-        return self.languageEntries[entry]
+        return self.text[entry]
     end,
 
-    loadLanguageFile = function(self, language)    
-        local file = fs.open("/extreme-reactors-control/lang/"..language..".txt","r")
+    loadLanguageByFile = function(self, languageFile)    
+        local file = fs.open(languageFile,"r")
         local list = file.readAll()
         file.close()
 
-        languageEntries = textutils.unserialise(list)
-
+        text = textutils.unserialise(list)
+    end,
+    loadLanguageById = function(self, languageId)    
+        self.loadLanguageByFile("/extreme-reactors-control/lang/"..languageId..".txt")
     end
 }
 
-
-function _G.newLanguage(langName)
+function _G.newLanguageById(languageId)
     local language = {}
-    setmetatable(language,{__index=Language})    
+    setmetatable(language,{__index=Language})  
+    language:loadLanguageById(languageId)  
     print(language:getText("loadedLanguage"))
     return language
 end
-
 
 
 
