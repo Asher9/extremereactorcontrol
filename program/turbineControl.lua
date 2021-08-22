@@ -866,7 +866,7 @@ function createAllButtons()
 
         --Other buttons
         page:add(
-            _G.language.getText("wordMainMenu"),
+            _G.language:getText("wordMainMenu"),
             function()
                 run("/extreme-reactors-control/start/menu.lua")
             end,
@@ -915,7 +915,7 @@ function createAllButtons()
         end --for
     
         --Other buttons
-        page:add(_G.language.getText("wordMainMenu"), function() run("/reactor-turbine-program/start/menu.lua") end, 2, 23, 17, 23)
+        page:add(_G.language:getText("wordMainMenu"), function() run("/reactor-turbine-program/start/menu.lua") end, 2, 23, 17, 23)
     end
 
     page:draw()
