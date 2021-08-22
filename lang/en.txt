@@ -11,8 +11,8 @@
   reboot = "Reboot",
   terminatedProgram = "Program Terminated!",
   updateProgram = "Do you want to install the update (y/n)?",
-  updatingStartup = "Startup file..."
-  done = "Done!"
+  updatingStartup = "Startup file...",
+  done = "Done!",
 
   updateAvailableLine1 = "Update available!",
   updateAvailableLine2 = "To install look",
