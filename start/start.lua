@@ -180,23 +180,23 @@ function _G.doUpdate(toVer,branch)
 	controlMonitor.setTextColor(colors.white)
 
 	controlMonitor.setCursorPos(x2-9,y1+1)
-	controlMonitor.write(_G.language.getText("updateAvailableLineOne")) --17 chars
+	controlMonitor.write(_G.language:getText("updateAvailableLineOne")) --17 chars
 
 	controlMonitor.setCursorPos(x2-(math.ceil(string.len(toVer)/2)),y1+3)
 	controlMonitor.write(toVer)
 
 	controlMonitor.setCursorPos(x2-8,y1+5)
-	controlMonitor.write(_G.language.getText("updateAvailableLineTwo")) --15 chars
+	controlMonitor.write(_G.language:getText("updateAvailableLineTwo")) --15 chars
 
 	controlMonitor.setCursorPos(x2-12,y1+6)
-	controlMonitor.write(_G.language.getText("updateAvailableLineThree")) --24 chars
+	controlMonitor.write(_G.language:getText("updateAvailableLineThree")) --24 chars
 
 	--Print install instructions to the terminal
 	term.clear()
 	term.setCursorPos(1,1)
 	local tx,ty = term.getSize()
 
-	print(_G.language.getText("updateProgram"))
+	print(_G.language:getText("updateProgram"))
 	term.write("Input: ")
 
 	--Run Counter for installation skipping
