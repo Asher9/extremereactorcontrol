@@ -172,12 +172,12 @@ function backToMainMenu()
         turbineOnOffString1 = "yes   "
         turbineOnOffString2 = "no"
       end
-      controlMonitor.write(_G.language:getText("turbineDisableAt").gsub("{reactorOffAt}",reactorOffAt)..turbineOnOffString2.." -> "..turbineOnOffString1)
+      controlMonitor.write(string.gsub(_G.language:getText("turbineDisableAt"),"{reactorOffAt}",reactorOffAt)..turbineOnOffString2.." -> "..turbineOnOffString1)
 
   else
       if _G.optionList["turbineOnOff"] == "off" then _G.turbineOnOffString2 = "yes"
       elseif _G.optionList["turbineOnOff"] == "on" then _G.turbineOnOffString2 = "no" end
-      controlMonitor.write(_G.language:getText("turbineDisableAt").gsub("{reactorOffAt}",reactorOffAt)..turbineOnOffString2.."   ")
+      controlMonitor.write(string.gsub(_G.language:getText("turbineDisableAt"),"{reactorOffAt}",reactorOffAt)..turbineOnOffString2.."   ")
 
   end
 
