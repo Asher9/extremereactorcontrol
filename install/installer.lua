@@ -57,7 +57,7 @@ function getLanguage()
       print(k..") "..v)
     end
 
-    term.write("Language? (example: en)")
+    term.write("Language? (example: en): ")
   
     installLang = read()
   

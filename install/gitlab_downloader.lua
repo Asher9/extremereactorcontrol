@@ -21,7 +21,7 @@ function getLanguage()
 	for k, v in pairs(languages) do
 		print(k..") "..v)
 	end
-	term.write("Language? (example: en)")
+	term.write("Language? (example: en): ")
 
 	installLang = read()
 

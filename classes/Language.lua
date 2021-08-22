@@ -14,6 +14,7 @@ local Language = {
         file.close()
 
         text = textutils.unserialise(list)
+        print(text.language)
     end,
     loadLanguageById = function(self, languageId)
         local fileName = "/extreme-reactors-control/lang/"..languageId..".txt"
