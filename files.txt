@@ -6,7 +6,7 @@
     }
   },
   classes = {
-    name = "Classes"
+    name = "Classes",
     files = {
       "classes/base/EnergyStorage.lua",
       "classes/base/Reactor.lua",
@@ -35,7 +35,7 @@
     }
   },  
   start = {
-    name = "Program",
+    name = "Start",
     files = {
       "start/menu.lua",
       "start/start.lua"
