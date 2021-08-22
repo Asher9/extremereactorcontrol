@@ -50,7 +50,7 @@ local relUrl = repoUrl..branch.."/"
 --===== Functions =====
 
 function getLanguage()
-  if not update and branch == "main" then    
+  if not update then    
     languages = downloadAndRead("supportedLanguages.txt")
     downloadAndExecuteClass("Language.lua")
     for k, v in pairs(languages) do
