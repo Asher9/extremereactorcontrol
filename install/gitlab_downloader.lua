@@ -9,10 +9,10 @@ local selectInstaller = ""
 
 --Branch & Relative paths to the url and path
 local installLang = "en"
-local branch = ""
-local relUrl = ""
 local relPath = "/extreme-reactors-control/"
 local repoUrl = "https://gitlab.com/seekerscomputercraft/extremereactorcontrol/-/raw/"
+local branch = "develop"
+local relUrl = repoUrl..branch.."/"
 local selectedLang = {}
 
 function getLanguage()
@@ -21,16 +21,17 @@ function getLanguage()
 	for k, v in pairs(languages) do
 		print(k..") "..v)
 	end
-	term.write("Language? ")
+	term.write("Language? (example: en)")
 
 	installLang = read()
-    
-    print("Selected Language: "..installLang)
-	
+
+	if installLang == "" or installLang == nil then
+		installLang = "en"
+	end
+
 	if languages[installLang] == nil then
 		error("Language not found!")
 	else
-		print("Downloading '"..installLang.."' language file")
 		writeFile("lang/"..installLang..".txt")
 		selectedLang = _G.newLanguageById(installLang)
 	end
@@ -42,11 +43,11 @@ end
 function selectBranch()
 	clearTerm()
 
-	print("Which version should be downloaded?")
-	print("Available:")
-	print("1) main (Stable Release)")
-	print("2) develop (Unstable Release)")
-	term.write("Input (1-2): ")
+	term.write(selectedLang.text.selectBranchLine1)
+	term.write(selectedLang.text.selectBranchLine2)
+	term.write(selectedLang.text.selectBranchLine3)
+	term.write(selectedLang.text.selectBranchLine4)
+	term.write(selectedLang.text.selectBranchLine5)
 
 	local input = read()
 	if input == "1" then
@@ -126,11 +127,11 @@ end
 --Gets all the files from github
 function getFiles()
 	clearTerm()
-	print("Getting new files...")
+	print(selectedLang.text.installerGettingNewFiles)
 	getAllFiles()
 
 	--Startup
-	print("Startup file...")
+	print(selectedLang.text.updatingStartup)
 	local file = fs.open("startup","w")
   	file.writeLine("shell.run(\"/extreme-reactors-control/start/start.lua\")")
 	file.close()
@@ -155,9 +156,9 @@ end
 function betaVersion()
 	removeAll()
 	getFiles()
-	print("Done!")
+	print(selectedLang.text.done)
 	sleep(2)
 end
-
+getLanguage()
 selectBranch()
 os.reboot()

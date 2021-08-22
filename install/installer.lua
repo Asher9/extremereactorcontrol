@@ -56,22 +56,24 @@ function getLanguage()
     for k, v in pairs(languages) do
       print(k..") "..v)
     end
-    term.write("Language? ")
 
-	  installLang = read()
+    term.write("Language? (example: en)")
+  
+    installLang = read()
+  
+    if installLang == "" or installLang == nil then
+      installLang = "en"
+    end
     
-    print("Selected Language: "..installLang)
     if languages[installLang] == nil then
       error("Language not found!")
     else
-      print("Downloading '"..installLang.."' language file")
       writeFile("lang/"..installLang..".txt")
       selectedLang = _G.newLanguageById(installLang)
     end
   else
     installLang = _G.lang
     downloadAndExecuteClass("Language.lua")
-    print("Downloading '"..installLang.."' language file")
     writeFile("lang/"..installLang..".txt")
     selectedLang = _G.newLanguageById(_G.lang)
   end
@@ -137,18 +139,18 @@ if not update then
   --Description
   term.clear()
   term.setCursorPos(1,1)
-  print("Extreme Reactors Control by SeekerOfHonjo")
-  print("Version 1.0")
+  print(selectedLang.text.installerIntroLine1)
+  print(selectedLang.text.installerIntroLine2)
   print()
-  print("About this program:")
-  print("The program controls one ExtremeReactors reactor.")
-  print("You can also attach up to 32 turbines.")
-  print("You must connect the computer with Wired Modems to the reactor (and the turbines).")
-  print("Additionally some kind of Energy Storage and a monitor is required.")
-  print("The size of the monitor has to be at least 8 wide and 6 high.")
-  print("If set up with turbines, the reactor must be able to produce at least 2000mb/t of steam per turbine.")
+  print(selectedLang.text.installerIntroLine3)
+  print(selectedLang.text.installerIntroLine4)
+  print(selectedLang.text.installerIntroLine5)
+  print(selectedLang.text.installerIntroLine6)
+  print(selectedLang.text.installerIntroLine7)
+  print(selectedLang.text.installerIntroLine8)
+  print(selectedLang.text.installerIntroLine9)
   print()
-  write("Press Enter...")
+  write(selectedLang.text.pressEnter)
   leer = read()
 
   --Computer label
@@ -156,22 +158,22 @@ if not update then
   while out do
     term.clear()
     term.setCursorPos(1,1)
-    print("It is recommended to label the computer.")
-    term.write("Do you want to label the computer? (y/n): ")
+    print(selectedLang.text.installerLabelLine1)
+    term.write(selectedLang.text.installerLabelLine2)
 
     local input = read()
     if input == "y" then
       print()
       shell.run("label set \"ReactorControlComputer\"")
       print()
-      print("ComputerLabel set to \"ReactorControlComputer\".")
+      print(selectedLang.text.installerLabelSet)
       print()
       sleep(2)
       out = false
 
     elseif input == "n" then
       print()
-      print("ComputerLabel not set.")
+      print(selectedLang.text.installerLabelNotSet)
       print()
       out = false
     end
@@ -182,9 +184,9 @@ if not update then
   while out2 do
     term.clear()
     term.setCursorPos(1,1)
-    print("It is recommended to add the program to the computers' startup.")
-    print("If you add the program to the startup, the program will automatically run when the computer is started.")
-    term.write("Add startup? (y/n): ")
+    print(selectedLang.text.installerStartupLine1)
+    print(selectedLang.text.installerStartupLine2)
+    term.write(selectedLang.text.installerStartupLine3)
 
     local input = read()
     if input == "y" then
@@ -192,13 +194,13 @@ if not update then
       file.writeLine("shell.run(\"/extreme-reactors-control/start/start.lua\")")
       file.close()
       print()
-      print("Startup installed.")
+      print(selectedLang.text.installerStartupInstalled)
       print()
       out2 = false
     end
     if input == "n" then
       print()
-      print("Startup not installed.")
+      print(selectedLang.text.installerStartupUninstalled)
       print()
       out2 = false
     end
@@ -210,18 +212,19 @@ end --update
 term.clear()
 term.setCursorPos(1,1)
 
-print("Checking and deleting existing files...")
+print(selectedLang.text.installerFileCheck)
 --Removes old files
 if fs.exists("/extreme-reactors-control/program/") then
   shell.run("rm /extreme-reactors-control/")
 end
 
-print("Getting new files...")
+print(selectedLang.text.installerGettingNewFiles)
 getAllFiles()
 
 term.clear()
 term.setCursorPos(1,1)
 
+print(selectedLang.text.updatingStartup)
 --Refresh startup (if installed)
 if fs.exists("startup") then
   shell.run("rm startup")
@@ -235,13 +238,13 @@ term.clear()
 term.setCursorPos(1,1)
 
 if not update then
-  print("Installation successful!")
-  print("The program is now ready to run!")
+  print(selectedLang.text.installerOutroLine1)
+  print(selectedLang.text.installerOutroLine2)
   print()
   term.setTextColor(colors.green)
   print()
-  print("Thanks for using my program! ;)")
-  print("I hope you like it.")
+  print(selectedLang.text.installerOutroLine3.." ;)")
+  print(selectedLang.text.installerOutroLine4)
   print()
   print("SeekerOfHonjo")
   print("(c) 2021")
