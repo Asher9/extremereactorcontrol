@@ -50,7 +50,7 @@ local relUrl = repoUrl..branch.."/"
 --===== Functions =====
 
 function getLanguage()
-  if not update then    
+  if not update or _G.lang == nil then    
     languages = downloadAndRead("supportedLanguages.txt")
     downloadAndExecuteClass("Language.lua")
     for k, v in pairs(languages) do
@@ -58,14 +58,20 @@ function getLanguage()
     end
     term.write("Language? ")
 
-	  installLang = read()if languages[installLang] == nil then
+	  installLang = read()
+    
+    print("Selected Language: "..installLang)
+    if languages[installLang] == nil then
       error("Language not found!")
     else
+      print("Downloading '"..installLang.."' language file")
       writeFile("lang/"..installLang..".txt")
       selectedLang = _G.newLanguageById(installLang)
     end
   else
+    installLang = _G.lang
     downloadAndExecuteClass("Language.lua")
+    print("Downloading '"..installLang.."' language file")
     writeFile("lang/"..installLang..".txt")
     selectedLang = _G.newLanguageById(_G.lang)
   end

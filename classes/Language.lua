@@ -8,7 +8,8 @@ local Language = {
         return self.text[entry]
     end,
 
-    loadLanguageByFile = function(self, languageFile)    
+    loadLanguageByFile = function(self, languageFile)
+        print("Loading '"..languageFile.."' file")
         local file = fs.open(languageFile,"r")
         local list = file.readAll()
         file.close()
