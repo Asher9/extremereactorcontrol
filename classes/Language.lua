@@ -19,6 +19,12 @@ local Language = {
             print(k..") "..v)
         end
     end,
+    yesCheck = function (self, inputString)
+        return inputString:sub(1, 1):lower() == text["wordYes"]:sub(1, 1):lower()
+    end,
+    noCheck = function (self, inputString)
+        return inputString:sub(1, 1):lower() == text["wordNo"]:sub(1, 1):lower()
+    end,
     loadLanguageByFile = function(self, languageFile)
         local file = fs.open(languageFile,"r")
         local list = file.readAll()

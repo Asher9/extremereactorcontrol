@@ -7,7 +7,7 @@
   pressEnter = "Drücken Sie Enter",
   showOnStartup = "Hauptmenue zeigen",
   terminatedProgram = "Programm beendet!",
-  updateProgram = "Soll das Update installiert werden? (y/n)",
+  updateProgram = "Soll das Update installiert werden? (j/n)",
   updatingStartup = "Startdatei...",
   removingOldFiles = "Alte Dateien entfernen...",
   done = "Fertig!",
@@ -65,6 +65,9 @@
   wordBlack = "Schwarz",
   wordBack = "Zurueck",
   
+  wordYes = "Jawohl",
+  wordNo = "Nein",
+
   updateAvailableLineOne = "Update verfuegbar!",
   updateAvailableLineTwo = "Zum installieren",
   updateAvailableLineThree = "in den Computer schauen",
@@ -92,7 +95,7 @@
 
   installerStartupLineOne = "Es wird empfohlen das Programm zum Startup hinzuzufugen.",
   installerStartupLineTwo = "Dadurch wird das Programm beim Starten des Computers automatisch ausgefuehrt.",
-  installerStartupLineThree = "Startup hinzufuegen? (y/n): ",
+  installerStartupLineThree = "Startup hinzufuegen? (j/n): ",
   installerStartupInstalled = "Startup wurde installiert.",
   installerStartupUninstalled = "Startup wurde nicht installiert.",
 

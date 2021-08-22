@@ -162,7 +162,7 @@ if not update then
     term.write(selectedLang:getText("installerLabelLineTwo"))
 
     local input = read()
-    if input == "y" then
+    if selectedLang:yesCheck(input) then
       print()
       shell.run("label set \"ReactorControlComputer\"")
       print()
@@ -171,7 +171,7 @@ if not update then
       sleep(2)
       out = false
 
-    elseif input == "n" then
+    elseif selectedLang:noCheck(input) then
       print()
       print(selectedLang:getText("installerLabelNotSet"))
       print()
@@ -189,7 +189,7 @@ if not update then
     term.write(selectedLang:getText("installerStartupLineThree"))
 
     local input = read()
-    if input == "y" then
+    if selectedLang:yesCheck(input) then
       local file = fs.open("startup","w")
       file.writeLine("shell.run(\"/extreme-reactors-control/start/start.lua\")")
       file.close()
@@ -198,7 +198,7 @@ if not update then
       print()
       out2 = false
     end
-    if input == "n" then
+    if selectedLang:noCheck(input) then
       print()
       print(selectedLang:getText("installerStartupUninstalled"))
       print()

@@ -167,17 +167,17 @@ function backToMainMenu()
   local outputPreString = string.gsub(_G.language:getText("turbineDisableAt"),"{reactorOffAt}",reactorOffAt)
   if _G.optionList["turbineOnOff"] ~= turbineOnOff then
       if _G.optionList["turbineOnOff"] == "off" then
-        turbineOnOffString1 = "no   "
-        turbineOnOffString2 = "yes"
+        turbineOnOffString1 = _G.language:getText("wordNo")
+        turbineOnOffString2 = _G.language:getText("wordYes")
       elseif _G.optionList["turbineOnOff"] == "on" then
-        turbineOnOffString1 = "yes   "
-        turbineOnOffString2 = "no"
+        turbineOnOffString1 = _G.language:getText("wordYes")
+        turbineOnOffString2 = _G.language:getText("wordNo")
       end
       controlMonitor.write(outputPreString..turbineOnOffString2.." -> "..turbineOnOffString1)
 
   else
-      if _G.optionList["turbineOnOff"] == "off" then _G.turbineOnOffString2 = "yes"
-      elseif _G.optionList["turbineOnOff"] == "on" then _G.turbineOnOffString2 = "no" end
+      if _G.optionList["turbineOnOff"] == "off" then _G.turbineOnOffString2 = _G.language:getText("wordYes")
+      elseif _G.optionList["turbineOnOff"] == "on" then _G.turbineOnOffString2 = _G.language:getText("wordNo") end
       controlMonitor.write(outputPreString..turbineOnOffString2.."   ")
 
   end
@@ -185,9 +185,9 @@ function backToMainMenu()
   controlMonitor.setCursorPos(24,18)
   controlMonitor.write("Config available: ")
   if _G.optionList["version"] == "" then
-    controlMonitor.write("no     ")
+    controlMonitor.write(_G.language:getText("wordNo"))
   else
-    controlMonitor.write("yes     ")
+    controlMonitor.write(_G.language:getText("wordYes"))
   end
   getClick(backToMainMenu)
 end

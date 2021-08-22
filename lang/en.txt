@@ -64,6 +64,9 @@
   wordRed = "Red",
   wordBlack = "Black",
   wordBack = "Back",
+  
+  wordYes = "Yes",
+  wordNo = "No",
 
   updateAvailableLineOne = "Update available!",
   updateAvailableLineTwo = "To install look",
