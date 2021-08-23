@@ -422,7 +422,7 @@ function displayDataMan()
     --Print the energy bar
     controlMonitor.setCursorPos(2, 2)
 
-    controlMonitor.write("Energy: " .. enPer .. "%  ")
+    controlMonitor.write(_G.language:getText("wordEnergy")..": " .. enPer .. "%  ")
 
     controlMonitor.setCursorPos(2, 3)
     local part1 = enPer / 5
