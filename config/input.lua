@@ -11,7 +11,11 @@ function format_int(number)
   -- reverse the int-string and append a comma to all blocks of 3 digits
   int = int:reverse():gsub("(%d%d%d)", "%1".._G.language:getText("thousandsDelimiter"))
 
+  if fraction:len() > 0 then
+    fraction = _G.language:getText("fractionDelimiter")..fraction:sub(1)
+  end
+
   -- reverse the int-string back remove an optional comma and put the 
   -- optional minus and fractional part back
-  return minus .. int:reverse():gsub("^".._G.language:getText("thousandsDelimiter"), "") .. fraction
+  return minus .. int:reverse() .. fraction
 end
