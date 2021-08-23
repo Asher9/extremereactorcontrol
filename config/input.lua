@@ -1,13 +1,6 @@
 function formatNumberComma(number)
     local finalOutput =  format_int(number)
-    print(finalOutput)
-    --update to use correct language delimiter.
-    finalOutput = string.gsub(finalOutput, ".", "frac")
-    finalOutput = string.gsub(finalOutput, ",", "thou")
-
-    finalOutput = string.gsub(finalOutput, "frac", _G.language:getText("fractionDelimiter"))
-    finalOutput = string.gsub(finalOutput, "thou", _G.language:getText("thousandsDelimiter"))
-
+   
     return finalOutput
 end
 
@@ -16,9 +9,9 @@ function format_int(number)
   local i, j, minus, int, fraction = tostring(number):find('([-]?)(%d+)([.]?%d*)')
 
   -- reverse the int-string and append a comma to all blocks of 3 digits
-  int = int:reverse():gsub("(%d%d%d)", "%1,")
+  int = int:reverse():gsub("(%d%d%d)", "%1".._G.language:getText("thousandsDelimiter"))
 
   -- reverse the int-string back remove an optional comma and put the 
   -- optional minus and fractional part back
-  return minus .. int:reverse():gsub("^,", "") .. fraction
+  return minus .. int:reverse():gsub("^".._G.language:getText("thousandsDelimiter"), "") .. fraction
 end
