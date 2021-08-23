@@ -57,7 +57,7 @@ function getLanguage()
   else
     --global lang 
     if installLang == nil then
-      installLang =  _G.lang
+      installLang = _G.lang
     end
   end
 
@@ -85,10 +85,9 @@ function getLanguage()
       selectedLang = _G.newLanguageById(installLang)
     end
   else
-    installLang = _G.lang
     downloadAndExecuteClass("Language.lua")
     writeFile("lang/"..installLang..".txt")
-    selectedLang = _G.newLanguageById(_G.lang)
+    selectedLang = _G.newLanguageById(installLang)
   end
 
 	print(selectedLang:getText("language"))
