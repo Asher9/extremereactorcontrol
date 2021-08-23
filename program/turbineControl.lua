@@ -63,7 +63,7 @@ function startAutoMode()
     term.setCursorPos(1, 1)
 
     --Display prints
-    debug("Getting all Turbines to " .. turbineTargetSpeed .. " RPM...")
+    debugOutput("Getting all Turbines to " .. turbineTargetSpeed .. " RPM...")
 
     --Gets turbine to target speed
     debugOutput("Init SpeedTables")
