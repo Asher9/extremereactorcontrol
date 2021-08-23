@@ -117,9 +117,9 @@ function updateOptionFileWithLanguage(lang)
     local file = fs.open("/extreme-reactors-control/config/options.txt","r")
     local optionList = file.readAll()
     file.close()
-
+    print("Setting Language")
     optionList["language"] = lang
-
+    print("Language Set: ".. optionList["language"])
     --Serialise the table
     local list = textutils.serialise(optionList)
 
@@ -258,7 +258,6 @@ end
 
 print(selectedLang:getText("installerGettingNewFiles"))
 getAllFiles()
-updateOptionFileWithLanguage(installLang)
 term.clear()
 term.setCursorPos(1,1)
 
@@ -275,6 +274,8 @@ end
 term.clear()
 term.setCursorPos(1,1)
 
+updateOptionFileWithLanguage(installLang)
+sleep(5)
 if not update then
   print(selectedLang:getText("installerOutroLineOne"))
   print(selectedLang:getText("installerOutroLineTwo"))
