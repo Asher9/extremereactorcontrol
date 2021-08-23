@@ -12,7 +12,7 @@ function format_int(number)
   int = int:reverse():gsub("(%d%d%d)", "%1".._G.language:getText("thousandsDelimiter"))
 
   if fraction:len() > 0 then
-    fraction = _G.language:getText("fractionDelimiter")..fraction:sub(1)
+    fraction = _G.language:getText("fractionDelimiter")..fraction:sub(2)
   end
 
   -- reverse the int-string back remove an optional comma and put the 
