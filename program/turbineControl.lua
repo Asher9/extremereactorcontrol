@@ -1148,7 +1148,7 @@ function printStatsAuto(turbine)
 
     --prints the current program version
     controlMonitor.setCursorPos(2, 39)
-    controlMonitor.write("Version " .. version)
+    controlMonitor.write(_G.language:getText("wordVersion").." " .. version)
 
     --refreshes the last turbine id
     lastStat = turbine
@@ -1240,7 +1240,7 @@ function printStatsMan(turbine)
 
     --prints the current program version
     controlMonitor.setCursorPos(2, 39)
-    controlMonitor.write("Version " .. version)
+    controlMonitor.write(_G.language:getText("wordVersion").." " .. version)
 
     --refreshes the last turbine id
     lastStat = turbine
