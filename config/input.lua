@@ -17,5 +17,5 @@ function format_int(number)
 
   -- reverse the int-string back remove an optional comma and put the 
   -- optional minus and fractional part back
-  return minus .. int:reverse() .. fraction
+  return minus .. int:reverse():gsub("^".._G.language:getText("thousandsDelimiter"), "") .. fraction
 end
