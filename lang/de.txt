@@ -1,6 +1,10 @@
 {
   language = "Ausgewähltes Deutsch",
-  loadedLanguage = "Deutsche Sprache geladen!",
+  loadedLanguage = "Deutsche Sprache geladen!",  
+
+  fractionDelimiter = ",",
+  thousandsDelimiter = ".",
+
   startProgram = "Programm starten",
   reactorOnly = "Nur Reaktor",
   quitProgram = "Programm beenden",
