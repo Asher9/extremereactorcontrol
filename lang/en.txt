@@ -76,6 +76,7 @@
   wordEfficiency = "Efficiency",
   wordSteam = "Steam",
   wordCoils = "Coils",
+  wordVersion = "Version",
 
   wordEngaged = "engaged",
   wordDisengaged = "disengaged",
@@ -121,7 +122,6 @@
   selectBranchLineFive = "Input (1-2):",
   
   installerIntroLineOne = "Reactor and Turbine Control Program by SeekerOfHonjo",
-  installerIntroLineTwo = "Version",
   installerIntroLineThree = "About this program:",
   installerIntroLineFour = "The program controls reactors.",
   installerIntroLineFive = "You can also attach up to 384 turbines.",

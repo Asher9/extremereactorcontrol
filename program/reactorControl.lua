@@ -293,7 +293,7 @@ function displayDataAuto()
     --Print the energy bar
     controlMonitor.setCursorPos(2, 2)
 
-    controlMonitor.write("Energy: " .. enPer .. "%  ")
+    controlMonitor.write(_G.language:getText("wordEnergy")..": " .. enPer .. "%  ")
 
     controlMonitor.setCursorPos(2, 3)
     local part1 = enPer / 5
@@ -329,7 +329,7 @@ function displayDataAuto()
 
     --Print the RodLevel bar
     controlMonitor.setCursorPos(30, 2)
-    controlMonitor.write("RodLevel: " .. rodLevel .. "  ")
+    controlMonitor.write(_G.language:getText("fuelRodLevel").. rodLevel .. "  ")
     controlMonitor.setCursorPos(30, 3)
 
     local part3 = rodLevel / 5

@@ -20,7 +20,7 @@ if #arg == 0 then
   update = false
   branch = "main"
 
-elseif #arg == 2 then
+elseif #arg == 2 or #arg == 3 then
 
  --Select branch
  if arg[2] == "stable" then branch = "main"
@@ -38,9 +38,11 @@ elseif #arg == 2 then
   else
     error("Invalid 1st argument!")
   end
-
+  if #arg == 3 then
+    installLang = arg[3]
+  end
 else
-  error("0 or 2 arguments required!")
+  error("0, 2, or 3 arguments required!")
 end
 
 --Url for file downloads
@@ -149,7 +151,7 @@ if not update then
   term.clear()
   term.setCursorPos(1,1)
   print(selectedLang:getText("installerIntroLineOne"))
-  print(selectedLang:getText("installerIntroLineTwo")..getVersion())
+  print(selectedLang:getText("wordVersion").." "..getVersion())
   print()
   print(selectedLang:getText("installerIntroLineThree"))
   print(selectedLang:getText("installerIntroLineFour"))
