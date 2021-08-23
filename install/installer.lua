@@ -258,7 +258,7 @@ end
 
 print(selectedLang:getText("installerGettingNewFiles"))
 getAllFiles()
-
+updateOptionFileWithLanguage(installLang)
 term.clear()
 term.setCursorPos(1,1)
 
