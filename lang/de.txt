@@ -129,7 +129,7 @@
   installerIntroLineNine = "Wird das Programm mit Turbinen betrieben, sollte der Reaktor pro Turbine mindestens 2000mb/t Steam produzieren koennen.",
     
   installerLabelLineOne = "Es wird empfohlen den Computer zu labeln.",
-  installerLabelLineTwo = "Computer labeln? (y/n):",
+  installerLabelLineTwo = "Computer labeln? (j/n):",
   installerLabelSet = "ComputerLabel auf  \"ReactorControlComputer\" gesetzt.",
   installerLabelNotSet = "ComputerLabel wurde nicht gesetzt.",
 

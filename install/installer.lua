@@ -11,7 +11,7 @@ local update
 local branch = ""
 local repoUrl = "https://gitlab.com/seekerscomputercraft/extremereactorcontrol/-/raw/"
 local selectedLang = {}
-local installLang = "en"
+local installLang = nil
 
 --Program arguments for updates
 if #arg == 0 then
@@ -48,11 +48,22 @@ end
 --Url for file downloads
 local relUrl = repoUrl..branch.."/"
 
-
 --===== Functions =====
 
 function getLanguage()
-  if not update or _G.lang == nil then    
+  local pickLang = true
+
+  if _G.lang == nil then
+  else
+    --global lang 
+    if installLang == nil then
+      installLang =  _G.lang
+    end
+  end
+
+  pickLang = installLang == nil    
+
+  if pickLang then    
     languages = downloadAndRead("supportedLanguages.txt")
     downloadAndExecuteClass("Language.lua")
     for k, v in pairs(languages) do
