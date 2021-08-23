@@ -129,6 +129,15 @@ function getAllFiles()
 	end
 end
 
+function getVersion()
+  writeFile("main.ver")
+	local fileData = fs.open("/extreme-reactors-control/main.ver","r")
+	local list = fileData.readAll()
+	fileData.close()
+
+  return list
+end
+
 --===== Run installation =====
 
 --load language data
@@ -140,7 +149,7 @@ if not update then
   term.clear()
   term.setCursorPos(1,1)
   print(selectedLang:getText("installerIntroLineOne"))
-  print(selectedLang:getText("installerIntroLineTwo"))
+  print(selectedLang:getText("installerIntroLineTwo")..getVersion())
   print()
   print(selectedLang:getText("installerIntroLineThree"))
   print(selectedLang:getText("installerIntroLineFour"))

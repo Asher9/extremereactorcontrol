@@ -1,139 +1,23 @@
--- Input API --
--- Original work by Thor_s_Crafter on https://github.com/ThorsCrafter/Reactor-and-Turbine-control-program -- 
--- Version 1.0 --
+function formatNumberComma(number)
+  --thanks to https://stackoverflow.com/questions/10989788/format-integer-in-lua answer by Bert Kiers
 
---Formatiert grosse Zahlenwerte in String (z.B. 1.000)
-function formatNumber(value)
-    --Werte kleiner 1000 muessen nicht formatiert werden
-    if value < 1000 then return value end
 
-    --Legt Berechnungsvariablen fest
-    local array = {}
-    local vStr = tostring(value)
-    local len = string.len(vStr)
-    local modulo = math.fmod(len, 3)
+    local i, j, minus, int, fraction = tostring(number):find('([-]?)(%d+)([.]?%d*)')
+  
+    -- reverse the int-string and append a comma to all blocks of 3 digits
+    int = int:reverse():gsub("(%d%d%d)", "%1,")
+  
+    -- reverse the int-string back remove an optional comma and put the 
+    -- optional minus and fractional part back
 
-    --Speichert einzelne Ziffern in einem Array ab
-    for i = 1, len do array[i] = string.sub(vStr, i, i) end
+    local finalOutput =  minus .. int:reverse():gsub("^,", "") .. fraction
 
-    --Legt (max. 2) Ziffern am Anfang in ein extra Array und entfernt
-    --Diese aus dem alten Array
-    local array2 = {}
-    if modulo ~= 0 then
-        for i = 1, modulo do
-            table.insert(array2, array[1])
-            table.remove(array, 1)
-        end
-    end
+    --update to use correct language delimiter.
+    finalOutput = string.gsub(finalOutput, ".", "frac")
+    finalOutput = string.gsub(finalOutput, ",", "thou")
 
-    --Fuegt die Punkte als Feld im ersten Array ein
-    for i = 1, #array + 1, 4 do
-        table.insert(array, i, ".")
-    end
+    finalOutput = string.gsub(finalOutput, "frac", _G.language:getText("fractionDelimiter"))
+    finalOutput = string.gsub(finalOutput, "thou", _G.language:getText("thousandsDelimiter"))
 
-    --Fuegt beide Arrays zusammen
-    for i = #array2, 1, -1 do table.insert(array, 1, array2[i]) end
-    if modulo == 0 then table.remove(array, 1) end --Entfernt ggf. Punkt am Anfang
-
-    --Wandelt alles in einen String zurueck und gibt diesen zurueck
-    local final = ""
-    for k, v in pairs(array) do final = final .. v end
-    return final
-end
-
---Wartet darauf das "Enter" gedrueckt wird
-function getEnter()
-    term.write("Enter druecken...")
-    while true do
-        local event, keyCode = os.pullEvent("key")
-        if keyCode == 28 then
-            print()
-            break
-        end
-    end
-end
-
-function formatNumberComma(value)
-    --Werte kleiner 1000 muessen nicht formatiert werden
-    if value < 1000 then return value end
-
-    --Legt Berechnungsvariablen fest
-    local array = {}
-    local vStr = tostring(value)
-    local len = string.len(vStr)
-    local modulo = math.fmod(len, 3)
-
-    --Speichert einzelne Ziffern in einem Array ab
-    for i = 1, len do array[i] = string.sub(vStr, i, i) end
-
-    --Legt (max. 2) Ziffern am Anfang in ein extra Array und entfernt
-    --Diese aus dem alten Array
-    local array2 = {}
-    if modulo ~= 0 then
-        for i = 1, modulo do
-            array2[i] = array[i]
-            table.remove(array, i)
-        end
-    end
-
-    --Fuegt die Punkte als Feld im ersten Array ein
-    for i = 1, #array + 1, 4 do
-        table.insert(array, i, ",")
-    end
-
-    --Fuegt beide Arrays zusammen
-    for i = #array2, 1, -1 do table.insert(array, 1, array2[i]) end
-    if modulo == 0 then table.remove(array, 1) end --Entfernt ggf. Punkt am Anfang
-
-    --Wandelt alles in einen String zurueck und gibt diesen zurueck
-    local final = ""
-    for k, v in pairs(array) do final = final .. v end
-    return final
-end
-
---Wartet darauf das "Enter" gedrueckt wird
-function getEnter()
-    term.write("Enter druecken...")
-    while true do
-        local event, keyCode = os.pullEvent("key")
-        if keyCode == 28 then
-            print()
-            break
-        end
-    end
-end
-
---Gibt true oder false zurueck - Anfrage an den Anwender
-function yesNoInput(message)
-    local input = ""
-    while true do
-        print(message .. " (j/n)?")
-        term.write("Eingabe: ")
-        input = read()
-        if input == "j" then return true
-        elseif input == "n" then return false
-        end
-    end
-end
-
---Gibt einen String zurueck - Anfrage an den Anwender
-function stringInput(message)
-    print(message)
-    term.write("Eingabe: ")
-    local input = read()
-    return input
-end
-
---Gibt eine Zahl zwischen min und max zurueck - Anfrage an den Anwender
-function numberInput(message, min, max)
-    local input = ""
-    while true do
-        print(message .. " (" .. min .. "-" .. max .. ")")
-        term.write("Eingabe: ")
-        input = read()
-        if tonumber(input) ~= nil then
-            local inputNr = tonumber(input)
-            if inputNr >= min and inputNr <= max then return inputNr end
-        end
-    end
+    return finalOutput
 end
