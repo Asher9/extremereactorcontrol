@@ -112,6 +112,23 @@ function getURL(path)
 	end
 end
 
+--Saves all data basck to the options.txt file
+function updateOptionFileWithLanguage(lang)
+    local file = fs.open("/extreme-reactors-control/config/options.txt","r")
+    local optionList = file.readAll()
+    file.close()
+
+    optionList["language"] = lang
+
+    --Serialise the table
+    local list = textutils.serialise(optionList)
+
+	  --Save optionList to the config file
+	  local fileSave = fs.open("/extreme-reactors-control/config/options.txt","w")
+    fileSave.writeLine(list)
+	  fileSave.close()
+end
+
 function downloadAndRead(fileName)
 	writeFile(fileName)
 	local fileData = fs.open("/extreme-reactors-control/"..fileName,"r")
