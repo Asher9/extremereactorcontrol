@@ -276,8 +276,8 @@ end
 --settings language
 term.clear()
 term.setCursorPos(1,1)
-read()
 updateOptionFileWithLanguage(installLang)
+read()
 sleep(30)
 
 --Install complete
