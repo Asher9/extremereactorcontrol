@@ -114,16 +114,12 @@ end
 
 --Saves all data basck to the options.txt file
 function updateOptionFileWithLanguage()
-    print("Setting Language: "..installLang)
-    read()
+
     local fileRead = fs.open("/extreme-reactors-control/config/options.txt","r")
     local optionList = textutils.unserialise(fileRead.readAll())
     fileRead.close()
     
-    print("Setting Language")
     optionList["language"] = installLang
-    print("Language Set: ".. optionList["language"])
-    read()
 
     --Serialise the table
     local optList = textutils.serialise(optionList)
@@ -279,8 +275,6 @@ end
 term.clear()
 term.setCursorPos(1,1)
 updateOptionFileWithLanguage()
-read()
-sleep(30)
 
 --Install complete
 term.clear()
