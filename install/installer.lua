@@ -114,6 +114,7 @@ end
 
 --Saves all data basck to the options.txt file
 function updateOptionFileWithLanguage()
+    read()
     print("Setting Language: "..installLang)
     read()
     local fileRead = fs.open("/extreme-reactors-control/config/options.txt","r")
