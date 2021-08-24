@@ -69,7 +69,7 @@ local function searchPeripherals()
                 _G.amountCapacitors = amountCapacitors + 1
             end
 
-            if successGetEnergy then
+            if successMekV10Plus then
 			    --Mekanism V10plus 
                 print("getTotalEnergyFilledPercentage() device - "..peripheralList[i])
                 _G.capacitors[amountCapacitors] = newMekanismEnergyStorageV10plus("e" .. tostring(amountCapacitors), peri, periItem, periType)
