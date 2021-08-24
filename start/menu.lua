@@ -88,10 +88,12 @@ end
 function updateStartUp() 
   print("Triggered Onstartup Mainmenu")
   if not mainMenu then
+    print("Show mainMenu on startup: On")
     mainMenu = true
     saveOptionFile()
     page:rename("menuOn",startOn,true)
   elseif mainMenu then
+    print("Show mainMenu on startup: Off")
     mainMenu = false
     saveOptionFile()
     page:rename("menuOn",startOff,true)
