@@ -24,7 +24,7 @@ function _G.createButtons()
   page:add(_G.language:getText("wordOptions"),displayOptions,3,16,20,16)
   page:add(_G.language:getText("quitProgram"),exit,3,17,20,17)
   page:add(_G.language:getText("wordReboot"),reboot,3,18,20,18)
-  page:add("menuOn",updateStartUp,39,7,49,7)
+  page:add("menuOn",nil,39,7,49,7)
   startOn = {"   ".._G.language:getText("wordOn").."    ",label = "menuOn"}
   startOff = {"   ".._G.language:getText("wordOff").."   ",label = "menuOn"}
 
@@ -85,21 +85,6 @@ function _G.switchProgram(currBut)
   displayMenu()
 end
 
-function updateStartUp() 
-  print("Triggered Onstartup Mainmenu")
-  if not mainMenu then
-    print("Show mainMenu on startup: On")
-    mainMenu = true
-    saveOptionFile()
-    page:rename("menuOn",startOn,true)
-  elseif mainMenu then
-    print("Show mainMenu on startup: Off")
-    mainMenu = false
-    saveOptionFile()
-    page:rename("menuOn",startOff,true)
-  end
-end
-
 function _G.startTC()
   if program == "turbine" then
     shell.run("/extreme-reactors-control/program/turbineControl.lua")
@@ -119,7 +104,21 @@ end
 local function getClick(funct)
   local event,but = page:handleEvents(os.pullEvent())
   if event == "button_click" then
-    if but == "Automatic" then
+    if but == "menuOn" then
+      print("Triggered Onstartup Mainmenu")
+      if not mainMenu then
+        print("Show mainMenu on startup: On")
+        mainMenu = true
+        saveOptionFile()
+        page:rename("menuOn",startOn,true)
+      elseif mainMenu then
+        print("Show mainMenu on startup: Off")
+        mainMenu = false
+        saveOptionFile()
+        page:rename("menuOn",startOff,true)
+      end
+      funct()
+    elseif but == "Automatic" then
       if page.buttonList[but].active == false then
         page:toggleButton(_G.language:getText("wordAutomatic"))
       end
