@@ -114,15 +114,15 @@ function getURL(path)
 end
 
 --Saves all data basck to the options.txt file
-function updateOptionFileWithLanguage(lang)
-    print("Setting Language: "..lang)
+function updateOptionFileWithLanguage()
+    print("Setting Language: "..installLang)
 
     local file = fs.open("/extreme-reactors-control/config/options.txt","r")
     local optionList = file.readAll()
     file.close()
     
     print("Setting Language")
-    optionList["language"] = lang
+    optionList["language"] = installLang
     print("Language Set: ".. optionList["language"])
     --Serialise the table
     local list = textutils.serialise(optionList)
@@ -279,7 +279,7 @@ term.clear()
 term.setCursorPos(1,1)
 print("Using lang: "..installLang)
 read()
-updateOptionFileWithLanguage(installLang)
+updateOptionFileWithLanguage()
 read()
 sleep(30)
 
