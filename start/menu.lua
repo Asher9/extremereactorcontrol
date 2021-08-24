@@ -105,18 +105,14 @@ local function getClick(funct)
   local event,but = page:handleEvents(os.pullEvent())
   if event == "button_click" then
     if but == "menuOn" then
-      print("Triggered Onstartup Mainmenu")
       if not mainMenu then
-        print("Show mainMenu on startup: On")
-        mainMenu = true
-        saveOptionFile()
+        _G.mainMenu = true
         page:rename("menuOn",startOn,true)
       elseif mainMenu then
-        print("Show mainMenu on startup: Off")
-        mainMenu = false
-        saveOptionFile()
+        _G.mainMenu = false
         page:rename("menuOn",startOff,true)
       end
+      saveOptionFile()
       funct()
     elseif but == "Automatic" then
       if page.buttonList[but].active == false then
@@ -125,7 +121,7 @@ local function getClick(funct)
       if overallMode == "manual" then
         page:toggleButton(_G.language:getText("wordManual"))
       end
-      overallMode = "auto"
+      _G.overallMode = "auto"
       saveOptionFile()
       funct()
 
@@ -138,7 +134,7 @@ local function getClick(funct)
         page:toggleButton(_G.language:getText("wordAutomatic"))
       end
 
-      overallMode = "manual"
+      _G.overallMode = "manual"
       saveOptionFile()
       funct()
     else
