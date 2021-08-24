@@ -273,12 +273,16 @@ if fs.exists("startup") then
   file.close()
 end
 
+--settings language
+term.clear()
+term.setCursorPos(1,1)
+read()
+updateOptionFileWithLanguage(installLang)
+sleep(30)
+
 --Install complete
 term.clear()
 term.setCursorPos(1,1)
-
-updateOptionFileWithLanguage(installLang)
-sleep(30)
 
 if not update then
   print(selectedLang:getText("installerOutroLineOne"))
