@@ -91,6 +91,7 @@ function getLanguage()
   end
 
 	print(selectedLang:getText("language"))
+  read()
 end
 
 --Writes the files to the computer
