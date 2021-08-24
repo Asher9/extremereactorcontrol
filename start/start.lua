@@ -277,6 +277,7 @@ function initClasses()
     shell.run(binPath.."bigger_reactors/Reactor.lua")
     shell.run(binPath.."bigger_reactors/Turbine.lua")
     shell.run(binPath.."mekanism/EnergyStorage.lua")
+    shell.run(binPath.."mekanism/EnergyStorageV10.0.21.plus.lua")
     shell.run(binPath.."Peripherals.lua")
     shell.run(binPath.."Language.lua")
 end
