@@ -53,6 +53,7 @@ local function searchPeripherals()
         else
             local successGetEnergyStored, errGetEnergyStored = pcall(function() peri.getEnergyStored() end)
             local successGetEnergy, errGetEnergy = pcall(function() peri.getEnergy() end)
+            local successMekV10Plus, errMekV10Plus = pcall(function() peri.getTotalEnergyFilledPercentage() end)
 
             if successGetEnergyStored and (successGetEnergy == false) then
 			    --Capacitorbank / Energycell / Energy Core
@@ -67,6 +68,15 @@ local function searchPeripherals()
                 _G.capacitors[amountCapacitors] = newMekanismEnergyStorage("e" .. tostring(amountCapacitors), peri, periItem, periType)
                 _G.amountCapacitors = amountCapacitors + 1
             end
+
+            if successGetEnergy then
+			    --Mekanism V10plus 
+                print("getTotalEnergyFilledPercentage() device - "..peripheralList[i])
+                _G.capacitors[amountCapacitors] = newMekanismEnergyStorageV10plus("e" .. tostring(amountCapacitors), peri, periItem, periType)
+                _G.amountCapacitors = amountCapacitors + 1
+            end
+
+            
 
         end
     end
