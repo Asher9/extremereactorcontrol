@@ -123,7 +123,7 @@ function updateOptionFileWithLanguage()
     
     print("Setting Language")
     optionList["language"] = installLang
-    print("Language Set: ".. optionList["language"])ng)
+    print("Language Set: ".. optionList["language"])
     read()
 
     --Serialise the table
