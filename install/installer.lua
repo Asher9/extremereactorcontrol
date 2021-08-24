@@ -276,6 +276,8 @@ end
 --settings language
 term.clear()
 term.setCursorPos(1,1)
+print("Using lang: "..installLang)
+read()
 updateOptionFileWithLanguage(installLang)
 read()
 sleep(30)
