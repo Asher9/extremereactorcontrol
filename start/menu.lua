@@ -15,8 +15,6 @@ local startOn = {}
 local startOff = {}
 
 function _G.createButtons()
-  page:add("Deutsch",nil,39,11,49,11)
-  page:add("English",nil,39,13,49,13)
 
   page:add(_G.language:getText("startProgram"),startTC,3,5,20,5)
   page:add(_G.language:getText("reactorOnly"),function() switchProgram("Reactor") end,3,9,20,9)
