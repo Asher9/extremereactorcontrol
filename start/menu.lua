@@ -27,7 +27,6 @@ function _G.createButtons()
   page:add("menuOn",nil,39,7,49,7)
   startOn = {"   ".._G.language:getText("wordOn").."    ",label = "menuOn"}
   startOff = {"   ".._G.language:getText("wordOff").."   ",label = "menuOn"}
-  page:toggleButton("English")
 
   if program == "turbine" then
     page:toggleButton(_G.language:getText("wordTurbines"))
