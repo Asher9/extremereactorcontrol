@@ -278,7 +278,7 @@ term.clear()
 term.setCursorPos(1,1)
 
 updateOptionFileWithLanguage(installLang)
-sleep(5)
+sleep(30)
 
 if not update then
   print(selectedLang:getText("installerOutroLineOne"))
