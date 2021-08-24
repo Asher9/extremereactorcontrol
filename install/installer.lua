@@ -122,6 +122,7 @@ function updateOptionFileWithLanguage()
     fileRead.close()
     
     print("Setting Language")
+    read()
     optionList["language"] = installLang
     print("Language Set: ".. optionList["language"])
     read()
