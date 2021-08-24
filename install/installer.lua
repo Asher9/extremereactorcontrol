@@ -114,9 +114,12 @@ end
 
 --Saves all data basck to the options.txt file
 function updateOptionFileWithLanguage(lang)
+    print("Setting Language: "..lang)
+
     local file = fs.open("/extreme-reactors-control/config/options.txt","r")
     local optionList = file.readAll()
     file.close()
+    
     print("Setting Language")
     optionList["language"] = lang
     print("Language Set: ".. optionList["language"])
@@ -276,6 +279,7 @@ term.setCursorPos(1,1)
 
 updateOptionFileWithLanguage(installLang)
 sleep(5)
+
 if not update then
   print(selectedLang:getText("installerOutroLineOne"))
   print(selectedLang:getText("installerOutroLineTwo"))
