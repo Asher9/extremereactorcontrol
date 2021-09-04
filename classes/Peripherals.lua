@@ -52,7 +52,7 @@ local function searchPeripherals()
 			end
         else
             local successGetEnergyStored, errGetEnergyStored = pcall(function() peri.getEnergyStored() end)
-            local isMekanism = periType == "inductionMatrix" or periType == "mekanismMachine"
+            local isMekanism = periType == "inductionMatrix" or periType == "mekanismMachine" or periType == "Induction Matrix"
             local isThermalExpansion = periType == "thermalexpansion:storage_cell"
             local isBase = (not isMekanism and not isThermalExpansion) and successGetEnergyStored
 
