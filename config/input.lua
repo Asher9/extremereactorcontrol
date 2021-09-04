@@ -12,8 +12,8 @@ function format_int(number)
     int = ""
   end
 
-  if frac == nil then
-    frac = ""
+  if fraction == nil then
+    fraction = ""
   end
 
   if minus == nil then
