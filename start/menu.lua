@@ -102,7 +102,7 @@ function reboot()
 end
 
 local function getClick(funct)
-  local event,but = page:handleEvents(os.pullEvent())
+  local event,but = page:handleEvents(os.pullEvent("button_click"))
   if event == "button_click" then
     if but == "menuOn" then
       if not mainMenu then
