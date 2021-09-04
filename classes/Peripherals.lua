@@ -71,7 +71,7 @@ local function searchPeripherals()
             end
 
             if isThermalExpansion then
-			    --Mekanism V10plus 
+			    --Thermal Expansion
                 print("Thermal Expansion Energy Storage device - "..peripheralList[i])
                 _G.capacitors[amountCapacitors] = newThermalExpansionEnergyStorage("e" .. tostring(amountCapacitors), peri, periItem, periType)
                 _G.amountCapacitors = amountCapacitors + 1
