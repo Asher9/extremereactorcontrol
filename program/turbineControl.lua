@@ -1084,8 +1084,7 @@ function printStatsAuto(turbine)
     if getReactorsActive() then
         controlMonitor.setTextColor(colors.green)
         controlMonitor.write("on ")
-    end
-    if not getReactorsActive() then
+    else
         controlMonitor.setTextColor(colors.red)
         controlMonitor.write("off")
     end
@@ -1151,7 +1150,7 @@ end
 
 function emitMessage(data)
     if _G.enableWireless then
-        local transmitMessage = _G.newMessage("rtMessage", data, _G.location);
+        local transmitMessage = _G.newMessage("rtMessage", data, _G.location)
         _G.wirelessModem.transmit(_G.modemChannel,_G.modemChannel+1,transmitMessage)
     end    
 end
@@ -1177,23 +1176,23 @@ function getReactorInfo()
     end
     
     reactorInfo.turbineData = textutils.serialise(reactorInfo.turbines)
-    reactorInfo.energyStored = math.floor(getEnergy());
-    reactorInfo.energyMax = math.floor(getEnergyMax());
-    reactorInfo.reactorCount = (amountReactors + 1);
-    
-    reactorInfo.steam = math.floor(getSteamProduced()/1000);
+    reactorInfo.energyStored = math.floor(getEnergy())
+    reactorInfo.energyMax = math.floor(getEnergyMax())
+    reactorInfo.reactorCount = (amountReactors + 1)
+    reactorInfo.active = getReactorsActive()
+    reactorInfo.steam = math.floor(getSteamProduced()/1000)
 
     local fuelCons = tostring(getFuelUsed())
     local fuelCons2 = string.sub(fuelCons, 0, 4)
     reactorInfo.fuelConsumed = fuelCons2;
     
     local eff = math.floor(rfGen / getFuelUsed())
-    reactorInfo.efficiency = math.floor(eff/1000);
+    reactorInfo.efficiency = math.floor(eff/1000)
     reactorInfo.rfProduced = rfGen;
 
-    reactorInfo.casing = 0;
-    reactorInfo.core = 0;
-    reactorInfo.rodLevel = 0;
+    reactorInfo.casing = 0
+    reactorInfo.core = 0
+    reactorInfo.rodLevel = 0
 
     return reactorInfo
 end

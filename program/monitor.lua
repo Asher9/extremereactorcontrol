@@ -63,7 +63,7 @@ function printStats(data)
         controlMonitor.write("1 ".._G.language:getText("wordReactor")..": ")
     end    
     
-    if getReactorsActive() then
+    if data.active then
         controlMonitor.setTextColor(colors.green)
         controlMonitor.write("on ")
     end

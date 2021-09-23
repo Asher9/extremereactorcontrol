@@ -9,6 +9,7 @@ local ReactorTurbineMessage = {
     core = 0,
     rodLevel = 0,
     rfProduced = 0,
+    active = false,
     turbines = {}
 }
 
