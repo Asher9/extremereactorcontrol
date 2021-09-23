@@ -1,7 +1,6 @@
 local Wrapper = {
     type = "",
     location = "",
-    response = "",
     data = {}
 }
 
@@ -9,10 +8,12 @@ local Wrapper = {
 function _G.newMessage(type, data, location)
     local message = {}
     setmetatable(message,{__index = Wrapper})
+
     message.data = data
     message.type = type
+    message.location = location
 
-    return textutils.unserialise(message)
+    return textutils.serialise(message)
 end
 
 function _G.readMessage(input)
