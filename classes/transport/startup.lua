@@ -3,8 +3,6 @@ local StartUpMessage = {
 }
 
 function _G.newStartUpMessage(messageData)
-    debugOutput("Creating new StartUpMesssage Class")
-
     local message = {}
     setmetatable(message,{__index = StartUpMessage})
     

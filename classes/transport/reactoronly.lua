@@ -8,8 +8,6 @@ local ReactorOnlyMessage = {
 }
 
 function _G.newReactorOnlyMessage()
-    debugOutput("Creating new ReactorTurbineMessage Class")
-
     local reactorOnly = {}
     setmetatable(reactorOnly,{__index = ReactorTurbineMessage})
     
