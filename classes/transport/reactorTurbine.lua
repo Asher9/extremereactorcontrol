@@ -47,5 +47,9 @@ function _G.loadReactorMessage(message)
     output.core = tonumber(message["core"])
     output.rodLevel = tonumber(message["rodLevel"])
     output.rfProduced = tonumber(message["rfProduced"])
+
+    for key,value in pairs(output) do
+        print("found method " .. key .. " = " .. value);
+    end
     return output
 end
