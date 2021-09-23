@@ -32,24 +32,3 @@ function _G.newReactorTurbineMessage(turbineCount)
 
     return reactorTurbine
 end
-
-function _G.loadReactorMessage(message) 
-    local output = {}
-    setmetatable(output,{__index = ReactorTurbineMessage})
-    
-    output.energyStored = tonumber(message["energyStored"])
-    output.energyMax = tonumber(message["energyMax"])
-    output.reactorCount = tonumber(message["reactorCount"])
-    output.steam = tonumber(message["steam"])
-    output.fuelConsumed = tonumber(message["fuelConsumed"])
-    output.efficiency = tonumber(message["efficiency"])
-    output.casing = tonumber(message["casing"])
-    output.core = tonumber(message["core"])
-    output.rodLevel = tonumber(message["rodLevel"])
-    output.rfProduced = tonumber(message["rfProduced"])
-
-    for key,value in pairs(output) do
-        print("found method " .. key .. " = " .. value);
-    end
-    return output
-end
