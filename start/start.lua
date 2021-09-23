@@ -37,7 +37,7 @@ _G.touchpointLocation = {}
 local repoUrl = "https://gitlab.com/seekerscomputercraft/extremereactorcontrol/-/raw/"
 
 function _G.debugOutput(message) 
-	if debug == 1 then
+	if _G.debug == 1 then
 		print(message)
 	end
 end
@@ -108,6 +108,7 @@ function _G.refreshOptionList()
 	optionList["location"] = location
 	debugOutput("Variable: modemChannel")
 	optionList["modemChannel"] = modemChannel
+	optionList["debug"] = debug
 end
 
 --Saves all data back to the options.txt file
@@ -287,12 +288,12 @@ function initClasses()
     shell.run(binPath.."bigger_reactors/Turbine.lua")
     shell.run(binPath.."mekanism/MekanismEnergyStorage.lua")
     shell.run(binPath.."thermal_expansion/ThermalExpansionEnergyStorage.lua")
+    shell.run(binPath.."Peripherals.lua")
+    shell.run(binPath.."Language.lua")
 	shell.run(binPath.."transport/reactoronly.lua")
 	shell.run(binPath.."transport/reactorturbine.lua")
 	shell.run(binPath.."transport/startup.lua")
     shell.run(binPath.."transport/wrapper.lua")
-    shell.run(binPath.."Peripherals.lua")
-    shell.run(binPath.."Language.lua")
 end
 
 --=========== Run the program ==========
