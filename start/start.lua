@@ -37,9 +37,9 @@ _G.touchpointLocation = {}
 local repoUrl = "https://gitlab.com/seekerscomputercraft/extremereactorcontrol/-/raw/"
 
 function _G.debugOutput(message) 
-	if debug == 1 then
-		print(message)
-	end
+--	if debug == 1 then
+--		print(message)
+--	end
 end
 
 --Loads the options.txt file and adds values to the global variables
