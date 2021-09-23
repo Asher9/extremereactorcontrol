@@ -66,8 +66,7 @@ function printStats(data)
     if data.active then
         controlMonitor.setTextColor(colors.green)
         controlMonitor.write("on ")
-    end
-    if not getReactorsActive() then
+    else
         controlMonitor.setTextColor(colors.red)
         controlMonitor.write("off")
     end
