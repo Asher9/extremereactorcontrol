@@ -15,8 +15,6 @@ function checkPeripherals()
 end
 
 function getEnergyPer(data)
-    print(type(data.energyStored))
-    print(type(data.energyMax))
     local en = data.energyStored
     local enMax = data.energyMax
     print(en .. " of " .. enMax)
@@ -34,7 +32,7 @@ function printStats(data)
     controlMonitor.write(_G.language:getText("wordEnergy")..": " .. getEnergyPer(data) .. "%  ")
 
     --prints the energy bar
-    local part1 = getEnergyPer() / 5
+    local part1 = getEnergyPer(data) / 5
     controlMonitor.setCursorPos(2, 3)
     controlMonitor.setBackgroundColor(colors.lightGray)
     controlMonitor.write("                    ")
