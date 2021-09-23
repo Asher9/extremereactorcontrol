@@ -109,16 +109,16 @@ function _G.checkPeripherals()
     
 	--Monitor too small
 	local monX,monY = controlMonitor.getSize()
-
-    if amountTurbines < 33 then
+    
+    if amountReactors < 1 then           
+        -- do no check monitor is controlled by user for wireless stats 
+    elseif amountTurbines < 33 then
         _G.smallMonitor = 1
         if monX < 71 or monY < 26 then
             local messageOut = string.gsub(string.gsub(_G.language:getText("monitorSize"), "8","7"),"6","4")
             controlMonitor.write(messageOut)
             error(messageOut)
         end
-    elseif amountReactors == 0 then           
-        -- do no check monitor is controlled by user for wireless stats 
     else
         _G.smallMonitor = 0
         if monX < 82 or monY < 40 then
