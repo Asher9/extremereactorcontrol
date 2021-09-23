@@ -1044,7 +1044,7 @@ function printStatsAuto(turbine)
 
     local data = getReactorInfo();
     emitMessage(data)
-    
+
     --prints the energy level (in %)
     controlMonitor.setBackgroundColor(tonumber(backgroundColor))
     controlMonitor.setTextColor(tonumber(textColor))

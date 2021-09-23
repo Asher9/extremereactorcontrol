@@ -1,20 +1,14 @@
 local ReactorTurbineMessage = {
     energyStored = 0,
     energyMax = 0,
-    reactorEnergry =0 ,
     reactorCount = 0,
+    steam = 0,
     fuelConsumed = 0,
     efficiency = 0,
     casing = 0,
     core = 0,
     rodLevel = 0,
-    rfProduced = function(self)
-        local rfGen = 0
-        for i = 0, #turbines, 1 do
-            rfGen = rfGen + self.id.turbines[i]:energyProduction()
-        end
-        return rfGen;
-    end,,
+    rfProduced = 0,
     turbines = {}
 }
 
