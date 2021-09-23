@@ -1168,11 +1168,10 @@ function getReactorInfo()
         rfGen = rfGen + turbines[i]:energyProduction()
         
         if turbines[i]:coilsEngaged() then
-            reactorInfo.turbines[i].engaged = _G.language:getText("wordEngaged")
+            reactorInfo:turbines[i].engaged = _G.language:getText("wordEngaged")
         end
-        if turbines[i]:coilsEngaged() == false then
-            
-        reactorInfo.turbines[i].engaged = _G.language:getText("wordDisengaged")
+        if turbines[i]:coilsEngaged() == false then            
+            reactorInfo:turbines[i].engaged = _G.language:getText("wordDisengaged")
         end
 
         reactorInfo.turbines[i].turbineSpeed = math.floor(turbines[i]:rotorSpeed())

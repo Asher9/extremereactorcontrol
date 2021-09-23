@@ -25,7 +25,7 @@ function _G.newReactorTurbineMessage(turbineCount)
     local reactorTurbine = {}
     setmetatable(reactorTurbine,{__index = ReactorTurbineMessage})
     
-    for i = 1, turbineCount do
+    for i = 0, turbineCount do
         reactorTurbine.turbines[i] = {}
         setmetatable(reactorTurbine.turbines[i],{__index = Turbine})
     end
