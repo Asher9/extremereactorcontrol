@@ -1150,13 +1150,7 @@ function emitStartUpMessage(message)
 end
 
 function emitMessage(data)
-    print("Wireless: ".. tostring(_G.enableWireless))
-    print("Modem: ".. tostring(_G.wirelessModem))
-    if _G.enableWireless and not _G.wirelessModem == nil then
-        if not _G.wirelessModem.isOpen(_G.modemChannel) then
-            _G.wirelessModem.open(_G.modemChannel) 
-        end
-
+    if _G.enableWireless then
         _G.wirelessModem.transmit(_G.modemChannel,_G.modemChannel+1,_G.newMessage("rtMessage", data, _G.location))
     end    
 end
