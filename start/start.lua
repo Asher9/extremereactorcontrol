@@ -318,6 +318,7 @@ checkUpdates()
 --Run program or main menu, based on the settings
 if  amountReactors < 1 then
 	--this is a monitor only we do show anything with the menu
+	shell.run("/extreme-reactors-control/program/monitor.lua")
 elseif mainMenu then
 	shell.run("/extreme-reactors-control/start/menu.lua")
 	shell.completeProgram("/extreme-reactors-control/start/start.lua")

@@ -85,12 +85,17 @@ function start()
     --Check for click events
     while true do
          --gets the event
-         if not _G.wirelessModem.isOpen() then
+         if not _G.wirelessModem.isOpen(_G.modemChannel) then
             _G.wirelessModem.open(_G.modemChannel)
          end
 
          local event, modemSide, senderChannel, replyChannel, message, senderDistance = os.pullEvent("modem_message")
          local responseObject = _G.readMessage(message)
+
+         for key,value in pairs(responseObject) do
+            print("found method " .. key);
+        end
+
          if responseObject.type == "rtMessage" then
             printStats(responseObject.data)
          end
