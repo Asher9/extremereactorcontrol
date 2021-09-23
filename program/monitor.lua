@@ -15,15 +15,8 @@ function checkPeripherals()
 end
 
 function getEnergyPer(data)
-    local en, enMax
-    for key,value in pairs(data) do
-        if key == "energyStored" then
-            en = value
-        elseif key == "energyMax" then
-            enMax = value
-        end
-   end
-
+    local en = data.energyStored
+    local enMax = data.energyMax
     print(en .. " of " .. enMax)
     local enPer = math.floor(en / enMax * 100)
     return enPer
@@ -100,7 +93,8 @@ function start()
         local responseObject = _G.readMessage(message)
 
         if responseObject.type == "rtMessage" then
-            printStats(responseObject.data)
+            local data = _G.loadReactorMessage(responseObject.data)
+            printStats(data)
         end
     end
 end

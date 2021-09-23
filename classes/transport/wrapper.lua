@@ -15,7 +15,3 @@ function _G.newMessage(type, data, location)
 
     return textutils.serialise(message)
 end
-
-function _G.readMessage(input)
-    return textutils.unserialise(input)
-end

@@ -32,3 +32,8 @@ function _G.newReactorTurbineMessage(turbineCount)
 
     return reactorTurbine
 end
+
+function _G.loadReactorMessage(message) 
+    setmetatable(message,{__index = ReactorTurbineMessage})
+    return message
+end
