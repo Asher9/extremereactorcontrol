@@ -26,7 +26,7 @@ function getEnergyPer(data)
     return enPer
 end
 
-function printStats(data)
+function printStatsReactorTurbine(data)
     --prints the energy level (in %)
     controlMonitor.setBackgroundColor(tonumber(backgroundColor))
     controlMonitor.setTextColor(tonumber(textColor))
@@ -107,7 +107,7 @@ function start()
 
         if responseObject.location == _G.location then            
             if responseObject.type == "rtMessage" then
-                printStats(responseObject.data)
+                printStatsReactorTurbine(responseObject.data)
             end
         end
     end
