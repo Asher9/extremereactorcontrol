@@ -94,7 +94,7 @@ function start()
     controlMonitor.clear()
     controlMonitor.setTextColor(textColor)
     controlMonitor.setCursorPos(1, 1)
-    
+
     --Check for click events
     while true do
         --gets the event
@@ -105,8 +105,10 @@ function start()
         local event, modemSide, senderChannel, replyChannel, message, senderDistance = os.pullEvent("modem_message")
         local responseObject = textutils.unserialise(message)
 
-        if responseObject.type == "rtMessage" then
-            printStats(responseObject.data)
+        if responseObject.location == _G.location then            
+            if responseObject.type == "rtMessage" then
+                printStats(responseObject.data)
+            end
         end
     end
 end
