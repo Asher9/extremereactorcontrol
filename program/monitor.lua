@@ -90,7 +90,7 @@ function start()
         end
 
         local event, modemSide, senderChannel, replyChannel, message, senderDistance = os.pullEvent("modem_message")
-        local responseObject = _G.readMessage(message)
+        local responseObject = textutils.unserialise(message)
 
         if responseObject.type == "rtMessage" then
             local data = _G.loadReactorMessage(responseObject.data)
