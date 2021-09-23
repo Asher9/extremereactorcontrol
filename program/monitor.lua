@@ -15,6 +15,9 @@ function checkPeripherals()
 end
 
 function getEnergyPer(data)
+    if data == nil then
+        return 0
+    end
     local en = data.energyStored
     local enMax = data.energyMax
     print(en .. " of " .. enMax)
