@@ -15,6 +15,11 @@ function checkPeripherals()
 end
 
 function getEnergyPer(data)
+
+    for key,value in pairs(data) do
+       print("found method " .. key);
+   end
+
     local en = data.energyStored
     local enMax = data.energyMax
     print(en .. " of " .. enMax)
@@ -92,7 +97,7 @@ function start()
         local event, modemSide, senderChannel, replyChannel, message, senderDistance = os.pullEvent("modem_message")
         local responseObject = _G.readMessage(message)
 
-         for key,value in pairs(message) do
+         for key,value in pairs(responseObject) do
             print("found method " .. key);
         end
 
