@@ -1196,6 +1196,8 @@ function getReactorInfo()
     reactorInfo.casing = 0;
     reactorInfo.core = 0;
     reactorInfo.rodLevel = 0;
+
+    return reactorInfo
 end
 
 --printStats (manual)
