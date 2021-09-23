@@ -80,7 +80,7 @@ function printStats(data)
     controlMonitor.write(_G.language:getText("wordSteam")..": " .. (input.formatNumberComma(data.steam)) .. "B/t    ")
     controlMonitor.setCursorPos(2, 11)
     controlMonitor.write(_G.language:getText("wordEfficiency")..": " .. (input.formatNumberComma(data.efficiency)) .. " KRF/mb       ")
-    controlMonitor.setCursorPos(30, 2)
+    controlMonitor.setCursorPos(24, 2)
     controlMonitor.write(_G.language:getText("wordTurbines")..": " .. #turbines .. "  ")
 end
 
