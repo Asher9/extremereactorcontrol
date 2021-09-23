@@ -1,7 +1,11 @@
 -- Extreme Reactors Control by SeekerOfHonjo --
 -- Original work by Thor_s_Crafter on https://github.com/ThorsCrafter/Reactor-and-Turbine-control-program --
 -- Version 1.0 --
--- Turbine control --
+-- Remote Monitor --
+
+shell.run("cp /extreme-reactors-control/config/input.lua /input")
+os.loadAPI("input")
+shell.run("rm input")
 
 --Checks if all required peripherals are attached
 function checkPeripherals()
