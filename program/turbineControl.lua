@@ -1175,7 +1175,8 @@ function getReactorInfo()
         reactorInfo.turbines[i].rfProduction = math.floor(turbines[i]:energyProduction()/1000)
         reactorInfo.turbines[i].turbineEnergy = math.floor(getTurbineEnergy(i))
     end
-
+    
+    reactorInfo.turbineData = textutils.serialise(reactorInfo.turbines)
     reactorInfo.energyStored = math.floor(getEnergy());
     reactorInfo.energyMax = math.floor(getEnergyMax());
     reactorInfo.reactorCount = (amountReactors + 1);

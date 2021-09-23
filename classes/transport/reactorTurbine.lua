@@ -34,6 +34,18 @@ function _G.newReactorTurbineMessage(turbineCount)
 end
 
 function _G.loadReactorMessage(message) 
+    local output = {}
     setmetatable(message,{__index = ReactorTurbineMessage})
-    return message
+    
+    output.energyStored = tonumber(optionList["energyStored"])
+    output.energyMax = tonumber(optionList["energyMax"])
+    output.reactorCount = tonumber(optionList["reactorCount"])
+    output.steam = tonumber(optionList["steam"])
+    output.fuelConsumed = tonumber(optionList["fuelConsumed"])
+    output.efficiency = tonumber(optionList["efficiency"])
+    output.casing = tonumber(optionList["casing"])
+    output.core = tonumber(optionList["core"])
+    output.rodLevel = tonumber(optionList["rodLevel"])
+    output.rfProduced = tonumber(optionList["rfProduced"])
+    return output
 end
