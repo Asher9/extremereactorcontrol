@@ -90,13 +90,14 @@ function start()
         end
 
         local event, modemSide, senderChannel, replyChannel, message, senderDistance = os.pullEvent("modem_message")
+        local responseObject = _G.readMessage(message)
 
-        for key,value in pairs(message) do
+         for key,value in pairs(message) do
             print("found method " .. key);
         end
 
          if responseObject.type == "rtMessage" then
-            printStats(message.data)
+            printStats(responseObject.data)
          end
     end
 end

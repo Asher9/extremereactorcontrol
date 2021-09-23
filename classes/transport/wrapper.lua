@@ -13,5 +13,9 @@ function _G.newMessage(type, data, location)
     message.type = type
     message.location = location
 
-    return message
+    return textutils.serialise(message)
+end
+
+function _G.readMessage(input)
+    return textutils.unserialise(input)
 end
