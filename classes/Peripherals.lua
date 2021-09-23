@@ -9,6 +9,8 @@ _G.controlMonitor = "" --Monitor
 _G.reactors = {} --Reactor
 _G.capacitors = {} --Energy Storage
 _G.turbines = {} --Turbines
+_G.wirelessModem = "" --wirelessModem
+_G.enableWireless = false
 
 --Total count of all turbines
 _G.amountTurbines = 0
@@ -44,12 +46,18 @@ local function searchPeripherals()
             print("Monitor - "..periItem)
 			if(peripheralList[i] == controlMonitor) then
 				--add to output monitors
-				_G.monitors[amountMonitors] = peripheral.wrap(peripheralList[i])
+				_G.monitors[amountMonitors] = peri
 				_G.amountMonitors = amountMonitors + 1
 			else
-				_G.controlMonitor = peripheral.wrap(peripheralList[i])
+				_G.controlMonitor = peri
 				_G.touchpointLocation = periItem
 			end
+        elseif periType == "modem" then
+            if peri.isWireless() then
+                print("Wireless Modem - "..periItem)
+                _G.wirelessModem = peri
+                _G.enableWireless = true
+            end
         else
             local successGetEnergyStored, errGetEnergyStored = pcall(function() peri.getEnergyStored() end)
             local isMekanism = periType == "inductionMatrix" or periType == "mekanismMachine" or periType == "Induction Matrix"

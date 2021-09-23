@@ -22,6 +22,9 @@ _G.targetSteam = 0
 _G.turbineOnOff = ""
 _G.debug = 0
 _G.skipControlRodCheck = 0
+_G.location = ""
+_G.modemChannel = 0
+_G.wirelessModemLocation = "top"
 _G.language = {}
 
 --TouchpointLocation (same as the monitor)
@@ -66,6 +69,8 @@ function _G.loadOptionFile()
 	_G.debug = optionList["debug"]
 	_G.skipControlRodCheck = optionList["skipControlRodCheck"]
 	_G.lang = optionList["language"]
+	_G.location = optionList["location"]
+	_G.modemChannel = optionList["modemChannel"]
 end
 
 --Refreshes the options list
@@ -99,6 +104,10 @@ function _G.refreshOptionList()
 	optionList["skipControlRodCheck"] = skipControlRodCheck
 	debugOutput("Variable: lang")
 	optionList["language"] = lang
+	debugOutput("Variable: location")
+	optionList["location"] = location
+	debugOutput("Variable: modemChannel")
+	optionList["modemChannel"] = modemChannel
 end
 
 --Saves all data back to the options.txt file
@@ -278,6 +287,7 @@ function initClasses()
     shell.run(binPath.."bigger_reactors/Turbine.lua")
     shell.run(binPath.."mekanism/MekanismEnergyStorage.lua")
     shell.run(binPath.."thermal_expansion/ThermalExpansionEnergyStorage.lua")
+    shell.run(binPath.."transport/wrapper.lua")
     shell.run(binPath.."Peripherals.lua")
     shell.run(binPath.."Language.lua")
 end
