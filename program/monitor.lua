@@ -85,6 +85,16 @@ function printStats(data)
 end
 
 function start()
+    --Reset terminal
+    term.clear()
+    term.setCursorPos(1, 1)
+
+    --Reset Monitor
+    controlMonitor.setBackgroundColor(backgroundColor)
+    controlMonitor.clear()
+    controlMonitor.setTextColor(textColor)
+    controlMonitor.setCursorPos(1, 1)
+    
     --Check for click events
     while true do
         --gets the event
