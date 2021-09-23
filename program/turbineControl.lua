@@ -1151,8 +1151,7 @@ end
 
 function emitMessage(data)
     if _G.enableWireless then
-        local transmitMessage = _G.newMessage("rtMessage", data, _G.location);
-        _G.wirelessModem.transmit(_G.modemChannel,_G.modemChannel+1,transmitMessage)
+        _G.wirelessModem.transmit(_G.modemChannel,_G.modemChannel+1,_G.newMessage("rtMessage", data, _G.location))
     end    
 end
 
