@@ -97,9 +97,6 @@ function _G.checkPeripherals()
 	term.clear()
 	term.setCursorPos(1,1)
 
-    if _G.reactors[0] == nil then
-        error("No reactor found!")
-    end
 	if controlMonitor == "" then
         error("Monitor not found!\nPlease check and reboot the computer (Press and hold Ctrl+R)")
 	end
@@ -120,6 +117,8 @@ function _G.checkPeripherals()
             controlMonitor.write(messageOut)
             error(messageOut)
         end
+    elseif amountReactors == 0 then           
+        -- do no check monitor is controlled by user for wireless stats 
     else
         _G.smallMonitor = 0
         if monX < 82 or monY < 40 then
