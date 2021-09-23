@@ -37,9 +37,9 @@ _G.touchpointLocation = {}
 local repoUrl = "https://gitlab.com/seekerscomputercraft/extremereactorcontrol/-/raw/"
 
 function _G.debugOutput(message) 
---	if debug == 1 then
---		print(message)
---	end
+	if debug == 1 then
+		print(message)
+	end
 end
 
 --Loads the options.txt file and adds values to the global variables
@@ -287,6 +287,9 @@ function initClasses()
     shell.run(binPath.."bigger_reactors/Turbine.lua")
     shell.run(binPath.."mekanism/MekanismEnergyStorage.lua")
     shell.run(binPath.."thermal_expansion/ThermalExpansionEnergyStorage.lua")
+	shell.run(binPath.."transport/reactoronly.lua")
+	shell.run(binPath.."transport/reactorturbine.lua")
+	shell.run(binPath.."transport/startup.lua")
     shell.run(binPath.."transport/wrapper.lua")
     shell.run(binPath.."Peripherals.lua")
     shell.run(binPath.."Language.lua")

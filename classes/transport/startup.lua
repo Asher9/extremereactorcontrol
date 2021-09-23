@@ -9,4 +9,4 @@ function _G.newStartUpMessage(messageData)
     message.message = messageData
 
     return message
-end
+end  

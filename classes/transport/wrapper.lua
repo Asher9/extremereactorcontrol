@@ -5,10 +5,6 @@ local Wrapper = {
     data = {}
 }
 
-local binPath = "/extreme-reactors-control/classes/transport/"
-shell.run(binPath.."reactoronly.lua")
-shell.run(binPath.."reactorturbine.lua")
-shell.run(binPath.."startup.lua")
 
 function _G.newMessage(type, data, location)
     local message = {}
