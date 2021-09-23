@@ -57,8 +57,8 @@ function printStats(data)
     --Reactor status (on/off)
     controlMonitor.setCursorPos(2, 7)
 
-    if (amountReactors > 0) then        
-        controlMonitor.write((amountReactors + 1) .. " ".._G.language:getText("wordReactors")..": ")
+    if data.reactorCount > 0 then        
+        controlMonitor.write(data.reactorCount .. " ".._G.language:getText("wordReactors")..": ")
     else
         controlMonitor.write("1 ".._G.language:getText("wordReactor")..": ")
     end    
