@@ -17,9 +17,9 @@ end
 function getEnergyPer(data)
     local en, enMax
     for key,value in pairs(data) do
-        if(key == "energyStored") then
+        if key == "energyStored" then
             en = value
-        elseif(key == "energyMax")
+        elseif key == "energyMax" then
             enMax = value
         end
    end
