@@ -1,0 +1,101 @@
+-- Extreme Reactors Control by SeekerOfHonjo --
+-- Original work by Thor_s_Crafter on https://github.com/ThorsCrafter/Reactor-and-Turbine-control-program --
+-- Version 1.0 --
+-- Turbine control --
+
+--Checks if all required peripherals are attached
+function checkPeripherals()
+    controlMonitor.setBackgroundColor(colors.black)
+    controlMonitor.clear()
+    controlMonitor.setCursorPos(1, 1)
+    controlMonitor.setTextColor(colors.red)
+    term.clear()
+    term.setCursorPos(1, 1)
+    term.setTextColor(colors.red)
+end
+
+function getEnergyPer(data)
+    local en = data.energyStored
+    local enMax = data.energyMax
+    print(en .. " of " .. enMax)
+    local enPer = math.floor(en / enMax * 100)
+    return enPer
+end
+
+function printStats(data)
+    --prints the energy level (in %)
+    controlMonitor.setBackgroundColor(tonumber(backgroundColor))
+    controlMonitor.setTextColor(tonumber(textColor))
+
+    controlMonitor.setCursorPos(2, 2)
+
+    controlMonitor.write(_G.language:getText("wordEnergy")..": " .. getEnergyPer(data) .. "%  ")
+
+    --prints the energy bar
+    local part1 = getEnergyPer() / 5
+    controlMonitor.setCursorPos(2, 3)
+    controlMonitor.setBackgroundColor(colors.lightGray)
+    controlMonitor.write("                    ")
+    controlMonitor.setBackgroundColor(colors.green)
+    controlMonitor.setCursorPos(2, 3)
+    for i = 1, part1 do
+        controlMonitor.write(" ")
+    end
+    controlMonitor.setTextColor(textColor)
+
+    --prints the overall energy production
+    controlMonitor.setBackgroundColor(tonumber(backgroundColor))
+
+    controlMonitor.setCursorPos(2, 5)
+
+    controlMonitor.write(_G.language:getText("rfProduction") .. (input.formatNumberComma(data.rfProduced)) .. " KRF/t      ")
+
+    --Reactor status (on/off)
+    controlMonitor.setCursorPos(2, 7)
+
+    if (amountReactors > 0) then        
+        controlMonitor.write((amountReactors + 1) .. " ".._G.language:getText("wordReactors")..": ")
+    else
+        controlMonitor.write("1 ".._G.language:getText("wordReactor")..": ")
+    end    
+    
+    if getReactorsActive() then
+        controlMonitor.setTextColor(colors.green)
+        controlMonitor.write("on ")
+    end
+    if not getReactorsActive() then
+        controlMonitor.setTextColor(colors.red)
+        controlMonitor.write("off")
+    end
+
+    --Prints all other informations (fuel consumption,steam,turbine amount,mode)
+    controlMonitor.setTextColor(tonumber(textColor))
+    controlMonitor.setCursorPos(2, 9)
+
+    controlMonitor.write(_G.language:getText("fuelConsumption") .. data.fuelConsumed .. "mb/t     ")
+    controlMonitor.setCursorPos(2, 10)
+    controlMonitor.write(_G.language:getText("wordSteam")..": " .. (input.formatNumberComma(data.steam)) .. "B/t    ")
+    controlMonitor.setCursorPos(2, 11)
+    controlMonitor.write(_G.language:getText("wordEfficiency")..": " .. (input.formatNumberComma(data.efficiency)) .. " KRF/mb       ")
+    controlMonitor.setCursorPos(30, 2)
+    controlMonitor.write(_G.language:getText("wordTurbines")..": " .. #turbines .. "  ")
+end
+
+function start()
+    --Check for click events
+    while true do
+         --gets the event
+         if not _G.wirelessModem.isOpen() then
+            _G.wirelessModem.open(_G.modemChannel)
+         end
+
+         local event, modemSide, senderChannel, replyChannel, message, senderDistance = os.pullEvent("modem_message")
+         local responseObject = _G.readMessage(message)
+         if responseObject.type == "rtMessage" then
+            printStats(responseObject.data)
+         end
+    end
+end
+
+
+start()

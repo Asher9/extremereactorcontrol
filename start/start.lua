@@ -324,6 +324,8 @@ else
 		shell.run("/extreme-reactors-control/program/turbineControl.lua")
 	elseif program == "reactor" then
 		shell.run("/extreme-reactors-control/program/reactorControl.lua")
+	elseif program == "monitor" then
+		shell.run("/extreme-reactors-control/program/monitor.lua")
 	end
 	shell.completeProgram("/extreme-reactors-control/start/start.lua")
 end
