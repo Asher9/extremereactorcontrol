@@ -85,6 +85,11 @@ function printStatsReactorTurbine(data)
 end
 
 function start()
+    
+    if _G.wirelessModem == nil then              
+        controlMonitor.write(_G.language:getText("noModemFound"))
+    end   
+
     --Reset terminal
     term.clear()
     term.setCursorPos(1, 1)
@@ -95,17 +100,13 @@ function start()
     controlMonitor.setTextColor(textColor)
     controlMonitor.setCursorPos(1, 1)
 
+
     --Check for click events
     while true do
-        --gets the event
-
-        if not _G.wirelessModem == nil then           
-            if not _G.wirelessModem.isOpen(_G.modemChannel) then
-                _G.wirelessModem.open(_G.modemChannel)
-            end 
-        else
-            controlMonitor.write(_G.language:getText("noModemFound"))
-        end
+        --gets the event     
+        if not _G.wirelessModem.isOpen(_G.modemChannel) then
+            _G.wirelessModem.open(_G.modemChannel)
+        end 
 
         local event, modemSide, senderChannel, replyChannel, message, senderDistance = os.pullEvent("modem_message")
         local responseObject = textutils.unserialise(message)
