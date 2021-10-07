@@ -98,8 +98,13 @@ function start()
     --Check for click events
     while true do
         --gets the event
-        if not _G.wirelessModem.isOpen(_G.modemChannel) then
-            _G.wirelessModem.open(_G.modemChannel)
+
+        if not _G.wirelessModem == nil then           
+            if not _G.wirelessModem.isOpen(_G.modemChannel) then
+                _G.wirelessModem.open(_G.modemChannel)
+            end 
+        else
+            controlMonitor.write(_G.language:getText("noModemFound"))
         end
 
         local event, modemSide, senderChannel, replyChannel, message, senderDistance = os.pullEvent("modem_message")
