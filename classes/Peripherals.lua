@@ -69,6 +69,8 @@ local function searchPeripherals()
                 or periType == "rftoolspower:cell2"
                 or periType == "rftoolspower:cell3"
 				or string.find(periType, "Energy Cube")
+				or string.find(periType, "EnergyCube")
+
             local isThermalExpansion = periType == "thermalexpansion:storage_cell"
             local isBase = (not isMekanism and not isThermalExpansion) and successGetEnergyStored
 
