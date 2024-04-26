@@ -9,7 +9,7 @@
 local arg = {... }
 local update
 local branch = ""
-local repoUrl = "https://gitlab.com/seekerscomputercraft/extremereactorcontrol/-/raw/"
+local repoUrl = "https://raw.githubusercontent.com/Asher9/extremereactorcontrol/"
 local selectedLang = {}
 local installLang = nil
 
