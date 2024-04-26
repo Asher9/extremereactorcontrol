@@ -133,7 +133,7 @@ function _G.checkUpdates()
 
 	--Check current branch (release or beta)
 	local currBranch = ""
-	local tmpString = string.sub(version,5,5)
+	local tmpString = string.sub(version,6,6)
 	if tmpString == "" or tmpString == nil or tmpString == "r" then
 		currBranch = "main"
 	elseif tmpString == "b" then
