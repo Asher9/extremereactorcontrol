@@ -123,7 +123,7 @@
   selectBranchLineFive = "Eingabe  (1-2):",
   
   installerIntroLineOne = "Reaktor- und Turbinenprogramm von SeekerOfHonjo",
-  installerIntroLineThree = "Ueber das Programm:",
+  installerIntroLineThree = "Über das Programm:",
   installerIntroLineFour = "Das Programm kontrolliert einen Reaktors.",
   installerIntroLineFive = "Es können auch bis zu 384 Turbinen angeschlossen werden.",
   installerIntroLineSix = "Der Computer muss mit Wired Modems am Reaktor (und ggf. Turbinen) verbunden werden.",
