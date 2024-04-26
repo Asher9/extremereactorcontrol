@@ -34,7 +34,7 @@ _G.touchpointLocation = {}
 
 --===== Functions for loading and saving the options =====
 
-local repoUrl = "https://gitlab.com/seekerscomputercraft/extremereactorcontrol/-/raw/"
+local repoUrl = "https://raw.githubusercontent.com/Asher9/extremereactorcontrol/"
 
 function  _G.debugOutput(message) 
 	if  _G.debugEnabled == 1 then
