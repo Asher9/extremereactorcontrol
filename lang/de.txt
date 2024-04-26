@@ -136,7 +136,7 @@
   installerLabelSet = "ComputerLabel auf  \"ReactorControlComputer\" gesetzt.",
   installerLabelNotSet = "ComputerLabel wurde nicht gesetzt.",
 
-  installerStartupLineOne = "Es wird empfohlen das Programm zum Startup hinzuzufugen.",
+  installerStartupLineOne = "Es wird empfohlen das Programm zum Startup hinzuzufügen.",
   installerStartupLineTwo = "Dadurch wird das Programm beim Starten des Computers automatisch ausgeführt.",
   installerStartupLineThree = "Startup hinzufügen? (j/n): ",
   installerStartupInstalled = "Startup wurde installiert.",
