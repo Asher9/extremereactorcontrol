@@ -20,7 +20,7 @@ _G.program = ""
 _G.turbineTargetSpeed = 0
 _G.targetSteam = 0
 _G.turbineOnOff = ""
- _G.debugEnabled = 0
+_G.debugEnabled = 0
 _G.skipControlRodCheck = 0
 _G.location = ""
 _G.modemChannel = 0
@@ -108,7 +108,7 @@ function _G.refreshOptionList()
 	optionList["location"] = location
 	debugOutput("Variable: modemChannel")
 	optionList["modemChannel"] = modemChannel
-	optionList["debug"] = debug
+	optionList["debug"] = debugEnabled
 end
 
 --Saves all data back to the options.txt file
